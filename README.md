@@ -16,7 +16,6 @@ days using python based frameworks.</p>
 </ul>
 </div>
 
-<img src="https://flask-bvw3f.herokuapp.com/uilix/static/img/custom-websites-feature.gif" width="180" alt="Fast Website Image"/>
 </div>
 
 <div style="text-align: center">
