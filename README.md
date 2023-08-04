@@ -3,7 +3,6 @@
 <h2>Hello, I'm David </h2>
 <p>I mostly do Websites, WebApps and APIs these<br/>
 days using python based frameworks.</p>
-<p>Languages & frameworks I work with:</p>
 </div>
 
 </div>
