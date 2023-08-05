@@ -31,7 +31,7 @@ coding in Python.</p>
 │   │   └── ...
 │   └── ...
 ├── markdown/
-│   └── ...
+│   └── 2023-08-06:flask-as-a-static-site-generator.md
 ├── templates/
 │   ├── __main__.html
 │   └── index.html
@@ -127,6 +127,8 @@ coding in Python.</p>
 <p>Running <code>flask compile</code></p>
 <ol>
 <li>It gets all the markdown files in the <code>markdown/</code> folder.</li>
+<li>It pulls the title and the date from the filename of the markdown file. &quot;-&quot; in the title is replaced with a
+space, &quot;-&quot; are better for URLs, so the internet says...</li>
 <li>It then gets all the html files in the <code>docs/</code> folder.</li>
 <li>It then compares the two lists, and if there is a markdown file that doesn't have a corresponding html file, it
 generates the html file.</li>

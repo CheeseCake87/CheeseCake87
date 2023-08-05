@@ -13,7 +13,7 @@ Here's the needed folder structure:
 │   │   └── ...
 │   └── ...
 ├── markdown/
-│   └── ...
+│   └── 2023-08-06:flask-as-a-static-site-generator.md
 ├── templates/
 │   ├── __main__.html
 │   └── index.html
@@ -114,10 +114,12 @@ If you can't work it out from the code, here's how it works:
 Running `flask compile`
 
 1. It gets all the markdown files in the `markdown/` folder.
-2. It then gets all the html files in the `docs/` folder.
-3. It then compares the two lists, and if there is a markdown file that doesn't have a corresponding html file, it
+2. It pulls the title and the date from the filename of the markdown file. "-" in the title is replaced with a
+   space, "-" are better for URLs, so the internet says...
+3. It then gets all the html files in the `docs/` folder.
+4. It then compares the two lists, and if there is a markdown file that doesn't have a corresponding html file, it
    generates the html file.
-4. It then generates the `index.html` file with all the links to the other pages.
+5. It then generates the `index.html` file with all the links to the other pages.
 
 Running `flask re-compile` will do the same thing, but it will delete all the html files in the `docs/` folder first.
 
