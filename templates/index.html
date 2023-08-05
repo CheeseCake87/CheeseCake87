@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+</head>
+<body>
+
+<div>
+    <h1 style="font-size: 3.6rem; margin: 0;">The Coding Side Quest</h1>
+    <p style="margin: 0;"><small>... a semi coherent coding blog by
+        <a href="https://github.com/CheeseCake87" target="_blank" rel="noreferrer">David Carmichael</a></small></p>
+</div>
+
+{%- for page in pages -%}
+    {% set split = page.split(':') %}
+    {% set page = {'title': split[1], 'date': split[0], 'link': page + '.html'} %}
+    <div style="margin-bottom: 1rem; width: 100%">
+
+        <h2 style="font-size: 2.6rem; margin-bottom: 0;">{{ page.title|title|replace("-", " ") }}</h2>
+        <p style="margin: 0"><small>{{ page.date }}</small></p>
+        <p><a href="{{ page.link }}">Open</a></p>
+
+    </div>
+
+{%- endfor %}
+</body>
+</html>
