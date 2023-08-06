@@ -1,3 +1,4 @@
+import re
 from datetime import datetime
 from pathlib import Path
 
@@ -9,9 +10,20 @@ from pygments.lexers import get_lexer_by_name
 from pygments.util import ClassNotFound
 from pytz import timezone
 
+local_tz = timezone("Europe/London")
+cwd = Path(__file__).parent
+docs_dir = cwd / "docs"
+markdown_dir = cwd / "markdown"
+index_html = docs_dir / "index.html"
+index_xml = docs_dir / "index.xml"
 
-def pytz_datetime_str(ltz: str = "Europe/London", mask: str = "%Y-%m-%d %H:%M:%S.%f") -> str:
-    local_tz = timezone(ltz)
+
+def switch_date(content, new_date):
+    pattern = re.compile(r'date="[A-Za-z]+"', re.IGNORECASE)
+    return pattern.sub(f'date="{new_date}"', content)
+
+
+def pytz_datetime_str(mask: str = "%Y-%m-%d %H:%M:%S.%f") -> str:
     return datetime.strptime(datetime.now(local_tz).strftime(mask), mask).strftime(mask)
 
 
@@ -29,13 +41,6 @@ class HighlightRenderer(mistune.HTMLRenderer):
         return '<pre><code>' + mistune.escape(code) + '</code></pre>'
 
 
-cwd = Path(__file__).parent
-docs_dir = cwd / "docs"
-markdown_dir = cwd / "markdown"
-index_html = docs_dir / "index.html"
-index_xml = docs_dir / "index.xml"
-
-
 def get_docs_files() -> list:
     _ = []
     for f in docs_dir.glob("*.html"):
@@ -46,54 +51,72 @@ def get_docs_files() -> list:
     return _
 
 
-def compiler(re_compile=False):
+def compiler():
     docs_dir_files = get_docs_files()
     markdown_dir_files = markdown_dir.glob("*.md")
 
     pages = {}
 
-    if re_compile:
-        for file in docs_dir_files:
-            (docs_dir / f"{file}.html").unlink()
+    for file in docs_dir_files:
+        (docs_dir / f"{file}.html").unlink()
 
     for file in markdown_dir_files:
         title = "Untitled"
         description = "No description"
         date = "No date"
 
-        if file.stem not in docs_dir_files or re_compile:
-            raw_markdown = file.read_text()
-            split_markdown = raw_markdown.split("::::")
-            raw_info = split_markdown[0].strip().replace(
-                "\n", "").split(",")
-            for info_item in raw_info:
-                if info_item.startswith("title="):
-                    title = info_item.split('"')[1]
-                elif info_item.startswith("description="):
-                    description = info_item.split('"')[1]
-                elif info_item.startswith("date="):
-                    raw_date = info_item.split('"')
+        raw_markdown = file.read_text()
+        split_markdown = raw_markdown.split("::::")
+        raw_info = split_markdown[0].strip().replace(
+            "\n", "").split(",")
+
+        content = split_markdown[1]
+        markdown = mistune.Markdown(renderer=HighlightRenderer())
+
+        for info_item in raw_info:
+            if info_item.startswith("title="):
+                title = info_item.split('"')[1]
+            elif info_item.startswith("description="):
+                description = info_item.split('"')[1]
+            elif info_item.startswith("date="):
+                raw_date = info_item.split('"')
+                try:
                     date = datetime.strftime(
-                        datetime.strptime(raw_date[1], "%Y-%m-%d"), "%a, %d %b %Y")
+                        datetime.strptime(
+                            raw_date[1],
+                            "%Y-%m-%d %H:%M %z"
+                        ), "%a, %d %b %Y %H:%M:%S %z")
+                except ValueError:
+                    date = pytz_datetime_str(mask="%a, %d %b %Y %H:%M:%S %z")
 
-            content = split_markdown[1]
-            markdown = mistune.Markdown(renderer=HighlightRenderer())
+                    with open(file, mode="w") as f:
+                        f.write(switch_date(raw_markdown, date))
 
-            with open(docs_dir / f"{file.stem}.html", mode="w") as html_file:
-                html_file.write(render_template(
-                    "__main__.html",
-                    title=title,
-                    description=description,
-                    date=date,
-                    content=markdown(content)
-                ))
+        if "0000-00-00" in file.stem:
+            raw_filename = file.stem.replace("0000-00-00", pytz_datetime_str(mask="%Y-%m-%d"))
+            split_filename = raw_filename.split("_")
+            filename = "_".join([split_filename[0], title.lower().replace(" ", "-")])
+        else:
+            split_filename = file.stem.split("_")
+            filename = "_".join([split_filename[0], title.lower().replace(" ", "-")])
 
-            pages[f"{file.stem}.html"] = {
-                "title": title,
-                "description": description,
-                "date": date,
-                "content": markdown(content)
-            }
+        file.rename(markdown_dir / f"{filename}.md")
+
+        with open(docs_dir / f"{filename}.html", mode="w") as html_file:
+            html_file.write(render_template(
+                "__main__.html",
+                title=title,
+                description=description,
+                date=date,
+                content=markdown(content)
+            ))
+
+        pages[f"{filename}.html"] = {
+            "title": title,
+            "description": description,
+            "date": date,
+            "content": markdown(content)
+        }
 
     index_html.write_text(
         render_template(
@@ -105,7 +128,7 @@ def compiler(re_compile=False):
     index_xml.write_text(
         render_template(
             "index.xml",
-            build_date=pytz_datetime_str(mask="%a, %d %b %Y"),
+            build_date=pytz_datetime_str(mask="%a, %d %b %Y %H:%M:%S %z"),
             pages=pages
         )
     )
@@ -120,25 +143,20 @@ def create_app():
     def compile_site():
         compiler()
 
-    @app.cli.command("re-compile")
-    def re_compile_site():
-        compiler(re_compile=True)
-
     @app.cli.command("add-page")
     def add_page():
         title = input("Title: ")
-        filename = f"{pytz_datetime_str(mask='%Y-%m-%d')}:{title.lower().replace(' ', '-') or 'untitled'}.md"
+        filename = f"0000-00-00_{title.lower().replace(' ', '-') or 'untitled'}.md"
         with open(markdown_dir / filename, mode="w") as file:
             file.write(
                 """\
-title="{title}"
-description="Description"
-date="{date}"
+title="{title}",
+description="Description",
+date="{date}",
 
 ::::
 
-# Title
-""".format(title=title or "Untitled", date=pytz_datetime_str(mask="%Y-%m-%d"))
-            )
+start here...
+""".format(title=title.title() or "Untitled", date="set-on-compile"))
 
     return app

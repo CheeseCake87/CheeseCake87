@@ -1,6 +1,6 @@
 title="A Short Uninteresting Introduction",
 description="A short introduction to me and this blog.",
-date="2023-08-05",
+date="2023-08-05 16:00 +0100",
 
 ::::
 

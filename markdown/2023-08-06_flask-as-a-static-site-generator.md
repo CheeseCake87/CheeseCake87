@@ -1,6 +1,6 @@
 title="Flask as a Static Site Generator",
 description="Using Flask as a static site generator.",
-date="2023-08-06",
+date="2023-08-06 15:00 +0100",
 
 ::::
 
