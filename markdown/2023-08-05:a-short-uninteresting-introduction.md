@@ -28,7 +28,7 @@ bits of Python, javascript, and drips of things like bash and lua. My education 
 and Visual Basic. Visual Basic 6... which was deprecated just as I finished 
 my education, and who is able to retain any C++ when you don't use it every day?
 
-Anyway, fast forwarding to the present day. I'm now a full time 
+Anyway, fast-forward to the present day. I'm now a full time 
 software developer/engineer/(whatever the kids are calling it these days) working within the insolvency sector.
 
 We use mostly Flask in our stack, which is not the worst thing in the world. I've grown to really love python,
