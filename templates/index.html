@@ -4,19 +4,26 @@
     <meta charset="UTF-8">
     <title>The Coding Side Quest</title>
     <link rel="stylesheet" href="static/water.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="static/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static/favicon-16x16.png">
+    <link rel="manifest" href="static/site.webmanifest">
+    <link rel="mask-icon" href="static/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 </head>
 <body>
 
 {% include "__header__.html" %}
 
 {%- for page, info in pages.items() %}
-<div style="margin: 2.8rem 0; width: 100%">
+    <div style="margin: 2.8rem 0; width: 100%">
 
-    <small>{{ info.date }}</small>
-    <h2 style="font-size: 2.6rem; margin: 0;">{{ info.title }}</h2>
-    <p style="margin: 0">{{ info.description }} <a href="{{ page }}">View Post</a></p>
+        <small>{{ info.date }}</small>
+        <h2 style="font-size: 2.6rem; margin: 0;">{{ info.title }}</h2>
+        <p style="margin: 0">{{ info.description }} <a href="{{ page }}">View Post</a></p>
 
-</div>
+    </div>
 {%- endfor %}
 </body>
 </html>
