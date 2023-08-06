@@ -13,6 +13,9 @@
                 <link>https://thecodingside.quest/{{ page }}</link>
                 <pubDate>{{ info.date }}</pubDate>
                 <guid>https://thecodingside.quest/{{ page }}</guid>
+                <description>
+                    {{ "<![CDATA["|safe + info.description + " <a href='https://thecodingside.quest/"|safe + page|safe + "'>View Post</a>]]>"|safe }}
+                </description>
                 <content:encoded>
                     {{ "<![CDATA["|safe + info.content|safe + "]]>"|safe }}
                 </content:encoded>
