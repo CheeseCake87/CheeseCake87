@@ -8,15 +8,15 @@
         <lastBuildDate>{{ build_date }}</lastBuildDate>
         <atom:link href="https://thecodingside.quest/index.xml" rel="self" type="application/rss+xml"/>
         {%- for page, info in pages.items() %}
-        <item>
-            <title>{{ info.title }}</title>
-            <link>https://thecodingside.quest/{{ page }}</link>
-            <pubDate>{{ info.date }}</pubDate>
-            <guid>https://thecodingside.quest/{{ page }}</guid>
-            <description>
-                <![CDATA[{{ info.content|safe }}>]]>
-            </description>
-        </item>
+            <item>
+                <title>{{ info.title }}</title>
+                <link>https://thecodingside.quest/{{ page }}</link>
+                <pubDate>{{ info.date }}</pubDate>
+                <guid>https://thecodingside.quest/{{ page }}</guid>
+                <content:encoded>
+                    {{ "<![CDATA["|safe + info.content|safe + "]]>"|safe }}
+                </content:encoded>
+            </item>
         {%- endfor %}
     </channel>
 </rss>
