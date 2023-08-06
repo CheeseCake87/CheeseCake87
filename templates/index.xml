@@ -10,11 +10,13 @@
         {%- for page, info in pages.items() %}
         <item>
             <title>{{ info.title }}</title>
-            <link>/{{ page }}</link>
+            <link>https://thecodingside.quest/{{ page }}</link>
             <pubDate>{{ info.date }}</pubDate>
-            <guid>/{{ page }}</guid>
+            <guid>https://thecodingside.quest/{{ page }}</guid>
             <description>{{ info.description }}</description>
-            <content:encoded><![CDATA[{{ info.content }}]]></content:encoded>
+            <content:encoded>
+                {{ info.content|safe }}>
+            </content:encoded>
         </item>
         {%- endfor %}
     </channel>
