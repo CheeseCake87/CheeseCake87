@@ -6,7 +6,7 @@
         <description>Recent content on TheCodingSide.Quest</description>
         <generator>Flask Static Site Generator written by David Carmichael.</generator>
         <language>en-gb</language>
-        <lastBuildDate>Sun, 06 Aug 2023 18:22:38 +0100</lastBuildDate>
+        <lastBuildDate>Sun, 06 Aug 2023 18:28:31 +0100</lastBuildDate>
         <atom:link href="https://thecodingside.quest/index.xml" rel="self" type="application/rss+xml"/>
         <item>
             <title>Flask as a Static Site Generator</title>
@@ -17,7 +17,7 @@
                 <![CDATA[Using Flask as a static site generator. <br/><a href='https://thecodingside.quest/2023-08-06_flask-as-a-static-site-generator.html' target='_blank'>View Post</a>]]>
             </description>
             <content:encoded>
-                <![CDATA[<p>Hey guys! / folks! / [insert whatever cool kid greeting here]!</p>
+                <![CDATA[<p>Having trouble viewing the content below?<a href='https://thecodingside.quest/2023-08-06_flask-as-a-static-site-generator.html' target='_blank'>View original post here</a></p><p>Hey guys! / folks! / [insert whatever cool kid greeting here]!</p>
 <p>So I made a static site generator using Flask. Which is used to generate this site.</p>
 <p>It's a single <code>app.py</code> file that is 85 lines long. Including that blank line that the IDE keeps complaining about when
 coding in Python.</p>
@@ -150,7 +150,7 @@ setup with the domain name thecodingside.quest, which was surprisingly cheap to 
                 <![CDATA[A short introduction to me and this blog. <br/><a href='https://thecodingside.quest/2023-08-05_a-short-uninteresting-introduction.html' target='_blank'>View Post</a>]]>
             </description>
             <content:encoded>
-                <![CDATA[<p>Hello, my name is David, and
+                <![CDATA[<p>Having trouble viewing the content below?<a href='https://thecodingside.quest/2023-08-05_a-short-uninteresting-introduction.html' target='_blank'>View original post here</a></p><p>Hello, my name is David, and
 I've had a very windy career path in the tech world.</p>
 <p>I started out as a postman that was destined to be a car mechanic, following in my father's footsteps.</p>
 <p>IT had always interested me when I was young. So I went to college to study computer science, and I've been working in
