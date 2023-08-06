@@ -19,7 +19,7 @@
             </description>
             <content:encoded>
                 {{ "<![CDATA["|safe +
-                "<p>Having trouble viewing the content below?"|safe +
+                "<p>Having trouble viewing the content below? "|safe +
                 "<a href='https://thecodingside.quest/"|safe +
                 page|safe +
                 "' target='_blank'>View original post here</a></p>"|safe +
