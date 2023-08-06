@@ -13,9 +13,8 @@
             <link>https://thecodingside.quest/{{ page }}</link>
             <pubDate>{{ info.date }}</pubDate>
             <guid>https://thecodingside.quest/{{ page }}</guid>
-            <description>{{ info.description }}</description>
             <content:encoded>
-                {{ info.content|safe }}>
+                <![CDATA[{{ info.content|safe }}>]]>
             </content:encoded>
         </item>
         {%- endfor %}

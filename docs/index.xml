@@ -12,9 +12,8 @@
             <link>https://thecodingside.quest/2023-08-06:flask-as-a-static-site-generator.html</link>
             <pubDate>Sun, 06 Aug 2023</pubDate>
             <guid>https://thecodingside.quest/2023-08-06:flask-as-a-static-site-generator.html</guid>
-            <description>Using Flask as a static site generator.</description>
             <content:encoded>
-                <p>Hey guys! / folks! / [insert whatever cool kid greeting here]!</p>
+                <![CDATA[<p>Hey guys! / folks! / [insert whatever cool kid greeting here]!</p>
 <p>So I made a static site generator using Flask. Which is used to generate this site.</p>
 <p>It's a single <code>app.py</code> file that is 85 lines long. Including that blank line that the IDE keeps complaining about when
 coding in Python.</p>
@@ -135,7 +134,7 @@ generates the html file.</li>
 setup with the domain name thecodingside.quest, which was surprisingly cheap to register.</p>
 <p>OK, Bye.</p>
 <p><em>Flask As A Static Site Generator by David Carmichael</em></p>
->
+>]]>
             </content:encoded>
         </item>
         <item>
@@ -143,9 +142,8 @@ setup with the domain name thecodingside.quest, which was surprisingly cheap to 
             <link>https://thecodingside.quest/2023-08-05:a-short-uninteresting-introduction.html</link>
             <pubDate>Sat, 05 Aug 2023</pubDate>
             <guid>https://thecodingside.quest/2023-08-05:a-short-uninteresting-introduction.html</guid>
-            <description>A short introduction to me and this blog.</description>
             <content:encoded>
-                <p>Hello, my name is David, and
+                <![CDATA[<p>Hello, my name is David, and
 I've had a very windy career path in the tech world.</p>
 <p>I started out as a postman that was destined to be a car mechanic, following in my father's footsteps.</p>
 <p>IT had always interested me when I was young. So I went to college to study computer science, and I've been working in
@@ -179,7 +177,7 @@ interesting I learn here, no matter how foolish it is. I have plans to document 
 learn
 as many languages as I can, and I'll be documenting that here too.</p>
 <p><em>A Short Uninteresting Introduction by David Carmichael</em></p>
->
+>]]>
             </content:encoded>
         </item>
     </channel>
