@@ -6,6 +6,8 @@ date="2023-08-06 15:00 +0100",
 
 **Update: This project has changed a lot since this post was written. Please visit the GitHub page to see the changes.**
 
+[https://github.com/CheeseCake87/CheeseCake87](https://github.com/CheeseCake87/CheeseCake87)
+
 Hey guys! / folks! / [insert whatever cool kid greeting here]!
 
 So I made a static site generator using Flask. Which is used to generate this site.
