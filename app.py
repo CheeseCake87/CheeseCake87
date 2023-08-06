@@ -1,3 +1,4 @@
+from datetime import datetime
 from pathlib import Path
 
 import mistune
@@ -6,6 +7,12 @@ from pygments import highlight
 from pygments.formatters import html
 from pygments.lexers import get_lexer_by_name
 from pygments.util import ClassNotFound
+from pytz import timezone
+
+
+def pytz_datetime_str(ltz: str = "Europe/London", mask: str = "%Y-%m-%d %H:%M:%S.%f") -> str:
+    local_tz = timezone(ltz)
+    return datetime.strptime(datetime.now(local_tz).strftime(mask), mask).strftime(mask)
 
 
 class HighlightRenderer(mistune.HTMLRenderer):
@@ -39,7 +46,8 @@ def compiler(re_compile=False):
     docs_dir = cwd / "docs"
     markdown_dir = cwd / "markdown"
 
-    index = docs_dir / "index.html"
+    index_html = docs_dir / "index.html"
+    index_xml = docs_dir / "index.xml"
 
     docs_dir_files = get_docs_files(docs_dir)
     markdown_dir_files = markdown_dir.glob("*.md")
@@ -60,9 +68,17 @@ def compiler(re_compile=False):
                     content=markdown(file.read_text())
                 ))
 
-    index.write_text(
+    index_html.write_text(
         render_template(
             "index.html",
+            pages=get_docs_files(docs_dir)
+        )
+    )
+
+    index_xml.write_text(
+        render_template(
+            "index.xml",
+            build_date=pytz_datetime_str(mask="%a, %d %b %Y %H:%M:%S %z"),
             pages=get_docs_files(docs_dir)
         )
     )

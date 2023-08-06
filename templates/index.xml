@@ -1,0 +1,22 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>TheCodingSide.Quest</title>
+        <link>https://thecodingside.quest</link>
+        <description>Recent content on TheCodingSide.Quest</description>
+        <generator>Flask Static Site Generator written by David Carmichael.</generator>
+        <language>en-gb</language>
+        <lastBuildDate>{{ build_date }}</lastBuildDate>
+        <atom:link href="https://thecodingside.quest/index.xml" rel="self" type="application/rss+xml"/>
+        {%- for page in pages -%}
+            {%- set split = page.split(':') %}
+            {%- set page = {'title': split[1], 'date': split[0], 'link': page + '.html'} %}
+        <item>
+            <title>{{ page.title|title|replace("-", " ") }}</title>
+            <link>https://thecodingside.quest/{{ page.link }}</link>
+            <pubDate>{{ page.date }}</pubDate>
+            <guid>https://thecodingside.quest/{{ page.link }}</guid>
+            <description></description>
+        </item>
+        {%- endfor %}
+    </channel>
+</rss>
