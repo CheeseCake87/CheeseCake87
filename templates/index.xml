@@ -14,7 +14,7 @@
                 <pubDate>{{ info.date }}</pubDate>
                 <guid>https://thecodingside.quest/{{ page }}</guid>
                 <description>
-                    {{ info.content|safe }}
+                    {{ "<![CDATA["|safe + info.description + " <br/><a href='https://thecodingside.quest/"|safe + page|safe + "' target='_blank'>View Post</a>]]>"|safe }}
                 </description>
             </item>
         {%- endfor %}
