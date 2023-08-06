@@ -60,7 +60,7 @@ def compiler():
     for file in docs_dir_files:
         (docs_dir / f"{file}.html").unlink()
 
-    for file in markdown_dir_files:
+    for file in reversed(list(markdown_dir_files)):
         title = "Untitled"
         description = "No description"
         date = "No date"
