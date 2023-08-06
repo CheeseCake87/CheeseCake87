@@ -14,9 +14,11 @@
     <p style="margin: 0;"><a href="index.html">< Back to Index</a></p>
 </div>
 
-<h2 style="font-size: 2.6rem; margin: 0;">{{ title|title|replace("-", " ") }}</h2>
 <p style="margin: 0"><small>{{ date }}</small></p>
+<h2 style="font-size: 2.6rem; margin: 0;">{{ title }}</h2>
+
 
 {{ content|safe }}
+
 </body>
 </html>

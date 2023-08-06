@@ -7,15 +7,14 @@
         <language>en-gb</language>
         <lastBuildDate>{{ build_date }}</lastBuildDate>
         <atom:link href="https://thecodingside.quest/index.xml" rel="self" type="application/rss+xml"/>
-        {%- for page in pages -%}
-            {%- set split = page.split(':') %}
-            {%- set page = {'title': split[1], 'date': split[0], 'link': page + '.html'} %}
+        {%- for page, info in pages.items() %}
         <item>
-            <title>{{ page.title|title|replace("-", " ") }}</title>
-            <link>https://thecodingside.quest/{{ page.link }}</link>
-            <pubDate>{{ page.date }}</pubDate>
-            <guid>https://thecodingside.quest/{{ page.link }}</guid>
-            <description></description>
+            <title>{{ info.title }}</title>
+            <link>/{{ page }}</link>
+            <pubDate>{{ info.date }}</pubDate>
+            <guid>/{{ page }}</guid>
+            <description>{{ info.description }}</description>
+            <content:encoded><![CDATA[{{ info.content }}]]></content:encoded>
         </item>
         {%- endfor %}
     </channel>

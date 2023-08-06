@@ -1,6 +1,12 @@
+title="Flask as a Static Site Generator",
+description="Using Flask as a static site generator.",
+date="2023-08-06",
+
+::::
+
 Hey guys! / folks! / [insert whatever cool kid greeting here]!
 
-So I made a static site generator using flask. Which is used to generate this site.
+So I made a static site generator using Flask. Which is used to generate this site.
 
 It's a single `app.py` file that is 85 lines long. Including that blank line that the IDE keeps complaining about when
 coding in Python.

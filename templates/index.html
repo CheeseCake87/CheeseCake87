@@ -9,17 +9,14 @@
 
 {% include "__header__.html" %}
 
-{%- for page in pages -%}
-    {% set split = page.split(':') %}
-    {% set page = {'title': split[1], 'date': split[0], 'link': page + '.html'} %}
-    <div style="margin-bottom: 1rem; width: 100%">
+{%- for page, info in pages.items() %}
+<div style="margin: 2.8rem 0; width: 100%">
 
-        <h2 style="font-size: 2.6rem; margin-bottom: 0;">{{ page.title|title|replace("-", " ") }}</h2>
-        <p style="margin: 0"><small>{{ page.date }}</small></p>
-        <p><a href="{{ page.link }}">Open</a></p>
+    <small>{{ info.date }}</small>
+    <h2 style="font-size: 2.6rem; margin: 0;">{{ info.title }}</h2>
+    <p style="margin: 0">{{ info.description }} <a href="{{ page }}">View Post</a></p>
 
-    </div>
-
+</div>
 {%- endfor %}
 </body>
 </html>
