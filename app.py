@@ -162,7 +162,7 @@ def compiler():
             "date": date,
             "content": "<![CDATA["
                        "<p>Having trouble viewing the content below? "
-                       f'<a href="https://thecodingside.quest/{filename}.html" target="_blank">'
+                       f'<a href="https://thecodingside.quest/{filename}.html">'
                        "View original post here</a></p>"
                        f"{preserve_overflow(this_xml)}"
                        "]]>"
