@@ -38,27 +38,6 @@ def rss_code_block_fixer(code: str) -> str:
         " ", "&nbsp;")
 
 
-class HighlightRenderer(mistune.HTMLRenderer):
-    def block_code(self, code, info=None):
-        if info:
-            if info == "jinja2":
-                info = "jinja"
-            try:
-                lexer = get_lexer_by_name(info, stripall=True)
-            except ClassNotFound:
-                lexer = get_lexer_by_name('text', stripall=True)
-            formatter = html.HtmlFormatter()
-            return highlight(code, lexer, formatter)
-        return '<pre><code>' + mistune.escape(code) + '</code></pre>'
-
-
-class RSSRenderer(mistune.HTMLRenderer):
-    def block_code(self, code, info=None):
-        return ('<pre><code>'
-                + rss_code_block_fixer(mistune.escape(code))
-                + '</code></pre>')
-
-
 def get_docs_files() -> list:
     _ = []
     for f in docs_dir.glob("*.html"):
@@ -74,6 +53,26 @@ def excessive_br_cleanup(base_xml: str) -> str:
         '</p><br/>', '</p>'
     ).replace(
         '<ol><br/>', '<ol>')
+
+
+class HighlightRenderer(mistune.HTMLRenderer):
+    def block_code(self, code, info=None):
+        if info:
+            if info == "jinja2":
+                info = "jinja"
+            try:
+                lexer = get_lexer_by_name(info, stripall=True)
+            except ClassNotFound:
+                lexer = get_lexer_by_name('text', stripall=True)
+            return highlight(code, lexer, html.HtmlFormatter())
+        return '<pre><code>' + mistune.escape(code) + '</code></pre>'
+
+
+class RSSRenderer(mistune.HTMLRenderer):
+    def block_code(self, code, info=None):
+        return ('<pre><code>'
+                + rss_code_block_fixer(mistune.escape(code))
+                + '</code></pre>')
 
 
 def compiler():
