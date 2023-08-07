@@ -76,7 +76,8 @@ def compiler():
             "\n", "").split(",")
 
         content = split_markdown[1]
-        markdown = mistune.create_markdown(renderer=HighlightRenderer())
+        html_content = mistune.create_markdown(renderer=HighlightRenderer())
+        xml_content = mistune.create_markdown()
 
         for info_item in raw_info:
             if info_item.startswith("title="):
@@ -108,31 +109,28 @@ def compiler():
 
         file.rename(markdown_dir / f"{filename}.md")
 
-        markdown_content = markdown(content)
-
         with open(docs_dir / f"{filename}.html", mode="w") as html_file:
             html_file.write(render_template(
                 "__main__.html",
                 title=title,
                 description=description,
                 date=date,
-                content=markdown_content
+                content=html_content(content)
             ))
 
         html_pages[f"{filename}.html"] = {
             "title": title,
             "description": description,
             "date": date,
-            "content": markdown_content
+            "content": html_content(content)
         }
 
-        this_xml_content = markdown_content
-
-        pre_tag_pattern = re.compile(r"(?:<pre>)([\s\S]*)(?:<\/pre>)", re.IGNORECASE)
-        pre_tag_matches = pre_tag_pattern.findall(this_xml_content)
+        this_xml = xml_content(content)
+        pre_tag_pattern = re.compile(r"(?:<pre>)(.*)(?:<\/pre>)", re.IGNORECASE | re.DOTALL)
+        pre_tag_matches = pre_tag_pattern.findall(this_xml)
 
         for match in pre_tag_matches:
-            this_xml_content = this_xml_content.replace(match, match.replace(" ", "&32;").replace("\n", "&10;"))
+            this_xml = re.sub('\s+', lambda x: ']]>' + '&32;' * len(x[0]) + '<![CDATA[', match)
 
         xml_pages[f"{filename}.html"] = {
             "title": title,
@@ -142,7 +140,7 @@ def compiler():
                        "<p>Having trouble viewing the content below? "
                        f"<a href='https://thecodingside.quest/{filename}.html target='_blank'>"
                        "View original post here</a></p>"
-                       f"{this_xml_content}"
+                       f"{this_xml}"
                        "]]>"
         }
 
