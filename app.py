@@ -55,12 +55,12 @@ def compiler():
     docs_dir_files = get_docs_files()
     markdown_dir_files = markdown_dir.glob("*.md")
 
-    pages = {}
+    pages = dict()
 
     for file in docs_dir_files:
         (docs_dir / f"{file}.html").unlink()
 
-    for file in reversed(list(markdown_dir_files)):
+    for file in markdown_dir_files:
         title = "Untitled"
         description = "No description"
         date = "No date"
@@ -102,26 +102,30 @@ def compiler():
 
         file.rename(markdown_dir / f"{filename}.md")
 
+        markdown_content = markdown(content)
+
         with open(docs_dir / f"{filename}.html", mode="w") as html_file:
             html_file.write(render_template(
                 "__main__.html",
                 title=title,
                 description=description,
                 date=date,
-                content=markdown(content)
+                content=markdown_content
             ))
 
         pages[f"{filename}.html"] = {
             "title": title,
             "description": description,
             "date": date,
-            "content": markdown(content)
+            "content": markdown_content
         }
+
+    pages_sorted = {k: v for k, v in sorted(pages.items(), reverse=True)}
 
     index_html.write_text(
         render_template(
             "index.html",
-            pages=pages
+            pages=pages_sorted
         )
     )
 
@@ -129,7 +133,7 @@ def compiler():
         render_template(
             "index.xml",
             build_date=pytz_datetime_str(mask="%a, %d %b %Y %H:%M:%S %z"),
-            pages=pages
+            pages=pages_sorted
         )
     )
 
