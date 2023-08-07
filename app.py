@@ -125,6 +125,29 @@ def compiler():
             "content": html_content(content)
         }
 
+        this_xml = xml_content(content)
+        code_tag_pattern = re.compile(r'<code(.+?)>(.*?)<\/code>', re.IGNORECASE | re.DOTALL)
+        all_matches = code_tag_pattern.findall(this_xml)
+
+        for match in all_matches:
+            if isinstance(match, tuple):
+                for m in match:
+                    this_xml = this_xml.replace(
+                        m,
+                        m.replace(
+                            "\n", "<br/>").replace(
+                            "\t", "&nbsp;&nbsp;&nbsp;&nbsp;").replace(
+                            "  ", "&nbsp;&nbsp;")
+                    )
+            if isinstance(match, str):
+                this_xml = this_xml.replace(
+                    match,
+                    match.replace(
+                        "\n", "<br/>").replace(
+                        "\t", "&nbsp;&nbsp;&nbsp;&nbsp;").replace(
+                        "  ", "&nbsp;&nbsp;")
+                )
+
         xml_pages[f"{filename}.html"] = {
             "title": title,
             "description": description,
@@ -133,7 +156,7 @@ def compiler():
                        "<p>Having trouble viewing the content below? "
                        f"<a href='https://thecodingside.quest/{filename}.html target='_blank'>"
                        "View original post here</a></p>"
-                       f"{xml_content(content).replace('<code>', '<code>]]>').replace('</code>', '<![CDATA[</code>')}"
+                       f"{this_xml}"
                        "]]>"
         }
 
