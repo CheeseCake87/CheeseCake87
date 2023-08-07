@@ -31,6 +31,13 @@ def pytz_datetime_str(mask: str = "%Y-%m-%d %H:%M:%S.%f") -> str:
     return datetime.strptime(datetime.now(local_tz).strftime(mask), mask).strftime(mask)
 
 
+def rss_code_block_fixer(code: str) -> str:
+    return code.replace(
+        "\n", "<br/>").replace(
+        "\t", "&nbsp;&nbsp;&nbsp;&nbsp;").replace(
+        "  ", "&nbsp;&nbsp;")
+
+
 class HighlightRenderer(mistune.HTMLRenderer):
     def block_code(self, code, info=None):
         if info:
@@ -45,6 +52,13 @@ class HighlightRenderer(mistune.HTMLRenderer):
         return '<pre><code>' + mistune.escape(code) + '</code></pre>'
 
 
+class RSSRenderer(mistune.HTMLRenderer):
+    def block_code(self, code, info=None):
+        return ('<pre style="overflow-x: scroll;><code>'
+                + rss_code_block_fixer(mistune.escape(code))
+                + '</code></pre>')
+
+
 def get_docs_files() -> list:
     _ = []
     for f in docs_dir.glob("*.html"):
@@ -55,20 +69,8 @@ def get_docs_files() -> list:
     return _
 
 
-def prune_match_xml(base_xml: str, matched_xml: str) -> str:
+def excessive_br_cleanup(base_xml: str) -> str:
     return base_xml.replace(
-        matched_xml,
-        matched_xml.replace(
-            "\n", "<br/>").replace(
-            "\t", "&nbsp;&nbsp;&nbsp;&nbsp;").replace(
-            "  ", "&nbsp;&nbsp;")
-    )
-
-
-def preserve_overflow(base_xml: str) -> str:
-    return base_xml.replace(
-        "<pre>", '<pre style="overflow-x: scroll;">'
-    ).replace(
         '</p><br/>', '</p>'
     ).replace(
         '<ol><br/>', '<ol>')
@@ -96,7 +98,7 @@ def compiler():
 
         content = split_markdown[1]
         html_content = mistune.create_markdown(renderer=HighlightRenderer())
-        xml_content = mistune.create_markdown()
+        xml_content = mistune.create_markdown(renderer=RSSRenderer())
 
         for info_item in raw_info:
             if info_item.startswith("title="):
@@ -144,18 +146,6 @@ def compiler():
             "content": html_content(content)
         }
 
-        this_xml = xml_content(content)
-        code_tag_pattern = re.compile(r'<code(.+?)>(.*?)<\/code>', re.IGNORECASE | re.DOTALL)
-        all_matches = code_tag_pattern.findall(this_xml)
-
-        for match in all_matches:
-            if isinstance(match, tuple):
-                for m in match:
-                    this_xml = prune_match_xml(this_xml, m)
-
-            if isinstance(match, str):
-                this_xml = prune_match_xml(this_xml, match)
-
         xml_pages[f"{filename}.html"] = {
             "title": title,
             "description": description,
@@ -164,7 +154,7 @@ def compiler():
                        "<p>Having trouble viewing the content below? "
                        f'<a href="https://thecodingside.quest/{filename}.html">'
                        "View original post here</a></p>"
-                       f"{preserve_overflow(this_xml)}"
+                       f"{excessive_br_cleanup(xml_content(content))}"
                        "]]>"
         }
 
