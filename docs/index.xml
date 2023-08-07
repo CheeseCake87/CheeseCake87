@@ -6,7 +6,7 @@
         <description>Recent content on TheCodingSide.Quest</description>
         <generator>Flask Static Site Generator written by David Carmichael.</generator>
         <language>en-gb</language>
-        <lastBuildDate>Mon, 07 Aug 2023 16:41:15 +0100</lastBuildDate>
+        <lastBuildDate>Mon, 07 Aug 2023 17:06:32 +0100</lastBuildDate>
         <atom:link href="https://thecodingside.quest/index.xml" rel="self" type="application/rss+xml"/>
         <item>
             <title>GitHub and Obsidian with the help of Python</title>
@@ -31,9 +31,54 @@ suppose this is a tactical move for you to buy their storage. Which is fair enou
 have git installed for this, obviously.</p>
 <p><strong>For people that want to steam ahead, here's the code:</strong></p>
 <p><code>git-pull.py</code></p>
-<pre><code>import&nbsp;subprocess<br/><br/><br/>def&nbsp;git_pull():<br/>&nbsp;&nbsp;&nbsp;&nbsp;try:<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subprocess.run(['git',&nbsp;'config',&nbsp;'credential.helper',&nbsp;'store'])<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subprocess.run(['git',&nbsp;'config',&nbsp;'credential.helper',&nbsp;'cache&nbsp;--timeout&nbsp;7200'])<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subprocess.run(['git',&nbsp;'pull',&nbsp;'origin',&nbsp;'master'])<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print('git&nbsp;pull&nbsp;success')<br/>&nbsp;&nbsp;&nbsp;&nbsp;except&nbsp;Exception&nbsp;as&nbsp;e:<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(e)<br/><br/><br/>if&nbsp;__name__&nbsp;==&nbsp;'__main__':<br/>&nbsp;&nbsp;&nbsp;&nbsp;git_pull()<br/><br/></code></pre><p><code>git-push.py</code></p>
-<pre><code>import&nbsp;subprocess<br/><br/><br/>def&nbsp;git_push():<br/>&nbsp;&nbsp;&nbsp;&nbsp;try:<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subprocess.run(['git',&nbsp;'config',&nbsp;'credential.helper',&nbsp;'store'])<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subprocess.run(['git',&nbsp;'config',&nbsp;'credential.helper',&nbsp;'cache&nbsp;--timeout&nbsp;7200'])<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subprocess.run(['git',&nbsp;'add',&nbsp;'.'])<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subprocess.run(['git',&nbsp;'commit',&nbsp;'-m',&nbsp;'update'])<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subprocess.run(['git',&nbsp;'push',&nbsp;'origin',&nbsp;'master'])<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print('git&nbsp;push&nbsp;success')<br/>&nbsp;&nbsp;&nbsp;&nbsp;except&nbsp;Exception&nbsp;as&nbsp;e:<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print(e)<br/><br/><br/>if&nbsp;__name__&nbsp;==&nbsp;'__main__':<br/>&nbsp;&nbsp;&nbsp;&nbsp;git_push()<br/><br/></code></pre><p>These py files are in the root directory of the GitHub Repo:</p>
-<pre><code>└──&nbsp;Repo/<br/>&nbsp;&nbsp;&nbsp;&nbsp;├──&nbsp;.obsidian/<br/>&nbsp;&nbsp;&nbsp;&nbsp;├──&nbsp;.git/<br/>&nbsp;&nbsp;&nbsp;&nbsp;├──&nbsp;flask-notes/<br/>&nbsp;&nbsp;&nbsp;&nbsp;├──&nbsp;python-notes/<br/>&nbsp;&nbsp;&nbsp;&nbsp;├──&nbsp;...<br/>&nbsp;&nbsp;&nbsp;&nbsp;├──&nbsp;git-push.py<br/>&nbsp;&nbsp;&nbsp;&nbsp;└──&nbsp;git-pull.py<br/></code></pre><p><strong>For the people that want more of an explanation on how to set this up:</strong></p>
+<pre><code class="language-python">import subprocess
+
+
+def git_pull():
+    try:
+        subprocess.run(['git', 'config', 'credential.helper', 'store'])
+        subprocess.run(['git', 'config', 'credential.helper', 'cache --timeout 7200'])
+        subprocess.run(['git', 'pull', 'origin', 'master'])
+        print('git pull success')
+    except Exception as e:
+        print(e)
+
+
+if __name__ == '__main__':
+    git_pull()
+
+</code></pre>
+<p><code>git-push.py</code></p>
+<pre><code class="language-python">import subprocess
+
+
+def git_push():
+    try:
+        subprocess.run(['git', 'config', 'credential.helper', 'store'])
+        subprocess.run(['git', 'config', 'credential.helper', 'cache --timeout 7200'])
+        subprocess.run(['git', 'add', '.'])
+        subprocess.run(['git', 'commit', '-m', 'update'])
+        subprocess.run(['git', 'push', 'origin', 'master'])
+        print('git push success')
+    except Exception as e:
+        print(e)
+
+
+if __name__ == '__main__':
+    git_push()
+
+</code></pre>
+<p>These py files are in the root directory of the GitHub Repo:</p>
+<pre><code>└── Repo/
+    ├── .obsidian/
+    ├── .git/
+    ├── flask-notes/
+    ├── python-notes/
+    ├── ...
+    ├── git-push.py
+    └── git-pull.py
+</code></pre>
+<p><strong>For the people that want more of an explanation on how to set this up:</strong></p>
 <p>To get started, create a GutHub repo with your desired name. In my case, I called mine Obsidian, which I made private.
 Making your repo private will mean you'll need some sort of password to be able to clone.</p>
 <p>Log in to GitHub then go to your settings (click the profile picture top right, then settings)</p>
@@ -77,8 +122,104 @@ authentication, so you can make the repo private.</p>
 <p>It's a single <code>app.py</code> file that is 85 lines long. Including that blank line that the IDE keeps complaining about when
 coding in Python.</p>
 <p>Here's the needed folder structure:</p>
-<pre><code>├──&nbsp;docs/<br/>│&nbsp;&nbsp;&nbsp;├──&nbsp;static/<br/>│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└──&nbsp;...<br/>│&nbsp;&nbsp;&nbsp;└──&nbsp;...<br/>├──&nbsp;markdown/<br/>│&nbsp;&nbsp;&nbsp;└──&nbsp;2023-08-06:flask-as-a-static-site-generator.md<br/>├──&nbsp;templates/<br/>│&nbsp;&nbsp;&nbsp;├──&nbsp;__main__.html<br/>│&nbsp;&nbsp;&nbsp;└──&nbsp;index.html<br/>└──&nbsp;app.py<br/></code></pre><p>Here's the <code>app.py</code>:</p>
-<pre><code>from&nbsp;pathlib&nbsp;import&nbsp;Path<br/><br/>import&nbsp;mistune<br/>from&nbsp;flask&nbsp;import&nbsp;Flask,&nbsp;render_template<br/>from&nbsp;pygments&nbsp;import&nbsp;highlight<br/>from&nbsp;pygments.formatters&nbsp;import&nbsp;html<br/>from&nbsp;pygments.lexers&nbsp;import&nbsp;get_lexer_by_name<br/>from&nbsp;pygments.util&nbsp;import&nbsp;ClassNotFound<br/><br/><br/>class&nbsp;HighlightRenderer(mistune.HTMLRenderer):<br/>&nbsp;&nbsp;&nbsp;&nbsp;def&nbsp;block_code(self,&nbsp;code,&nbsp;info=None):<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;info:<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;info&nbsp;==&nbsp;&quot;jinja2&quot;:<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;info&nbsp;=&nbsp;&quot;jinja&quot;<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;try:<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lexer&nbsp;=&nbsp;get_lexer_by_name(info,&nbsp;stripall=True)<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;except&nbsp;ClassNotFound:<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lexer&nbsp;=&nbsp;get_lexer_by_name('text',&nbsp;stripall=True)<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;formatter&nbsp;=&nbsp;html.HtmlFormatter()<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;highlight(code,&nbsp;lexer,&nbsp;formatter)<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;'&lt;pre&gt;&lt;code&gt;'&nbsp;+&nbsp;mistune.escape(code)&nbsp;+&nbsp;'&lt;/code&gt;&lt;/pre&gt;'<br/><br/><br/>cwd&nbsp;=&nbsp;Path(__file__).parent<br/><br/><br/>def&nbsp;get_docs_files(docs_dir:&nbsp;Path)&nbsp;-&gt;&nbsp;list:<br/>&nbsp;&nbsp;&nbsp;&nbsp;_&nbsp;=&nbsp;[]<br/>&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;f&nbsp;in&nbsp;docs_dir.glob(&quot;*.html&quot;):<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;f.stem&nbsp;==&nbsp;&quot;index&quot;:<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_.append(f.stem)<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;_<br/><br/><br/>def&nbsp;compiler(re_compile=False):<br/>&nbsp;&nbsp;&nbsp;&nbsp;docs_dir&nbsp;=&nbsp;cwd&nbsp;/&nbsp;&quot;docs&quot;<br/>&nbsp;&nbsp;&nbsp;&nbsp;markdown_dir&nbsp;=&nbsp;cwd&nbsp;/&nbsp;&quot;markdown&quot;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;index&nbsp;=&nbsp;docs_dir&nbsp;/&nbsp;&quot;index.html&quot;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;docs_dir_files&nbsp;=&nbsp;get_docs_files(docs_dir)<br/>&nbsp;&nbsp;&nbsp;&nbsp;markdown_dir_files&nbsp;=&nbsp;markdown_dir.glob(&quot;*.md&quot;)<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;re_compile:<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;file&nbsp;in&nbsp;docs_dir_files:<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(docs_dir&nbsp;/&nbsp;f&quot;{file}.html&quot;).unlink()<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;file&nbsp;in&nbsp;markdown_dir_files:<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;file.stem&nbsp;not&nbsp;in&nbsp;docs_dir_files&nbsp;or&nbsp;re_compile:<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;markdown&nbsp;=&nbsp;mistune.Markdown(renderer=HighlightRenderer())<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with&nbsp;open(docs_dir&nbsp;/&nbsp;f&quot;{file.stem}.html&quot;,&nbsp;mode=&quot;w&quot;)&nbsp;as&nbsp;f:<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;split&nbsp;=&nbsp;file.stem.split(&quot;:&quot;)<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;f.write(render_template(<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;__main__.html&quot;,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;title=split[1],<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;date=split[0],<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;content=markdown(file.read_text())<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;))<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;index.write_text(<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;render_template(<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&quot;index.html&quot;,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pages=get_docs_files(docs_dir)<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br/>&nbsp;&nbsp;&nbsp;&nbsp;)<br/><br/><br/>def&nbsp;create_app():<br/>&nbsp;&nbsp;&nbsp;&nbsp;app&nbsp;=&nbsp;Flask(__name__)<br/>&nbsp;&nbsp;&nbsp;&nbsp;app.static_folder&nbsp;=&nbsp;&quot;static&quot;<br/>&nbsp;&nbsp;&nbsp;&nbsp;app.template_folder&nbsp;=&nbsp;&quot;templates&quot;<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;@app.cli.command(&quot;compile&quot;)<br/>&nbsp;&nbsp;&nbsp;&nbsp;def&nbsp;compile_site():<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;compiler()<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;@app.cli.command(&quot;re-compile&quot;)<br/>&nbsp;&nbsp;&nbsp;&nbsp;def&nbsp;re_compile_site():<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;compiler(re_compile=True)<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;app<br/></code></pre><p>If you can't work it out from the code, here's how it works:</p>
+<pre><code class="language-text">├── docs/
+│   ├── static/
+│   │   └── ...
+│   └── ...
+├── markdown/
+│   └── 2023-08-06:flask-as-a-static-site-generator.md
+├── templates/
+│   ├── __main__.html
+│   └── index.html
+└── app.py
+</code></pre>
+<p>Here's the <code>app.py</code>:</p>
+<pre><code class="language-python">from pathlib import Path
+
+import mistune
+from flask import Flask, render_template
+from pygments import highlight
+from pygments.formatters import html
+from pygments.lexers import get_lexer_by_name
+from pygments.util import ClassNotFound
+
+
+class HighlightRenderer(mistune.HTMLRenderer):
+    def block_code(self, code, info=None):
+        if info:
+            if info == &quot;jinja2&quot;:
+                info = &quot;jinja&quot;
+            try:
+                lexer = get_lexer_by_name(info, stripall=True)
+            except ClassNotFound:
+                lexer = get_lexer_by_name('text', stripall=True)
+            formatter = html.HtmlFormatter()
+            return highlight(code, lexer, formatter)
+        return '&lt;pre&gt;&lt;code&gt;' + mistune.escape(code) + '&lt;/code&gt;&lt;/pre&gt;'
+
+
+cwd = Path(__file__).parent
+
+
+def get_docs_files(docs_dir: Path) -&gt; list:
+    _ = []
+    for f in docs_dir.glob(&quot;*.html&quot;):
+        if f.stem == &quot;index&quot;:
+            continue
+        _.append(f.stem)
+
+    return _
+
+
+def compiler(re_compile=False):
+    docs_dir = cwd / &quot;docs&quot;
+    markdown_dir = cwd / &quot;markdown&quot;
+
+    index = docs_dir / &quot;index.html&quot;
+
+    docs_dir_files = get_docs_files(docs_dir)
+    markdown_dir_files = markdown_dir.glob(&quot;*.md&quot;)
+
+    if re_compile:
+        for file in docs_dir_files:
+            (docs_dir / f&quot;{file}.html&quot;).unlink()
+
+    for file in markdown_dir_files:
+        if file.stem not in docs_dir_files or re_compile:
+            markdown = mistune.Markdown(renderer=HighlightRenderer())
+            with open(docs_dir / f&quot;{file.stem}.html&quot;, mode=&quot;w&quot;) as f:
+                split = file.stem.split(&quot;:&quot;)
+                f.write(render_template(
+                    &quot;__main__.html&quot;,
+                    title=split[1],
+                    date=split[0],
+                    content=markdown(file.read_text())
+                ))
+
+    index.write_text(
+        render_template(
+            &quot;index.html&quot;,
+            pages=get_docs_files(docs_dir)
+        )
+    )
+
+
+def create_app():
+    app = Flask(__name__)
+    app.static_folder = &quot;static&quot;
+    app.template_folder = &quot;templates&quot;
+
+    @app.cli.command(&quot;compile&quot;)
+    def compile_site():
+        compiler()
+
+    @app.cli.command(&quot;re-compile&quot;)
+    def re_compile_site():
+        compiler(re_compile=True)
+
+    return app
+</code></pre>
+<p>If you can't work it out from the code, here's how it works:</p>
 <p>Running <code>flask compile</code></p>
 <ol>
 <li>It gets all the markdown files in the <code>markdown/</code> folder.</li>
