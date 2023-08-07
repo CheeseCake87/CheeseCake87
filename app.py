@@ -71,7 +71,7 @@ def compiler():
             "\n", "").split(",")
 
         content = split_markdown[1]
-        markdown = mistune.Markdown(renderer=HighlightRenderer())
+        markdown = mistune.create_markdown(renderer=HighlightRenderer())
 
         for info_item in raw_info:
             if info_item.startswith("title="):
