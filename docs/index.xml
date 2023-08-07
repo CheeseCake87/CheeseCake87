@@ -6,7 +6,7 @@
         <description>Recent content on TheCodingSide.Quest</description>
         <generator>Flask Static Site Generator written by David Carmichael.</generator>
         <language>en-gb</language>
-        <lastBuildDate>Mon, 07 Aug 2023 13:33:54 +0100</lastBuildDate>
+        <lastBuildDate>Mon, 07 Aug 2023 13:40:05 +0100</lastBuildDate>
         <atom:link href="https://thecodingside.quest/index.xml" rel="self" type="application/rss+xml"/>
         <item>
             <title>GitHub and Obsidian with the help of Python</title>
@@ -17,7 +17,93 @@
                 <![CDATA[I explain how I used a small amount of Python to take most of the pain out of committing my Obsidian markdown library to GitHub. <br/><a href='https://thecodingside.quest/2023-08-07_github-and-obsidian-with-the-help-of-python.html' target='_blank'>View Post</a>]]>
             </description>
             <content:encoded>
-                <![CDATA[<p>Having trouble viewing the content below? <a href='https://thecodingside.quest/2023-08-07_github-and-obsidian-with-the-help-of-python.html target='_blank'>View original post here</a></p><code]]>&32;<![CDATA[class="language-python">import]]>&32;<![CDATA[subprocess]]>&32;&32;&32;<![CDATA[def]]>&32;<![CDATA[git_pull():]]>&32;&32;&32;&32;&32;<![CDATA[try:]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[subprocess.run(['git',]]>&32;<![CDATA['config',]]>&32;<![CDATA['credential.helper',]]>&32;<![CDATA['store'])]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[subprocess.run(['git',]]>&32;<![CDATA['config',]]>&32;<![CDATA['credential.helper',]]>&32;<![CDATA['cache]]>&32;<![CDATA[--timeout]]>&32;<![CDATA[7200'])]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[subprocess.run(['git',]]>&32;<![CDATA['pull',]]>&32;<![CDATA['origin',]]>&32;<![CDATA['master'])]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[print('git]]>&32;<![CDATA[pull]]>&32;<![CDATA[success')]]>&32;&32;&32;&32;&32;<![CDATA[except]]>&32;<![CDATA[Exception]]>&32;<![CDATA[as]]>&32;<![CDATA[e:]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[print(e)]]>&32;&32;&32;<![CDATA[if]]>&32;<![CDATA[__name__]]>&32;<![CDATA[==]]>&32;<![CDATA['__main__':]]>&32;&32;&32;&32;&32;<![CDATA[git_pull()]]>&32;&32;<![CDATA[</code></pre>]]>&32;<![CDATA[<p><code>git-push.py</code></p>]]>&32;<![CDATA[<pre><code]]>&32;<![CDATA[class="language-python">import]]>&32;<![CDATA[subprocess]]>&32;&32;&32;<![CDATA[def]]>&32;<![CDATA[git_push():]]>&32;&32;&32;&32;&32;<![CDATA[try:]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[subprocess.run(['git',]]>&32;<![CDATA['config',]]>&32;<![CDATA['credential.helper',]]>&32;<![CDATA['store'])]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[subprocess.run(['git',]]>&32;<![CDATA['config',]]>&32;<![CDATA['credential.helper',]]>&32;<![CDATA['cache]]>&32;<![CDATA[--timeout]]>&32;<![CDATA[7200'])]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[subprocess.run(['git',]]>&32;<![CDATA['add',]]>&32;<![CDATA['.'])]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[subprocess.run(['git',]]>&32;<![CDATA['commit',]]>&32;<![CDATA['-m',]]>&32;<![CDATA['update'])]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[subprocess.run(['git',]]>&32;<![CDATA['push',]]>&32;<![CDATA['origin',]]>&32;<![CDATA['master'])]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[print('git]]>&32;<![CDATA[push]]>&32;<![CDATA[success')]]>&32;&32;&32;&32;&32;<![CDATA[except]]>&32;<![CDATA[Exception]]>&32;<![CDATA[as]]>&32;<![CDATA[e:]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[print(e)]]>&32;&32;&32;<![CDATA[if]]>&32;<![CDATA[__name__]]>&32;<![CDATA[==]]>&32;<![CDATA['__main__':]]>&32;&32;&32;&32;&32;<![CDATA[git_push()]]>&32;&32;<![CDATA[</code></pre>]]>&32;<![CDATA[<p>These]]>&32;<![CDATA[py]]>&32;<![CDATA[files]]>&32;<![CDATA[are]]>&32;<![CDATA[in]]>&32;<![CDATA[the]]>&32;<![CDATA[root]]>&32;<![CDATA[directory]]>&32;<![CDATA[of]]>&32;<![CDATA[the]]>&32;<![CDATA[GitHub]]>&32;<![CDATA[Repo:</p>]]>&32;<![CDATA[<pre><code>└──]]>&32;<![CDATA[Repo/]]>&32;&32;&32;&32;&32;<![CDATA[├──]]>&32;<![CDATA[.obsidian/]]>&32;&32;&32;&32;&32;<![CDATA[├──]]>&32;<![CDATA[.git/]]>&32;&32;&32;&32;&32;<![CDATA[├──]]>&32;<![CDATA[flask-notes/]]>&32;&32;&32;&32;&32;<![CDATA[├──]]>&32;<![CDATA[python-notes/]]>&32;&32;&32;&32;&32;<![CDATA[├──]]>&32;<![CDATA[...]]>&32;&32;&32;&32;&32;<![CDATA[├──]]>&32;<![CDATA[git-push.py]]>&32;&32;&32;&32;&32;<![CDATA[└──]]>&32;<![CDATA[git-pull.py]]>&32;<![CDATA[</code>]]>
+                <![CDATA[<p>Having trouble viewing the content below? <a href='https://thecodingside.quest/2023-08-07_github-and-obsidian-with-the-help-of-python.html target='_blank'>View original post here</a></p><p>At the time of writing this Obsidian sync, the service that Obsidian offers to allow you to synchronise all your notes
+between computers is $10 a month (if you choose a monthly commitment) This price is shown to me with a geolocation of
+the UK, so it may be different in your country.</p>
+<p>There are far too many SaaS (Software as a Service) products to pay for these days, it's annoying. I paid £10 for an
+online SVG animation application about 2 weeks ago to be able to export the animation in a different format - <em>arrh,</em> I
+get people should get paid for their software, but it can get annoying; I know - I know, &quot;don't use it then&quot; you're
+probably saying. Well, this is that effort.</p>
+<p>The goal here is to get my software note-taking much better and Obsidian is perfect for that. I'm also on GitHub all the
+time, and storing all my notes on a private repo seems like a good idea to me. The Problem is Obsidian has no Git management. I
+suppose this is a tactical move for you to buy their storage. Which is fair enough.</p>
+<p>My solution is to use Python with subprocess to do a block of git commands to push and pull from GitHub. You'll need to
+have git installed for this, obviously.</p>
+<p><strong>For people that want to steam ahead, here's the code:</strong></p>
+<p><code>git-pull.py</code></p>
+<pre><code class="language-python">import subprocess
+
+
+def git_pull():
+    try:
+        subprocess.run(['git', 'config', 'credential.helper', 'store'])
+        subprocess.run(['git', 'config', 'credential.helper', 'cache --timeout 7200'])
+        subprocess.run(['git', 'pull', 'origin', 'master'])
+        print('git pull success')
+    except Exception as e:
+        print(e)
+
+
+if __name__ == '__main__':
+    git_pull()
+
+</code></pre>
+<p><code>git-push.py</code></p>
+<pre><code class="language-python">import subprocess
+
+
+def git_push():
+    try:
+        subprocess.run(['git', 'config', 'credential.helper', 'store'])
+        subprocess.run(['git', 'config', 'credential.helper', 'cache --timeout 7200'])
+        subprocess.run(['git', 'add', '.'])
+        subprocess.run(['git', 'commit', '-m', 'update'])
+        subprocess.run(['git', 'push', 'origin', 'master'])
+        print('git push success')
+    except Exception as e:
+        print(e)
+
+
+if __name__ == '__main__':
+    git_push()
+
+</code></pre>
+<p>These py files are in the root directory of the GitHub Repo:</p>
+<pre><code>└── Repo/
+    ├── .obsidian/
+    ├── .git/
+    ├── flask-notes/
+    ├── python-notes/
+    ├── ...
+    ├── git-push.py
+    └── git-pull.py
+</code></pre>
+<p><strong>For the people that want more of an explanation on how to set this up:</strong></p>
+<p>To get started, create a GutHub repo with your desired name. In my case, I called mine Obsidian, which I made private.
+Making your repo private will mean you'll need some sort of password to be able to clone.</p>
+<p>Log in to GitHub then go to your settings (click the profile picture top right, then settings)</p>
+<p>At the bottom of the left-hand menu, click Developer settings, then Personal access tokens.</p>
+<p>Now, I'm pretty lazy. In may case, I created a classic token by clicking Tokens (classic) then setting the token scopes
+for Full control of private repositories, and setting it to never expire.</p>
+<p>After setting that up, it will show you the token. I stored this in my password manager.</p>
+<p>Now we want to make a local folder on your system. In my case I created a folder called Obsidian, <code>/home/david/Obsidian</code></p>
+<p>Navigate to this folder and run the following command:</p>
+<p><code>git clone https://github.com/&lt;your_username_here&gt;/Obsidian.git .</code></p>
+<p>This will create a <code>.git</code> hidden folder in the directory.</p>
+<p>Set your Obsidian app to work from the same directory. Now when you create any folders and files you can commit them to
+the git repo.</p>
+<p>Navigating to the repo folder and running a terminal window from there will ensure that your current working directory
+is correct. Then you can run the commands:</p>
+<p><code>python git-push.py</code></p>
+<p>and or</p>
+<p><code>python git-pull.py</code></p>
+<p>As you may have noticed, there are two private folders in there. <code>.obsidian</code> and <code>.git</code>, I'm not familiar with how
+important these two are to keep private, by that I mean not make public. In any case I made the code work with git
+authentication, so you can make the repo private.</p>
+<p>This process is fairly manual, but better than paying $10 a month, right?</p>
+<p>Enjoy, bye!</p>
+<p><em>GitHub and Obsidian with the help of Python by David Carmichael</em></p>
+]]>
             </content:encoded>
         </item>
         <item>
@@ -29,7 +115,130 @@
                 <![CDATA[Using Flask as a static site generator. <br/><a href='https://thecodingside.quest/2023-08-06_flask-as-a-static-site-generator.html' target='_blank'>View Post</a>]]>
             </description>
             <content:encoded>
-                <![CDATA[<p>Having trouble viewing the content below? <a href='https://thecodingside.quest/2023-08-06_flask-as-a-static-site-generator.html target='_blank'>View original post here</a></p><code]]>&32;<![CDATA[class="language-text">├──]]>&32;<![CDATA[docs/]]>&32;<![CDATA[│]]>&32;&32;&32;<![CDATA[├──]]>&32;<![CDATA[static/]]>&32;<![CDATA[│]]>&32;&32;&32;<![CDATA[│]]>&32;&32;&32;<![CDATA[└──]]>&32;<![CDATA[...]]>&32;<![CDATA[│]]>&32;&32;&32;<![CDATA[└──]]>&32;<![CDATA[...]]>&32;<![CDATA[├──]]>&32;<![CDATA[markdown/]]>&32;<![CDATA[│]]>&32;&32;&32;<![CDATA[└──]]>&32;<![CDATA[2023-08-06:flask-as-a-static-site-generator.md]]>&32;<![CDATA[├──]]>&32;<![CDATA[templates/]]>&32;<![CDATA[│]]>&32;&32;&32;<![CDATA[├──]]>&32;<![CDATA[__main__.html]]>&32;<![CDATA[│]]>&32;&32;&32;<![CDATA[└──]]>&32;<![CDATA[index.html]]>&32;<![CDATA[└──]]>&32;<![CDATA[app.py]]>&32;<![CDATA[</code></pre>]]>&32;<![CDATA[<p>Here's]]>&32;<![CDATA[the]]>&32;<![CDATA[<code>app.py</code>:</p>]]>&32;<![CDATA[<pre><code]]>&32;<![CDATA[class="language-python">from]]>&32;<![CDATA[pathlib]]>&32;<![CDATA[import]]>&32;<![CDATA[Path]]>&32;&32;<![CDATA[import]]>&32;<![CDATA[mistune]]>&32;<![CDATA[from]]>&32;<![CDATA[flask]]>&32;<![CDATA[import]]>&32;<![CDATA[Flask,]]>&32;<![CDATA[render_template]]>&32;<![CDATA[from]]>&32;<![CDATA[pygments]]>&32;<![CDATA[import]]>&32;<![CDATA[highlight]]>&32;<![CDATA[from]]>&32;<![CDATA[pygments.formatters]]>&32;<![CDATA[import]]>&32;<![CDATA[html]]>&32;<![CDATA[from]]>&32;<![CDATA[pygments.lexers]]>&32;<![CDATA[import]]>&32;<![CDATA[get_lexer_by_name]]>&32;<![CDATA[from]]>&32;<![CDATA[pygments.util]]>&32;<![CDATA[import]]>&32;<![CDATA[ClassNotFound]]>&32;&32;&32;<![CDATA[class]]>&32;<![CDATA[HighlightRenderer(mistune.HTMLRenderer):]]>&32;&32;&32;&32;&32;<![CDATA[def]]>&32;<![CDATA[block_code(self,]]>&32;<![CDATA[code,]]>&32;<![CDATA[info=None):]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[if]]>&32;<![CDATA[info:]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[if]]>&32;<![CDATA[info]]>&32;<![CDATA[==]]>&32;<![CDATA[&quot;jinja2&quot;:]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[info]]>&32;<![CDATA[=]]>&32;<![CDATA[&quot;jinja&quot;]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[try:]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[lexer]]>&32;<![CDATA[=]]>&32;<![CDATA[get_lexer_by_name(info,]]>&32;<![CDATA[stripall=True)]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[except]]>&32;<![CDATA[ClassNotFound:]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[lexer]]>&32;<![CDATA[=]]>&32;<![CDATA[get_lexer_by_name('text',]]>&32;<![CDATA[stripall=True)]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[formatter]]>&32;<![CDATA[=]]>&32;<![CDATA[html.HtmlFormatter()]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[return]]>&32;<![CDATA[highlight(code,]]>&32;<![CDATA[lexer,]]>&32;<![CDATA[formatter)]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[return]]>&32;<![CDATA['&lt;pre&gt;&lt;code&gt;']]>&32;<![CDATA[+]]>&32;<![CDATA[mistune.escape(code)]]>&32;<![CDATA[+]]>&32;<![CDATA['&lt;/code&gt;&lt;/pre&gt;']]>&32;&32;&32;<![CDATA[cwd]]>&32;<![CDATA[=]]>&32;<![CDATA[Path(__file__).parent]]>&32;&32;&32;<![CDATA[def]]>&32;<![CDATA[get_docs_files(docs_dir:]]>&32;<![CDATA[Path)]]>&32;<![CDATA[-&gt;]]>&32;<![CDATA[list:]]>&32;&32;&32;&32;&32;<![CDATA[_]]>&32;<![CDATA[=]]>&32;<![CDATA[[]]]>&32;&32;&32;&32;&32;<![CDATA[for]]>&32;<![CDATA[f]]>&32;<![CDATA[in]]>&32;<![CDATA[docs_dir.glob(&quot;*.html&quot;):]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[if]]>&32;<![CDATA[f.stem]]>&32;<![CDATA[==]]>&32;<![CDATA[&quot;index&quot;:]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[continue]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[_.append(f.stem)]]>&32;&32;&32;&32;&32;&32;<![CDATA[return]]>&32;<![CDATA[_]]>&32;&32;&32;<![CDATA[def]]>&32;<![CDATA[compiler(re_compile=False):]]>&32;&32;&32;&32;&32;<![CDATA[docs_dir]]>&32;<![CDATA[=]]>&32;<![CDATA[cwd]]>&32;<![CDATA[/]]>&32;<![CDATA[&quot;docs&quot;]]>&32;&32;&32;&32;&32;<![CDATA[markdown_dir]]>&32;<![CDATA[=]]>&32;<![CDATA[cwd]]>&32;<![CDATA[/]]>&32;<![CDATA[&quot;markdown&quot;]]>&32;&32;&32;&32;&32;&32;<![CDATA[index]]>&32;<![CDATA[=]]>&32;<![CDATA[docs_dir]]>&32;<![CDATA[/]]>&32;<![CDATA[&quot;index.html&quot;]]>&32;&32;&32;&32;&32;&32;<![CDATA[docs_dir_files]]>&32;<![CDATA[=]]>&32;<![CDATA[get_docs_files(docs_dir)]]>&32;&32;&32;&32;&32;<![CDATA[markdown_dir_files]]>&32;<![CDATA[=]]>&32;<![CDATA[markdown_dir.glob(&quot;*.md&quot;)]]>&32;&32;&32;&32;&32;&32;<![CDATA[if]]>&32;<![CDATA[re_compile:]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[for]]>&32;<![CDATA[file]]>&32;<![CDATA[in]]>&32;<![CDATA[docs_dir_files:]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[(docs_dir]]>&32;<![CDATA[/]]>&32;<![CDATA[f&quot;{file}.html&quot;).unlink()]]>&32;&32;&32;&32;&32;&32;<![CDATA[for]]>&32;<![CDATA[file]]>&32;<![CDATA[in]]>&32;<![CDATA[markdown_dir_files:]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[if]]>&32;<![CDATA[file.stem]]>&32;<![CDATA[not]]>&32;<![CDATA[in]]>&32;<![CDATA[docs_dir_files]]>&32;<![CDATA[or]]>&32;<![CDATA[re_compile:]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[markdown]]>&32;<![CDATA[=]]>&32;<![CDATA[mistune.Markdown(renderer=HighlightRenderer())]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[with]]>&32;<![CDATA[open(docs_dir]]>&32;<![CDATA[/]]>&32;<![CDATA[f&quot;{file.stem}.html&quot;,]]>&32;<![CDATA[mode=&quot;w&quot;)]]>&32;<![CDATA[as]]>&32;<![CDATA[f:]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[split]]>&32;<![CDATA[=]]>&32;<![CDATA[file.stem.split(&quot;:&quot;)]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[f.write(render_template(]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[&quot;__main__.html&quot;,]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[title=split[1],]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[date=split[0],]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[content=markdown(file.read_text())]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[))]]>&32;&32;&32;&32;&32;&32;<![CDATA[index.write_text(]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[render_template(]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[&quot;index.html&quot;,]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[pages=get_docs_files(docs_dir)]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[)]]>&32;&32;&32;&32;&32;<![CDATA[)]]>&32;&32;&32;<![CDATA[def]]>&32;<![CDATA[create_app():]]>&32;&32;&32;&32;&32;<![CDATA[app]]>&32;<![CDATA[=]]>&32;<![CDATA[Flask(__name__)]]>&32;&32;&32;&32;&32;<![CDATA[app.static_folder]]>&32;<![CDATA[=]]>&32;<![CDATA[&quot;static&quot;]]>&32;&32;&32;&32;&32;<![CDATA[app.template_folder]]>&32;<![CDATA[=]]>&32;<![CDATA[&quot;templates&quot;]]>&32;&32;&32;&32;&32;&32;<![CDATA[@app.cli.command(&quot;compile&quot;)]]>&32;&32;&32;&32;&32;<![CDATA[def]]>&32;<![CDATA[compile_site():]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[compiler()]]>&32;&32;&32;&32;&32;&32;<![CDATA[@app.cli.command(&quot;re-compile&quot;)]]>&32;&32;&32;&32;&32;<![CDATA[def]]>&32;<![CDATA[re_compile_site():]]>&32;&32;&32;&32;&32;&32;&32;&32;&32;<![CDATA[compiler(re_compile=True)]]>&32;&32;&32;&32;&32;&32;<![CDATA[return]]>&32;<![CDATA[app]]>&32;<![CDATA[</code>]]>
+                <![CDATA[<p>Having trouble viewing the content below? <a href='https://thecodingside.quest/2023-08-06_flask-as-a-static-site-generator.html target='_blank'>View original post here</a></p><p><strong>Update: This project has changed a lot since this post was written. Please visit the GitHub page to see the changes.</strong></p>
+<p><a href="https://github.com/CheeseCake87/CheeseCake87">https://github.com/CheeseCake87/CheeseCake87</a></p>
+<p>Hey guys! / folks! / [insert whatever cool kid greeting here]!</p>
+<p>So I made a static site generator using Flask. Which is used to generate this site.</p>
+<p>It's a single <code>app.py</code> file that is 85 lines long. Including that blank line that the IDE keeps complaining about when
+coding in Python.</p>
+<p>Here's the needed folder structure:</p>
+<pre><code class="language-text">├── docs/
+│   ├── static/
+│   │   └── ...
+│   └── ...
+├── markdown/
+│   └── 2023-08-06:flask-as-a-static-site-generator.md
+├── templates/
+│   ├── __main__.html
+│   └── index.html
+└── app.py
+</code></pre>
+<p>Here's the <code>app.py</code>:</p>
+<pre><code class="language-python">from pathlib import Path
+
+import mistune
+from flask import Flask, render_template
+from pygments import highlight
+from pygments.formatters import html
+from pygments.lexers import get_lexer_by_name
+from pygments.util import ClassNotFound
+
+
+class HighlightRenderer(mistune.HTMLRenderer):
+    def block_code(self, code, info=None):
+        if info:
+            if info == &quot;jinja2&quot;:
+                info = &quot;jinja&quot;
+            try:
+                lexer = get_lexer_by_name(info, stripall=True)
+            except ClassNotFound:
+                lexer = get_lexer_by_name('text', stripall=True)
+            formatter = html.HtmlFormatter()
+            return highlight(code, lexer, formatter)
+        return '&lt;pre&gt;&lt;code&gt;' + mistune.escape(code) + '&lt;/code&gt;&lt;/pre&gt;'
+
+
+cwd = Path(__file__).parent
+
+
+def get_docs_files(docs_dir: Path) -&gt; list:
+    _ = []
+    for f in docs_dir.glob(&quot;*.html&quot;):
+        if f.stem == &quot;index&quot;:
+            continue
+        _.append(f.stem)
+
+    return _
+
+
+def compiler(re_compile=False):
+    docs_dir = cwd / &quot;docs&quot;
+    markdown_dir = cwd / &quot;markdown&quot;
+
+    index = docs_dir / &quot;index.html&quot;
+
+    docs_dir_files = get_docs_files(docs_dir)
+    markdown_dir_files = markdown_dir.glob(&quot;*.md&quot;)
+
+    if re_compile:
+        for file in docs_dir_files:
+            (docs_dir / f&quot;{file}.html&quot;).unlink()
+
+    for file in markdown_dir_files:
+        if file.stem not in docs_dir_files or re_compile:
+            markdown = mistune.Markdown(renderer=HighlightRenderer())
+            with open(docs_dir / f&quot;{file.stem}.html&quot;, mode=&quot;w&quot;) as f:
+                split = file.stem.split(&quot;:&quot;)
+                f.write(render_template(
+                    &quot;__main__.html&quot;,
+                    title=split[1],
+                    date=split[0],
+                    content=markdown(file.read_text())
+                ))
+
+    index.write_text(
+        render_template(
+            &quot;index.html&quot;,
+            pages=get_docs_files(docs_dir)
+        )
+    )
+
+
+def create_app():
+    app = Flask(__name__)
+    app.static_folder = &quot;static&quot;
+    app.template_folder = &quot;templates&quot;
+
+    @app.cli.command(&quot;compile&quot;)
+    def compile_site():
+        compiler()
+
+    @app.cli.command(&quot;re-compile&quot;)
+    def re_compile_site():
+        compiler(re_compile=True)
+
+    return app
+</code></pre>
+<p>If you can't work it out from the code, here's how it works:</p>
+<p>Running <code>flask compile</code></p>
+<ol>
+<li>It gets all the markdown files in the <code>markdown/</code> folder.</li>
+<li>It pulls the title and the date from the filename of the markdown file. &quot;-&quot; in the title is replaced with a
+space, &quot;-&quot; are better for URLs, so the internet says...</li>
+<li>It then gets all the html files in the <code>docs/</code> folder.</li>
+<li>It then compares the two lists, and if there is a markdown file that doesn't have a corresponding html file, it
+generates the html file.</li>
+<li>It then generates the <code>index.html</code> file with all the links to the other pages.</li>
+</ol>
+<p>Running <code>flask re-compile</code> will do the same thing, but it will delete all the html files in the <code>docs/</code> folder first.</p>
+<p>This project sits on my main GitHub repo, ya know the one that is the same as your username, here's the link:
+<a href="https://github.com/CheeseCake87/CheeseCake87">https://github.com/CheeseCake87/CheeseCake87</a></p>
+<p>The project contains the template files and the static files, so you can see how it works.</p>
+<p>The html is being saved in the docs folder, because GitHub pages uses that folder to serve the site. The site is then
+setup with the domain name thecodingside.quest, which was surprisingly cheap to register.</p>
+<p>OK, Bye.</p>
+<p><em>Flask As A Static Site Generator by David Carmichael</em></p>
+]]>
             </content:encoded>
         </item>
         <item>

@@ -125,22 +125,15 @@ def compiler():
             "content": html_content(content)
         }
 
-        this_xml = xml_content(content)
-        pre_tag_pattern = re.compile(r"(?:<pre>)(.*)(?:<\/pre>)", re.IGNORECASE | re.DOTALL)
-        pre_tag_matches = pre_tag_pattern.findall(this_xml)
-
-        for match in pre_tag_matches:
-            this_xml = re.sub('\s+', lambda x: ']]>' + '&32;' * len(x[0]) + '<![CDATA[', match)
-
         xml_pages[f"{filename}.html"] = {
             "title": title,
             "description": description,
             "date": date,
-            "content": f"<![CDATA["
+            "content": "<![CDATA["
                        "<p>Having trouble viewing the content below? "
                        f"<a href='https://thecodingside.quest/{filename}.html target='_blank'>"
                        "View original post here</a></p>"
-                       f"{this_xml}"
+                       f"{xml_content(content)}"
                        "]]>"
         }
 
