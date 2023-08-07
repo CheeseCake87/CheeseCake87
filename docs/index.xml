@@ -6,7 +6,7 @@
         <description>Recent content on TheCodingSide.Quest</description>
         <generator>Flask Static Site Generator written by David Carmichael.</generator>
         <language>en-gb</language>
-        <lastBuildDate>Mon, 07 Aug 2023 13:40:05 +0100</lastBuildDate>
+        <lastBuildDate>Mon, 07 Aug 2023 13:45:37 +0100</lastBuildDate>
         <atom:link href="https://thecodingside.quest/index.xml" rel="self" type="application/rss+xml"/>
         <item>
             <title>GitHub and Obsidian with the help of Python</title>
@@ -30,7 +30,7 @@ suppose this is a tactical move for you to buy their storage. Which is fair enou
 <p>My solution is to use Python with subprocess to do a block of git commands to push and pull from GitHub. You'll need to
 have git installed for this, obviously.</p>
 <p><strong>For people that want to steam ahead, here's the code:</strong></p>
-<p><code>git-pull.py</code></p>
+<p><code>]]>git-pull.py<![CDATA[</code></p>
 <pre><code class="language-python">import subprocess
 
 
@@ -47,8 +47,8 @@ def git_pull():
 if __name__ == '__main__':
     git_pull()
 
-</code></pre>
-<p><code>git-push.py</code></p>
+<![CDATA[</code></pre>
+<p><code>]]>git-push.py<![CDATA[</code></p>
 <pre><code class="language-python">import subprocess
 
 
@@ -67,9 +67,9 @@ def git_push():
 if __name__ == '__main__':
     git_push()
 
-</code></pre>
+<![CDATA[</code></pre>
 <p>These py files are in the root directory of the GitHub Repo:</p>
-<pre><code>└── Repo/
+<pre><code>]]>└── Repo/
     ├── .obsidian/
     ├── .git/
     ├── flask-notes/
@@ -77,7 +77,7 @@ if __name__ == '__main__':
     ├── ...
     ├── git-push.py
     └── git-pull.py
-</code></pre>
+<![CDATA[</code></pre>
 <p><strong>For the people that want more of an explanation on how to set this up:</strong></p>
 <p>To get started, create a GutHub repo with your desired name. In my case, I called mine Obsidian, which I made private.
 Making your repo private will mean you'll need some sort of password to be able to clone.</p>
@@ -86,18 +86,18 @@ Making your repo private will mean you'll need some sort of password to be able 
 <p>Now, I'm pretty lazy. In may case, I created a classic token by clicking Tokens (classic) then setting the token scopes
 for Full control of private repositories, and setting it to never expire.</p>
 <p>After setting that up, it will show you the token. I stored this in my password manager.</p>
-<p>Now we want to make a local folder on your system. In my case I created a folder called Obsidian, <code>/home/david/Obsidian</code></p>
+<p>Now we want to make a local folder on your system. In my case I created a folder called Obsidian, <code>]]>/home/david/Obsidian<![CDATA[</code></p>
 <p>Navigate to this folder and run the following command:</p>
-<p><code>git clone https://github.com/&lt;your_username_here&gt;/Obsidian.git .</code></p>
-<p>This will create a <code>.git</code> hidden folder in the directory.</p>
+<p><code>]]>git clone https://github.com/&lt;your_username_here&gt;/Obsidian.git .<![CDATA[</code></p>
+<p>This will create a <code>]]>.git<![CDATA[</code> hidden folder in the directory.</p>
 <p>Set your Obsidian app to work from the same directory. Now when you create any folders and files you can commit them to
 the git repo.</p>
 <p>Navigating to the repo folder and running a terminal window from there will ensure that your current working directory
 is correct. Then you can run the commands:</p>
-<p><code>python git-push.py</code></p>
+<p><code>]]>python git-push.py<![CDATA[</code></p>
 <p>and or</p>
-<p><code>python git-pull.py</code></p>
-<p>As you may have noticed, there are two private folders in there. <code>.obsidian</code> and <code>.git</code>, I'm not familiar with how
+<p><code>]]>python git-pull.py<![CDATA[</code></p>
+<p>As you may have noticed, there are two private folders in there. <code>]]>.obsidian<![CDATA[</code> and <code>]]>.git<![CDATA[</code>, I'm not familiar with how
 important these two are to keep private, by that I mean not make public. In any case I made the code work with git
 authentication, so you can make the repo private.</p>
 <p>This process is fairly manual, but better than paying $10 a month, right?</p>
@@ -119,7 +119,7 @@ authentication, so you can make the repo private.</p>
 <p><a href="https://github.com/CheeseCake87/CheeseCake87">https://github.com/CheeseCake87/CheeseCake87</a></p>
 <p>Hey guys! / folks! / [insert whatever cool kid greeting here]!</p>
 <p>So I made a static site generator using Flask. Which is used to generate this site.</p>
-<p>It's a single <code>app.py</code> file that is 85 lines long. Including that blank line that the IDE keeps complaining about when
+<p>It's a single <code>]]>app.py<![CDATA[</code> file that is 85 lines long. Including that blank line that the IDE keeps complaining about when
 coding in Python.</p>
 <p>Here's the needed folder structure:</p>
 <pre><code class="language-text">├── docs/
@@ -132,8 +132,8 @@ coding in Python.</p>
 │   ├── __main__.html
 │   └── index.html
 └── app.py
-</code></pre>
-<p>Here's the <code>app.py</code>:</p>
+<![CDATA[</code></pre>
+<p>Here's the <code>]]>app.py<![CDATA[</code>:</p>
 <pre><code class="language-python">from pathlib import Path
 
 import mistune
@@ -218,19 +218,19 @@ def create_app():
         compiler(re_compile=True)
 
     return app
-</code></pre>
+<![CDATA[</code></pre>
 <p>If you can't work it out from the code, here's how it works:</p>
-<p>Running <code>flask compile</code></p>
+<p>Running <code>]]>flask compile<![CDATA[</code></p>
 <ol>
-<li>It gets all the markdown files in the <code>markdown/</code> folder.</li>
+<li>It gets all the markdown files in the <code>]]>markdown/<![CDATA[</code> folder.</li>
 <li>It pulls the title and the date from the filename of the markdown file. &quot;-&quot; in the title is replaced with a
 space, &quot;-&quot; are better for URLs, so the internet says...</li>
-<li>It then gets all the html files in the <code>docs/</code> folder.</li>
+<li>It then gets all the html files in the <code>]]>docs/<![CDATA[</code> folder.</li>
 <li>It then compares the two lists, and if there is a markdown file that doesn't have a corresponding html file, it
 generates the html file.</li>
-<li>It then generates the <code>index.html</code> file with all the links to the other pages.</li>
+<li>It then generates the <code>]]>index.html<![CDATA[</code> file with all the links to the other pages.</li>
 </ol>
-<p>Running <code>flask re-compile</code> will do the same thing, but it will delete all the html files in the <code>docs/</code> folder first.</p>
+<p>Running <code>]]>flask re-compile<![CDATA[</code> will do the same thing, but it will delete all the html files in the <code>]]>docs/<![CDATA[</code> folder first.</p>
 <p>This project sits on my main GitHub repo, ya know the one that is the same as your username, here's the link:
 <a href="https://github.com/CheeseCake87/CheeseCake87">https://github.com/CheeseCake87/CheeseCake87</a></p>
 <p>The project contains the template files and the static files, so you can see how it works.</p>

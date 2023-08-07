@@ -133,7 +133,7 @@ def compiler():
                        "<p>Having trouble viewing the content below? "
                        f"<a href='https://thecodingside.quest/{filename}.html target='_blank'>"
                        "View original post here</a></p>"
-                       f"{xml_content(content)}"
+                       f"{xml_content(content).replace('<code>', '<code>]]>').replace('</code>', '<![CDATA[</code>')}"
                        "]]>"
         }
 
