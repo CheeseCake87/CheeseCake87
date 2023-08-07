@@ -67,7 +67,7 @@ def prune_match_xml(base_xml: str, matched_xml: str) -> str:
 
 def preserve_overflow(base_xml: str) -> str:
     return base_xml.replace(
-        "<pre>", '<pre style="overflow-x: auto;">'
+        "<pre>", '<pre style="overflow-x: scroll;">'
     ).replace(
         '</p><br/>', '</p>'
     ).replace(
