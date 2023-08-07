@@ -98,7 +98,7 @@ def compiler():
 
         content = split_markdown[1]
         html_content = mistune.create_markdown(renderer=HighlightRenderer())
-        xml_content = mistune.create_markdown()
+        xml_content = mistune.create_markdown(renderer=RSSRenderer())
 
         for info_item in raw_info:
             if info_item.startswith("title="):
