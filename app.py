@@ -55,6 +55,25 @@ def get_docs_files() -> list:
     return _
 
 
+def prune_match_xml(base_xml: str, matched_xml: str) -> str:
+    return base_xml.replace(
+        matched_xml,
+        matched_xml.replace(
+            "\n", "<br/>").replace(
+            "\t", "&nbsp;&nbsp;&nbsp;&nbsp;").replace(
+            "  ", "&nbsp;&nbsp;")
+    )
+
+
+def preserve_overflow(base_xml: str) -> str:
+    return base_xml.replace(
+        "<pre>", '<pre style="overflow-x: auto;">'
+    ).replace(
+        '</p><br/>', '</p>'
+    ).replace(
+        '<ol><br/>', '<ol>')
+
+
 def compiler():
     docs_dir_files = get_docs_files()
     markdown_dir_files = markdown_dir.glob("*.md")
@@ -132,21 +151,10 @@ def compiler():
         for match in all_matches:
             if isinstance(match, tuple):
                 for m in match:
-                    this_xml = this_xml.replace(
-                        m,
-                        m.replace(
-                            "\n", "<br/>").replace(
-                            "\t", "&nbsp;&nbsp;&nbsp;&nbsp;").replace(
-                            "  ", "&nbsp;&nbsp;")
-                    )
+                    this_xml = prune_match_xml(this_xml, m)
+
             if isinstance(match, str):
-                this_xml = this_xml.replace(
-                    match,
-                    match.replace(
-                        "\n", "<br/>").replace(
-                        "\t", "&nbsp;&nbsp;&nbsp;&nbsp;").replace(
-                        "  ", "&nbsp;&nbsp;")
-                )
+                this_xml = prune_match_xml(this_xml, match)
 
         xml_pages[f"{filename}.html"] = {
             "title": title,
@@ -156,7 +164,7 @@ def compiler():
                        "<p>Having trouble viewing the content below? "
                        f"<a href='https://thecodingside.quest/{filename}.html target='_blank'>"
                        "View original post here</a></p>"
-                       f"{this_xml.replace('</p><br/>', '</p>').replace('<ol><br/>', '<ol>')}"
+                       f"{preserve_overflow(this_xml)}"
                        "]]>"
         }
 
