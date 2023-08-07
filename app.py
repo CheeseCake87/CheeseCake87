@@ -67,7 +67,7 @@ def prune_match_xml(base_xml: str, matched_xml: str) -> str:
 
 def preserve_overflow(base_xml: str) -> str:
     return base_xml.replace(
-        "<pre>", '<pre style="overflow-x: scroll; white-space: nowrap;">'
+        "<pre>", '<pre style="overflow-x: scroll;">'
     ).replace(
         '</p><br/>', '</p>'
     ).replace(
@@ -162,7 +162,7 @@ def compiler():
             "date": date,
             "content": "<![CDATA["
                        "<p>Having trouble viewing the content below? "
-                       f"<a href='https://thecodingside.quest/{filename}.html target='_blank'>"
+                       f'<a href="https://thecodingside.quest/{filename}.html" target="_blank">'
                        "View original post here</a></p>"
                        f"{preserve_overflow(this_xml)}"
                        "]]>"
