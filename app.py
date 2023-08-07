@@ -156,7 +156,7 @@ def compiler():
                        "<p>Having trouble viewing the content below? "
                        f"<a href='https://thecodingside.quest/{filename}.html target='_blank'>"
                        "View original post here</a></p>"
-                       f"{this_xml}"
+                       f"{this_xml.replace('</p><br/>', '</p>').replace('<ol><br/>', '<ol>')}"
                        "]]>"
         }
 
