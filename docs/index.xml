@@ -6,12 +6,12 @@
         <description>Recent content on TheCodingSide.Quest</description>
         <generator>Flask Static Site Generator written by David Carmichael.</generator>
         <language>en-gb</language>
-        <lastBuildDate>Mon, 07 Aug 2023 10:49:20 +0100</lastBuildDate>
+        <lastBuildDate>Mon, 07 Aug 2023 10:57:59 +0100</lastBuildDate>
         <atom:link href="https://thecodingside.quest/index.xml" rel="self" type="application/rss+xml"/>
         <item>
             <title>GitHub and Obsidian with the help of Python</title>
             <link>https://thecodingside.quest/2023-08-07_github-and-obsidian-with-the-help-of-python.html</link>
-            <pubDate>Mon, 07 Aug 2023 10:49:20 +0100</pubDate>
+            <pubDate>Mon, 07 Aug 2023 10:57:59 +0100</pubDate>
             <guid>https://thecodingside.quest/2023-08-07_github-and-obsidian-with-the-help-of-python.html</guid>
             <description>
                 <![CDATA[I explain how I used a small amount of Python to take most of the pain out of committing my Obsidian markdown library to GitHub. <br/><a href='https://thecodingside.quest/2023-08-07_github-and-obsidian-with-the-help-of-python.html' target='_blank'>View Post</a>]]>
