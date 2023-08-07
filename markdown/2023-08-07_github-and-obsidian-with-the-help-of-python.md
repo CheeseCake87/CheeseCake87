@@ -1,6 +1,6 @@
 title="GitHub and Obsidian with the help of Python",
 description="I explain how I used a small amount of Python to take most of the pain out of committing my Obsidian markdown library to GitHub.",
-date="Mon, 07 Aug 2023 10:14:32 +0100",
+date="2023-08-07 10:14:32 +0100",
 
 ::::
 

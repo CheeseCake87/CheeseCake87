@@ -23,6 +23,10 @@ def switch_date(content, new_date):
     return pattern.sub(f'date="{new_date}"', content)
 
 
+def pytz_datetime() -> datetime:
+    return datetime.now(local_tz)
+
+
 def pytz_datetime_str(mask: str = "%Y-%m-%d %H:%M:%S.%f") -> str:
     return datetime.strptime(datetime.now(local_tz).strftime(mask), mask).strftime(mask)
 
@@ -55,7 +59,8 @@ def compiler():
     docs_dir_files = get_docs_files()
     markdown_dir_files = markdown_dir.glob("*.md")
 
-    pages = dict()
+    html_pages = dict()
+    xml_pages = dict()
 
     for file in docs_dir_files:
         (docs_dir / f"{file}.html").unlink()
@@ -84,13 +89,14 @@ def compiler():
                     date = datetime.strftime(
                         datetime.strptime(
                             raw_date[1],
-                            "%Y-%m-%d %H:%M %z"
+                            "%Y-%m-%d %H:%M:%S %z"
                         ), "%a, %d %b %Y %H:%M:%S %z")
                 except ValueError:
-                    date = pytz_datetime_str(mask="%a, %d %b %Y %H:%M:%S %z")
+                    date_now = pytz_datetime()
+                    date = date_now.strftime("%a, %d %b %Y %H:%M:%S %z")
 
                     with open(file, mode="w") as f:
-                        f.write(switch_date(raw_markdown, date))
+                        f.write(switch_date(raw_markdown, date_now.strftime("%Y-%m-%d %H:%M:%S %z")))
 
         if "0000-00-00" in file.stem:
             raw_filename = file.stem.replace("0000-00-00", pytz_datetime_str(mask="%Y-%m-%d"))
@@ -113,19 +119,40 @@ def compiler():
                 content=markdown_content
             ))
 
-        pages[f"{filename}.html"] = {
+        html_pages[f"{filename}.html"] = {
             "title": title,
             "description": description,
             "date": date,
             "content": markdown_content
         }
 
-    pages_sorted = {k: v for k, v in sorted(pages.items(), reverse=True)}
+        this_xml_content = markdown_content
+
+        pre_tag_pattern = re.compile(r"(?:<pre>)([\s\S]*)(?:<\/pre>)", re.IGNORECASE)
+        pre_tag_matches = pre_tag_pattern.findall(this_xml_content)
+
+        for match in pre_tag_matches:
+            this_xml_content = this_xml_content.replace(match, match.replace(" ", "&32;").replace("\n", "&10;"))
+
+        xml_pages[f"{filename}.html"] = {
+            "title": title,
+            "description": description,
+            "date": date,
+            "content": f"<![CDATA["
+                       "<p>Having trouble viewing the content below? "
+                       f"<a href='https://thecodingside.quest/{filename}.html target='_blank'>"
+                       "View original post here</a></p>"
+                       f"{this_xml_content}"
+                       "]]>"
+        }
+
+    html_pages_sorted = {k: v for k, v in sorted(html_pages.items(), reverse=True)}
+    xml_pages_sorted = {k: v for k, v in sorted(xml_pages.items(), reverse=True)}
 
     index_html.write_text(
         render_template(
             "index.html",
-            pages=pages_sorted
+            pages=html_pages_sorted
         )
     )
 
@@ -133,7 +160,7 @@ def compiler():
         render_template(
             "index.xml",
             build_date=pytz_datetime_str(mask="%a, %d %b %Y %H:%M:%S %z"),
-            pages=pages_sorted
+            pages=xml_pages_sorted
         )
     )
 

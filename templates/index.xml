@@ -18,13 +18,7 @@
                 {{ "<![CDATA["|safe + info.description + " <br/><a href='https://thecodingside.quest/"|safe + page|safe + "' target='_blank'>View Post</a>]]>"|safe }}
             </description>
             <content:encoded>
-                {{ "<![CDATA["|safe +
-                "<p>Having trouble viewing the content below? "|safe +
-                "<a href='https://thecodingside.quest/"|safe +
-                page|safe +
-                "' target='_blank'>View original post here</a></p>"|safe +
-                info.content|safe +
-                "]]>"|safe }}
+                {{ info.content|safe }}
             </content:encoded>
         </item>
         {%- endfor %}
