@@ -35,7 +35,7 @@ def rss_code_block_fixer(code: str) -> str:
     return code.replace(
         "\n", "<br/>").replace(
         "\t", "&nbsp;&nbsp;&nbsp;&nbsp;").replace(
-        "  ", "&nbsp;&nbsp;")
+        " ", "&nbsp;")
 
 
 class HighlightRenderer(mistune.HTMLRenderer):
@@ -54,7 +54,7 @@ class HighlightRenderer(mistune.HTMLRenderer):
 
 class RSSRenderer(mistune.HTMLRenderer):
     def block_code(self, code, info=None):
-        return ('<pre style="overflow-x: scroll;><code>'
+        return ('<pre><code>'
                 + rss_code_block_fixer(mistune.escape(code))
                 + '</code></pre>')
 
