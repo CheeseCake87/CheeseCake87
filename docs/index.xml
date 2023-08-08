@@ -6,18 +6,18 @@
         <description>Recent content on TheCodingSide.Quest</description>
         <generator>Flask Static Site Generator written by David Carmichael.</generator>
         <language>en-gb</language>
-        <lastBuildDate>Tue, 08 Aug 2023 22:26:27 +0100</lastBuildDate>
+        <lastBuildDate>Tue, 08 Aug 2023 22:29:56 +0100</lastBuildDate>
         <atom:link href="https://thecodingside.quest/index.xml" rel="self" type="application/rss+xml"/>
         <item>
-            <title>I got carried away with my using python to commit my Obsidian vault to GitHub</title>
-            <link>https://thecodingside.quest/2023-08-08_i-got-carried-away-with-my-using-python-to-commit-my-obsidian-vault-to-github.html</link>
+            <title>I got carried away with using python to commit my Obsidian vault to GitHub</title>
+            <link>https://thecodingside.quest/2023-08-08_i-got-carried-away-with-using-python-to-commit-my-obsidian-vault-to-github.html</link>
             <pubDate>Tue, 08 Aug 2023 22:26:27 +0100</pubDate>
-            <guid>https://thecodingside.quest/2023-08-08_i-got-carried-away-with-my-using-python-to-commit-my-obsidian-vault-to-github.html</guid>
+            <guid>https://thecodingside.quest/2023-08-08_i-got-carried-away-with-using-python-to-commit-my-obsidian-vault-to-github.html</guid>
             <description>
-                <![CDATA[In a previous post I came up with a solution to commit my obsidian vault to GitHub, I took it a bit further... <br/><a href='https://thecodingside.quest/2023-08-08_i-got-carried-away-with-my-using-python-to-commit-my-obsidian-vault-to-github.html' target='_blank'>View Post</a>]]>
+                <![CDATA[In a previous post I came up with a solution to commit my obsidian vault to GitHub, I took it a bit further... <br/><a href='https://thecodingside.quest/2023-08-08_i-got-carried-away-with-using-python-to-commit-my-obsidian-vault-to-github.html' target='_blank'>View Post</a>]]>
             </description>
             <content:encoded>
-                <![CDATA[<p>Having trouble viewing the content below? <a href="https://thecodingside.quest/2023-08-08_i-got-carried-away-with-my-using-python-to-commit-my-obsidian-vault-to-github.html">View original post here</a></p><p>In the persuit to make my obsidian vault more portable, I came up with a solution to commit my vault to GitHub.</p>
+                <![CDATA[<p>Having trouble viewing the content below? <a href="https://thecodingside.quest/2023-08-08_i-got-carried-away-with-using-python-to-commit-my-obsidian-vault-to-github.html">View original post here</a></p><p>In the persuit to make my obsidian vault more portable, I came up with a solution to commit my vault to GitHub.</p>
 <p>It was a fairly simple solution, two py files in the route of the vault that holds the code to commit the vault to
 GitHub using subprocess. It got really annoying right-clicking a file, then clicking to open in system file explorer,
 then right-clicking to open a terminal here, then typing <code>python3 git-push.py</code> to commit the vault.</p>

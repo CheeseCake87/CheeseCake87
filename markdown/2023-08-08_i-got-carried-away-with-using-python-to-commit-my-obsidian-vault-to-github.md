@@ -1,4 +1,4 @@
-title="I got carried away with my using python to commit my Obsidian vault to GitHub";
+title="I got carried away with using python to commit my Obsidian vault to GitHub";
 description="In a previous post I came up with a solution to commit my obsidian vault to GitHub, I took it a bit further...";
 date="2023-08-08 22:26:27 +0100";
 
