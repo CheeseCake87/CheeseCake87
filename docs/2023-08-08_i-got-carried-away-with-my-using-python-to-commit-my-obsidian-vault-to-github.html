@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>I Got Carried Away With My Using Python To Commit My Obsidian Vault To Github</title>
+    <link rel="stylesheet" href="static/water.css">
+    <link rel="stylesheet" href="static/pygments.emacs-dull.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="static/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static/favicon-16x16.png">
+    <link rel="manifest" href="static/site.webmanifest">
+    <link rel="mask-icon" href="static/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+
+<div>
+    <img style="height: 80px;" src="static/android-chrome-192x192.png"
+         alt="The Coding Side Quest Logo">
+    <div>
+        <h1 style="font-size: 3.6rem; margin: 0;">The Coding Side Quest</h1>
+        <p style="margin: 0; padding-left: 0.5rem;"><small>
+            ... a semi-coherent coding blog by
+            <a style="white-space: nowrap" href="https://github.com/CheeseCake87" target="_blank" rel="noreferrer">
+                David Carmichael</a>
+            - <a style="white-space: nowrap" href="index.xml" target="_blank">[RSS-Feed]</a>
+        </small>
+        </p>
+    </div>
+</div>
+
+<div style="padding-bottom: 1rem; padding-top: 1rem;">
+    <p style="margin: 0;"><a href="index.html">< Back to Index</a></p>
+</div>
+
+<p style="margin: 0"><small>Tue, 08 Aug 2023 22:26:27 +0100</small></p>
+<h2 style="font-size: 2.6rem; margin: 0;">I got carried away with my using python to commit my Obsidian vault to GitHub</h2>
+
+
+<p>In the persuit to make my obsidian vault more portable, I came up with a solution to commit my vault to GitHub.</p>
+<p>It was a fairly simple solution, two py files in the route of the vault that holds the code to commit the vault to
+GitHub using subprocess. It got really annoying right-clicking a file, then clicking to open in system file explorer,
+then right-clicking to open a terminal here, then typing <code>python3 git-push.py</code> to commit the vault.</p>
+<p>A little convoluted, but it worked, I guess.</p>
+<p>Anyway... I built an Obsidian plugin. It's called Gnome Terminal Loader, and it does just that, loads the Gnome
+Terminal.</p>
+<p>Here's the code:</p>
+<div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="nx">Platform</span><span class="p">,</span><span class="w"> </span><span class="nx">Plugin</span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;obsidian&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="nx">spawn</span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;child_process&quot;</span><span class="p">;</span>
+
+<span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nx">GnomeTerminal</span><span class="w"> </span><span class="k">extends</span><span class="w"> </span><span class="nx">Plugin</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="k">async</span><span class="w"> </span><span class="nx">onload</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">Platform</span><span class="p">.</span><span class="nx">isDesktopApp</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">loadGnomeTerminal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">addRibbonIcon</span><span class="p">(</span>
+<span class="w">                </span><span class="s1">&#39;terminal-square&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Gnome Terminal&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">evt</span><span class="o">:</span><span class="w"> </span><span class="kt">MouseEvent</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="nx">spawn</span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;child_process&#39;</span><span class="p">);</span>
+<span class="w">                    </span><span class="c1">//@ts-ignore</span>
+<span class="w">                    </span><span class="kd">let</span><span class="w"> </span><span class="nx">openTerminalAtPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">spawn</span><span class="p">(</span><span class="s1">&#39;gnome-terminal&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">cwd</span><span class="o">:</span><span class="w"> </span><span class="kt">this.app.vault.adapter.basePath</span><span class="p">});</span>
+<span class="w">                    </span><span class="nx">openTerminalAtPath</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="o">:</span><span class="w"> </span><span class="kt">Error</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+<span class="w">                    </span><span class="p">});</span>
+<span class="w">                </span><span class="p">});</span>
+
+<span class="w">            </span><span class="kd">const</span><span class="w"> </span><span class="nx">pythonGnomeTerminal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="nx">addRibbonIcon</span><span class="p">(</span>
+<span class="w">                </span><span class="s1">&#39;file-terminal&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;main.py (Gnome Terminal)&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">evt</span><span class="o">:</span><span class="w"> </span><span class="kt">MouseEvent</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                    </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="nx">spawn</span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;child_process&#39;</span><span class="p">);</span>
+
+<span class="w">                    </span><span class="kd">const</span><span class="w"> </span><span class="nx">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;gnome-terminal&#39;</span>
+<span class="w">                    </span><span class="kd">const</span><span class="w"> </span><span class="nx">cmd_args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;--&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;python3&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;main.py&quot;</span><span class="p">]</span>
+
+<span class="w">                    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">command</span><span class="p">)</span>
+
+<span class="w">                    </span><span class="kd">let</span><span class="w"> </span><span class="nx">openTerminalAtPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">spawn</span><span class="p">(</span><span class="nx">command</span><span class="p">,</span><span class="w"> </span><span class="nx">cmd_args</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="nx">shell</span><span class="o">:</span><span class="w"> </span><span class="kt">true</span><span class="p">,</span><span class="w"> </span><span class="c1">//@ts-ignore</span>
+<span class="w">                        </span><span class="nx">cwd</span><span class="o">:</span><span class="w"> </span><span class="kt">this.app.vault.adapter.basePath</span>
+<span class="w">                    </span><span class="p">});</span>
+<span class="w">                    </span><span class="nx">openTerminalAtPath</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nx">err</span><span class="o">:</span><span class="w"> </span><span class="kt">Error</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+<span class="w">                    </span><span class="p">});</span>
+<span class="w">                </span><span class="p">});</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">onunload</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+<p>This is distilled from the Obsidian sample plugin, found
+here: <a href="https://github.com/obsidianmd/obsidian-sample-plugin">https://github.com/obsidianmd/obsidian-sample-plugin</a></p>
+<p>It adds two icons to the ribbon, one to open the terminal, and one to run the python script.</p>
+<p><img src="https://raw.githubusercontent.com/CheeseCake87/gnome-terminal-loader/master/assets/gnome_terminal.png" alt="" /></p>
+<p><img src="https://raw.githubusercontent.com/CheeseCake87/gnome-terminal-loader/master/assets/main_py_gnome_terminal.png" alt="" /></p>
+<p>It's obviously only compatible with a Linux OS with gnome-terminal and python installed. I'm sure it could be adapted
+for other OS's, but I don't have the time or the inclination to do that.</p>
+<p>The decision to incorporate the python script into the plugin was an interesting thought to me. I initially started
+attempting to build in git functionality, showing push and pull icons. However, you can quickly open a can of worms
+when trying to deal with private repos. So, I decided to keep it simple, and just run the python script.</p>
+<p>My solution for the python script was to have a main.py file in the root of the vault, that contains a simple cli menu
+that I can extend in functionality. So I adapted the <code>git-push.py</code> and <code>git-pull.py</code> scripts into the <code>main.py</code> file,
+controlled by a simple cli menu.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">subprocess</span>
+
+
+<span class="k">def</span> <span class="nf">git_pull</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="s1">&#39;credential.helper&#39;</span><span class="p">,</span> <span class="s1">&#39;store&#39;</span><span class="p">])</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="s1">&#39;credential.helper&#39;</span><span class="p">,</span> <span class="s1">&#39;cache --timeout 7200&#39;</span><span class="p">])</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;pull&#39;</span><span class="p">,</span> <span class="s1">&#39;origin&#39;</span><span class="p">,</span> <span class="s1">&#39;master&#39;</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;git pull success&#39;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">git_push</span><span class="p">():</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="s1">&#39;credential.helper&#39;</span><span class="p">,</span> <span class="s1">&#39;store&#39;</span><span class="p">])</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="s1">&#39;credential.helper&#39;</span><span class="p">,</span> <span class="s1">&#39;cache --timeout 7200&#39;</span><span class="p">])</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;add&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">])</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;commit&#39;</span><span class="p">,</span> <span class="s1">&#39;-m&#39;</span><span class="p">,</span> <span class="s1">&#39;update&#39;</span><span class="p">])</span>
+        <span class="n">subprocess</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="s1">&#39;git&#39;</span><span class="p">,</span> <span class="s1">&#39;push&#39;</span><span class="p">,</span> <span class="s1">&#39;origin&#39;</span><span class="p">,</span> <span class="s1">&#39;master&#39;</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;git push success&#39;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">menu</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">while</span> <span class="n">menu</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">menu</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s1">&#39;1. git pull</span><span class="se">\n</span><span class="s1">2. git push</span><span class="se">\n</span><span class="s1">0. exit</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">menu</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">git_pull</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">menu</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">git_push</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">menu</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;null&#39;</span><span class="p">)</span>
+</pre></div>
+<p>Not the prettiest code, but it works.</p>
+<p>A big missing thing from this solution is the ability to use other python libraries, to extend the
+functionality beyond the python standard library. Maybe it would be a good idea to bake in a virtual environment with
+some setup and checks? The purpose of the plugin is to create a python entry point possible, so I suppose that would be
+up to whoever uses it.</p>
+<p>The Beauty of this solution for me is that the main.py file follows the vault around in my commit to GitHub use case.</p>
+<p>This obsidian plugin is available on GitHub, under an MIT license. Feel free to go wild with it.</p>
+<p><a href="https://github.com/CheeseCake87/gnome-terminal-loader">https://github.com/CheeseCake87/gnome-terminal-loader</a></p>
+<p>I have submitted the plugin to the Obsidian community plugins, so hopefully it will be available there soon.</p>
+<p>OK, that's it for now.</p>
+<p><em>I got carried away with my using python to commit my Obsidian vault to GitHub by David Carmichael</em></p>
+
+
+</body>
+</html>

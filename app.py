@@ -19,7 +19,7 @@ index_xml = docs_dir / "index.xml"
 
 
 def switch_date(content, new_date):
-    pattern = re.compile(r'date="[A-Za-z]+"', re.IGNORECASE)
+    pattern = re.compile(r'date="(.*?)"', re.IGNORECASE)
     return pattern.sub(f'date="{new_date}"', content)
 
 
@@ -93,7 +93,7 @@ def compiler():
         raw_markdown = file.read_text()
         split_markdown = raw_markdown.split("::::")
         raw_info = split_markdown[0].strip().replace(
-            "\n", "").split(",")
+            "\n", "").split(";")
 
         content = split_markdown[1]
         html_content = mistune.create_markdown(renderer=HighlightRenderer())
@@ -192,9 +192,9 @@ def create_app():
         with open(markdown_dir / filename, mode="w") as file:
             file.write(
                 """\
-title="{title}",
-description="Description",
-date="{date}",
+title="{title}";
+description="Description";
+date="{date}";
 
 ::::
 
