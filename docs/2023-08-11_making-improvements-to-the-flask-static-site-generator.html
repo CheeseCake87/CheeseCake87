@@ -86,8 +86,8 @@ done in a code block. Which looks nice, in my opinion.</p>
 <span class="n">title_ptn</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Title =(.*?)\n&#39;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
 <span class="n">description_ptn</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Description =(.*?)\n&#39;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
 </pre></div>
-<p>As you can see, I went for a regex solution. The file's text is split first, on the code block characters
-<code>markdown.split(&quot;'''&quot;)</code>. The index location of the meta section is pulled out and processed via the above regex,
+<p>As you can see, I went for a regex solution. The file's text is split on the code block characters
+<code>markdown.split(&quot;'''&quot;)</code> first. The index location of the meta section is pulled out and processed via the above regex,
 and the rest is joined back together <code>&quot;'''&quot;.join(markdown_list[1:])</code> to get the markdown content.</p>
 <p>This solution seems to work really well.</p>
 <p>I cleaned up the rest of the code base, I also changed to working more with datetimes, rather than dates as strings.</p>

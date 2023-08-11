@@ -72,8 +72,8 @@ title_ptn = re.compile(r'Title =(.*?)\n', re.IGNORECASE)
 description_ptn = re.compile(r'Description =(.*?)\n', re.IGNORECASE)
 ```
 
-As you can see, I went for a regex solution. The file's text is split first, on the code block characters
-`markdown.split("'''")`. The index location of the meta section is pulled out and processed via the above regex,
+As you can see, I went for a regex solution. The file's text is split on the code block characters
+`markdown.split("'''")` first. The index location of the meta section is pulled out and processed via the above regex,
 and the rest is joined back together `"'''".join(markdown_list[1:])` to get the markdown content.
 
 This solution seems to work really well.
