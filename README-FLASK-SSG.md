@@ -111,3 +111,9 @@ and need to update all posts, running this command will re-generate all the html
 ```bash
 flask recompile
 ```
+
+You can also generate a new post markdown file with the following command:
+
+```bash
+flask new-post
+```

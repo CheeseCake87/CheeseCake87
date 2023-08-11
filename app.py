@@ -20,8 +20,8 @@ def create_app():
     def recompile_site():
         compiler(cwd, recompile=True)
 
-    @app.cli.command("add-page")
-    def add_page():
+    @app.cli.command("new-post")
+    def new_post():
         title = input("Title: ")
         filename = f"0000-00-00_{title.lower().replace(' ', '-') or 'untitled'}.md"
         with open(cwd / "markdown" / filename, mode="w") as file:
