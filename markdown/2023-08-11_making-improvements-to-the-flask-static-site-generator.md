@@ -57,8 +57,8 @@ Description = description
 Markdown here...
 ```
 
-This is much cleaner and easier to read. It also fits nicely into the way markdown works, in the example above
-`'` are stand-ins for the ``` ` ``` character used to denote code blocks in markdown.
+This is much cleaner and easier to read, it also fits nicely into the way markdown works.
+In the example above `'` are stand-ins for the ``` ` ``` character used to denote code blocks in markdown.
 
 So, at the top of the markdown file for the post, there is a neat little meta section,
 done in a code block. Which looks nice, in my opinion.
@@ -76,8 +76,9 @@ As you can see, I went for a regex solution. The file's text is split first, on 
 `markdown.split("'''")`. The index location of the meta section is pulled out and processed via the above regex,
 and the rest is joined back together `"'''".join(markdown_list[1:])` to get the markdown content.
 
-This solution seems to work really well. I polished off with cleaning the rest of the code base, I also changed to
-working more with datetimes, rather than strings.
+This solution seems to work really well.
+
+I cleaned up the rest of the code base, I also changed to working more with datetimes, rather than dates as strings.
 
 Here's a small list of the rest of the notable changes:
 

@@ -76,8 +76,8 @@ Description = description
 
 Markdown here...
 </pre></div>
-<p>This is much cleaner and easier to read. It also fits nicely into the way markdown works, in the example above
-<code>'</code> are stand-ins for the <code>`</code> character used to denote code blocks in markdown.</p>
+<p>This is much cleaner and easier to read, it also fits nicely into the way markdown works.
+In the example above <code>'</code> are stand-ins for the <code>`</code> character used to denote code blocks in markdown.</p>
 <p>So, at the top of the markdown file for the post, there is a neat little meta section,
 done in a code block. Which looks nice, in my opinion.</p>
 <p>With this change to the way meta is defined, I redesigned how the compiler function finds the meta information.</p>
@@ -89,8 +89,8 @@ done in a code block. Which looks nice, in my opinion.</p>
 <p>As you can see, I went for a regex solution. The file's text is split first, on the code block characters
 <code>markdown.split(&quot;'''&quot;)</code>. The index location of the meta section is pulled out and processed via the above regex,
 and the rest is joined back together <code>&quot;'''&quot;.join(markdown_list[1:])</code> to get the markdown content.</p>
-<p>This solution seems to work really well. I polished off with cleaning the rest of the code base, I also changed to
-working more with datetimes, rather than strings.</p>
+<p>This solution seems to work really well.</p>
+<p>I cleaned up the rest of the code base, I also changed to working more with datetimes, rather than dates as strings.</p>
 <p>Here's a small list of the rest of the notable changes:</p>
 <ul>
 <li>A date that cannot be converted to a datetime object from the meta information is generated at publication time. This
