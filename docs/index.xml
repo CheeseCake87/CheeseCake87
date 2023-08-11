@@ -6,8 +6,59 @@
         <description>Recent content on TheCodingSide.Quest</description>
         <generator>Flask Static Site Generator written by David Carmichael.</generator>
         <language>en-gb</language>
-        <lastBuildDate>Fri, 11 Aug 2023 11:10:45 +0100</lastBuildDate>
+        <lastBuildDate>Fri, 11 Aug 2023 21:03:13 +0100</lastBuildDate>
         <atom:link href="https://thecodingside.quest/index.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title>Making improvements to the Flask static site generator</title>
+            <link>https://thecodingside.quest/2023-08-11_making-improvements-to-the-flask-static-site-generator.html</link>
+            <pubDate>Fri, 11 Aug 2023 20:37:22 +0100</pubDate>
+            <guid>https://thecodingside.quest/2023-08-11_making-improvements-to-the-flask-static-site-generator.html</guid>
+            <description>
+                <![CDATA[In this post I talk about the improvements I&#39;ve made to the Flask static site generator. <br/><a href='https://thecodingside.quest/2023-08-11_making-improvements-to-the-flask-static-site-generator.html' target='_blank'>View Post</a>]]>
+            </description>
+            <content:encoded>
+                <![CDATA[<p>Having trouble viewing the content below? <a href="https://thecodingside.quest/2023-08-11_making-improvements-to-the-flask-static-site-generator.html">View original post here</a></p><p>If you haven't already seen the previous post about how I use Flask to statically generate this site, you
+should check it out.</p>
+<p>Here's a link: <a href="/2023-08-06_flask-as-a-static-site-generator.html">Flask as a Static Site Generator</a>.</p>
+<p>First, let's start with the structure. I moved all the code to a package folder called <code>ssg</code>, making the code easier to
+work with and maintain.</p>
+<pre><code>└──&nbsp;ssg/<br/>&nbsp;&nbsp;&nbsp;&nbsp;├──&nbsp;__init__.py<br/>&nbsp;&nbsp;&nbsp;&nbsp;├──&nbsp;compiler.py<br/>&nbsp;&nbsp;&nbsp;&nbsp;├──&nbsp;exceptions.py<br/>&nbsp;&nbsp;&nbsp;&nbsp;├──&nbsp;helpers.py<br/>&nbsp;&nbsp;&nbsp;&nbsp;└──&nbsp;render_engines.py<br/></code></pre><p><code>compiler.py</code> is the main entry point to the static site generator. It's responsible for firing all the function calls
+in the correct order. It's changed a lot from its original version.</p>
+<p>I originally had the filenames of the markdown files 2023-08-11 20:35:26 +0100ting the dates, and titles of the posts.
+As you can imagine,
+this was very limited.</p>
+<p>I then moved to a meta system. Attempting to define some information about the post in the markdown file itself, at the
+top. After throwing some hacky code at the process, I landed on the following:</p>
+<pre><code>date=&quot;0000-00-00&nbsp;00:00:00&nbsp;+0100&quot;;<br/>title=&quot;title&quot;;<br/>description=&quot;description&quot;;<br/><br/>::::<br/><br/>Markdown&nbsp;here...<br/></code></pre><p>I was then splitting the file on the <code>::::</code> string, and using the first part to get the meta information, and the second
+part to get the markdown content. Also using <code>;</code> and <code>&quot;</code> as split markers to get the individual meta information.</p>
+<p>Although this method worked, it thought it looked very ugly. So I eventually changed it to:</p>
+<pre><code>'''<br/>Publish&nbsp;=&nbsp;True<br/>date&nbsp;=&nbsp;2023-08-11&nbsp;20:37:22&nbsp;+0100<br/>Title&nbsp;=&nbsp;title<br/>Description&nbsp;=&nbsp;description<br/>'''<br/><br/>Markdown&nbsp;here...<br/></code></pre><p>This is much cleaner and easier to read. It also fits nicely into the way markdown works, in the example above
+<code>'</code> are stand-ins for the <code>`</code> character used to denote code blocks in markdown.</p>
+<p>So, at the top of the markdown file for the post, there is a neat little meta section,
+done in a code block. Which looks nice, in my opinion.</p>
+<p>With this change to the way meta is defined, I redesigned how the compiler function finds the meta information.</p>
+<pre><code>publish_ptn&nbsp;=&nbsp;re.compile(r'Publish&nbsp;=(.*?)\n',&nbsp;re.IGNORECASE)<br/>date_ptn&nbsp;=&nbsp;re.compile(r'Date&nbsp;=(.*?)\n',&nbsp;re.IGNORECASE)<br/>title_ptn&nbsp;=&nbsp;re.compile(r'Title&nbsp;=(.*?)\n',&nbsp;re.IGNORECASE)<br/>description_ptn&nbsp;=&nbsp;re.compile(r'Description&nbsp;=(.*?)\n',&nbsp;re.IGNORECASE)<br/></code></pre><p>As you can see, I went for a regex solution. The file's text is split first, on the code block characters
+<code>markdown.split(&quot;'''&quot;)</code>. The index location of the meta section is pulled out and processed via the above regex,
+and the rest is joined back together <code>&quot;'''&quot;.join(markdown_list[1:])</code> to get the markdown content.</p>
+<p>This solution seems to work really well. I polished off with cleaning the rest of the code base, I also changed to
+working more with datetimes, rather than strings.</p>
+<p>Here's a small list of the rest of the notable changes:</p>
+<ul>
+<li>A date that cannot be converted to a datetime object from the meta information is generated at publication time. This
+also updates the file name and date within the original markdown file.</li>
+<li>Addition of exception handling, if the meta section is not found, or incorrectly setup.</li>
+</ul>
+<p>No doubt there will be more changes to come, but for now, I'm happy with the way it's working. I only usually
+tackle changes, as and when they are needed, and it seems to be working well. Maybe I'll build in unit tests at some
+point, not sure if this is needed for such a small project.</p>
+<p>I hope you enjoyed this short post, if you want to have a look at the code, you can find it on my GitHub:</p>
+<p><a href="https://github.com/CheeseCake87/CheeseCake87">https://github.com/CheeseCake87/CheeseCake87</a></p>
+<p>Most of the good stuff is in the <code>ssg</code> folder.</p>
+<p>Thanks for reading!</p>
+<p><em>Making improvements to the Flask static site generator by David Carmichael</em></p>
+]]>
+            </content:encoded>
+        </item>
         <item>
             <title>I got carried away with using Python to commit my Obsidian vault to GitHub</title>
             <link>https://thecodingside.quest/2023-08-08_i-got-carried-away-with-using-python-to-commit-my-obsidian-vault-to-github.html</link>

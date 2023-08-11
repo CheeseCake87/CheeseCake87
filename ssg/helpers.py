@@ -35,7 +35,7 @@ def switch_date(content, new_date):
     return pattern.sub(f'date="{new_date}"', content)
 
 
-def get_docs_files(docs_dir: Path) -> list:
+def get_relative_files_in_the_docs_folder(docs_dir: Path) -> list:
     _ = []
     for f in docs_dir.glob("*.html"):
         if f.stem == "index":

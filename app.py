@@ -2,7 +2,7 @@ from pathlib import Path
 
 from flask import Flask
 
-from ssg.compiler import compiler
+from ssg import compiler
 
 cwd = Path(__file__).parent
 
@@ -16,6 +16,10 @@ def create_app():
     def compile_site():
         compiler(cwd)
 
+    @app.cli.command("recompile")
+    def recompile_site():
+        compiler(cwd, recompile=True)
+
     @app.cli.command("add-page")
     def add_page():
         title = input("Title: ")
@@ -25,9 +29,9 @@ def create_app():
                 """\
 ```
 Publish = False
-date = {date}
-title = {title}
-description = Description
+Date = {date}
+Title = {title}
+Description = Description
 ````
 
 start here...

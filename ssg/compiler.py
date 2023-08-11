@@ -6,7 +6,7 @@ from flask import render_template
 
 from ssg.exceptions import NoPostDefinition
 from ssg.helpers import (
-    get_docs_files,
+    get_relative_files_in_the_docs_folder,
     excessive_br_cleanup,
     pytz_dt_now_str, pytz_dt_now,
     pytz_dt_str_to_dt,
@@ -74,7 +74,7 @@ def replace_post_date(content: str, new_date: str) -> str:
     date_ptn = re.compile(r'Date =(.*?)\n', re.IGNORECASE)
     return content.replace(
         date_ptn.findall(content)[0],
-        f"Date = {new_date}"
+        f" {new_date}"
     )
 
 
@@ -84,7 +84,7 @@ def compiler(cwd: Path, recompile: bool = False):
     index_html = docs_dir / "index.html"
     index_xml = docs_dir / "index.xml"
 
-    docs_dir_files = get_docs_files(docs_dir)
+    docs_dir_files = get_relative_files_in_the_docs_folder(docs_dir)
     markdown_dir_files = markdown_dir.glob("*.md")
 
     html_pages = dict()
@@ -95,19 +95,23 @@ def compiler(cwd: Path, recompile: bool = False):
             (docs_dir / f"{file}.html").unlink()
 
     for file in markdown_dir_files:
+
         raw_markdown = file.read_text()
         publish, date, title, description, post = _raw_markdown_processor(raw_markdown)
 
-        html_engine = mistune.create_markdown(renderer=HighlightRenderer())
-        xml_engine = mistune.create_markdown(renderer=RSSRenderer())
+        if f"{file.stem}.html" not in docs_dir_files and publish:
 
-        if publish:
+            html_engine = mistune.create_markdown(renderer=HighlightRenderer())
+            xml_engine = mistune.create_markdown(renderer=RSSRenderer())
+
             try:
                 dt_date = pytz_dt_str_to_dt(date)
             except ValueError:
                 dt_date = pytz_dt_now()
+                file.write_text(replace_post_date(file.read_text(), pytz_dt_now_str()))
 
             new_filename = f"{dt_date.strftime('%Y-%m-%d')}_{title.replace(' ', '-').lower()}"
+            file.rename(markdown_dir / f"{new_filename}.md")
 
             with open(docs_dir / f"{new_filename}.html", mode="w") as html_file:
                 html_file.write(render_template(
@@ -136,11 +140,11 @@ def compiler(cwd: Path, recompile: bool = False):
                            f"{excessive_br_cleanup(xml_engine(post))}"
                            "]]>"
             }
-        else:
-            new_filename = f"0000-00-00_{title.replace(' ', '-').lower()}"
 
-        file.write_text(replace_post_date(file.read_text(), "2021-08-01 00:00:00 +0000"))
-        file.rename(markdown_dir / f"{new_filename}.md")
+        else:
+
+            new_filename = f"0000-00-00_{title.replace(' ', '-').lower()}"
+            file.rename(markdown_dir / f"{new_filename}.md")
 
     # sort pages by filename
     html_pages_sorted = {k: v for k, v in sorted(html_pages.items(), reverse=True)}
