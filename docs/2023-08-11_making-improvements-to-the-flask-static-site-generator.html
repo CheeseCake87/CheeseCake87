@@ -90,7 +90,7 @@ done in a code block. Which looks nice, in my opinion.</p>
 <code>markdown.split(&quot;'''&quot;)</code> first. The index location of the meta section is pulled out and processed via the above regex,
 and the rest is joined back together <code>&quot;'''&quot;.join(markdown_list[1:])</code> to get the markdown content.</p>
 <p>This solution seems to work really well.</p>
-<p>I cleaned up the rest of the code base, I also changed to working more with datetimes, rather than dates as strings.</p>
+<p>I cleaned up the rest of the code base, and I also changed to working more with datetimes, rather than dates as strings.</p>
 <p>Here's a small list of the rest of the notable changes:</p>
 <ul>
 <li>A date that cannot be converted to a datetime object from the meta information is generated at publication time. This

@@ -78,7 +78,7 @@ and the rest is joined back together `"'''".join(markdown_list[1:])` to get the 
 
 This solution seems to work really well.
 
-I cleaned up the rest of the code base, I also changed to working more with datetimes, rather than dates as strings.
+I cleaned up the rest of the code base, and I also changed to working more with datetimes, rather than dates as strings.
 
 Here's a small list of the rest of the notable changes:
 
