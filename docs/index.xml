@@ -6,7 +6,7 @@
         <description>Recent content on TheCodingSide.Quest</description>
         <generator>Flask Static Site Generator written by David Carmichael.</generator>
         <language>en-gb</language>
-        <lastBuildDate>Fri, 11 Aug 2023 21:20:53 +0100</lastBuildDate>
+        <lastBuildDate>Fri, 11 Aug 2023 21:24:22 +0100</lastBuildDate>
         <atom:link href="https://thecodingside.quest/index.xml" rel="self" type="application/rss+xml"/>
         <item>
             <title>Making improvements to the Flask static site generator</title>
@@ -14,7 +14,7 @@
             <pubDate>Fri, 11 Aug 2023 20:37:22 +0100</pubDate>
             <guid>https://thecodingside.quest/2023-08-11_making-improvements-to-the-flask-static-site-generator.html</guid>
             <description>
-                <![CDATA[In this post I talk about the improvements I&#39;ve made to the Flask static site generator. <br/><a href='https://thecodingside.quest/2023-08-11_making-improvements-to-the-flask-static-site-generator.html' target='_blank'>View Post</a>]]>
+                <![CDATA[In this post, I talk about the improvements I&#39;ve made to the Flask static site generator. <br/><a href='https://thecodingside.quest/2023-08-11_making-improvements-to-the-flask-static-site-generator.html' target='_blank'>View Post</a>]]>
             </description>
             <content:encoded>
                 <![CDATA[<p>Having trouble viewing the content below? <a href="https://thecodingside.quest/2023-08-11_making-improvements-to-the-flask-static-site-generator.html">View original post here</a></p><p>If you haven't already seen the previous post about how I use Flask to statically generate this site, you
@@ -28,7 +28,7 @@ in the correct order. It's changed a lot from its original version.</p>
 this was very limited.</p>
 <p>I then moved to attempting to define some information about the post in the markdown file itself, at the
 top. After throwing some hacky code at the process, I landed on the following:</p>
-<pre><code>date=&quot;0000-00-00&nbsp;00:00:00&nbsp;+0100&quot;;<br/>title=&quot;title&quot;;<br/>description=&quot;description&quot;;<br/><br/>::::<br/><br/>Markdown&nbsp;here...<br/></code></pre><p>I was then splitting the file on the <code>::::</code> string, and using the first part to get the meta information, and the second
+<pre><code>date=&quot;0000-00-00&nbsp;00:00:00&nbsp;+0100&quot;;<br/>title=&quot;title&quot;;<br/>description=&quot;description&quot;;<br/><br/>::::<br/><br/>Markdown&nbsp;here...<br/></code></pre><p>I was splitting the file on the <code>::::</code> string, and using the first part to get the meta information, and the second
 part to get the markdown content. Also using <code>;</code> and <code>&quot;</code> as split markers to get the individual meta information.</p>
 <p>Although this method worked, it thought it looked very ugly. So I eventually changed it to:</p>
 <pre><code>'''<br/>Publish&nbsp;=&nbsp;True<br/>date&nbsp;=&nbsp;2023-08-11&nbsp;20:37:22&nbsp;+0100<br/>Title&nbsp;=&nbsp;title<br/>Description&nbsp;=&nbsp;description<br/>'''<br/><br/>Markdown&nbsp;here...<br/></code></pre><p>This is much cleaner and easier to read. It also fits nicely into the way markdown works, in the example above
@@ -64,7 +64,7 @@ point, not sure if this is needed for such a small project.</p>
             <pubDate>Tue, 08 Aug 2023 22:26:27 +0100</pubDate>
             <guid>https://thecodingside.quest/2023-08-08_i-got-carried-away-with-using-python-to-commit-my-obsidian-vault-to-github.html</guid>
             <description>
-                <![CDATA[In a previous post I came up with a solution to commit <br/><a href='https://thecodingside.quest/2023-08-08_i-got-carried-away-with-using-python-to-commit-my-obsidian-vault-to-github.html' target='_blank'>View Post</a>]]>
+                <![CDATA[In a previous post, I came up with a solution to commit <br/><a href='https://thecodingside.quest/2023-08-08_i-got-carried-away-with-using-python-to-commit-my-obsidian-vault-to-github.html' target='_blank'>View Post</a>]]>
             </description>
             <content:encoded>
                 <![CDATA[<p>Having trouble viewing the content below? <a href="https://thecodingside.quest/2023-08-08_i-got-carried-away-with-using-python-to-commit-my-obsidian-vault-to-github.html">View original post here</a></p><p>In the persuit to make my obsidian vault more portable, I came up with a solution to commit my vault to GitHub.</p>

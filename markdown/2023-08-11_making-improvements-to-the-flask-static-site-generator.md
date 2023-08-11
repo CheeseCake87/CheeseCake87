@@ -41,7 +41,7 @@ description="description";
 Markdown here...
 ```
 
-I was then splitting the file on the `::::` string, and using the first part to get the meta information, and the second
+I was splitting the file on the `::::` string, and using the first part to get the meta information, and the second
 part to get the markdown content. Also using `;` and `"` as split markers to get the individual meta information.
 
 Although this method worked, it thought it looked very ugly. So I eventually changed it to:
