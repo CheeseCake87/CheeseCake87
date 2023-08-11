@@ -25,11 +25,10 @@ work with and maintain.
 `compiler.py` is the main entry point to the static site generator. It's responsible for firing all the function calls
 in the correct order. It's changed a lot from its original version.
 
-I originally had the filenames of the markdown files 2023-08-11 20:35:26 +0100ting the dates, and titles of the posts.
-As you can imagine,
+I originally had the meta of a post set by its filename `date_title-of-post`, As you can imagine,
 this was very limited.
 
-I then moved to a meta system. Attempting to define some information about the post in the markdown file itself, at the
+I then moved to attempting to define some information about the post in the markdown file itself, at the
 top. After throwing some hacky code at the process, I landed on the following:
 
 ```text
