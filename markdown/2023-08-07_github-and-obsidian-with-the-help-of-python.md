@@ -1,8 +1,11 @@
-title="GitHub and Obsidian with the help of Python";
-description="I explain how I used a small amount of Python to take most of the pain out of committing my Obsidian markdown library to GitHub.";
-date="2023-08-07 10:14:32 +0100";
-
-::::
+```
+Publish = True
+Date = 2023-08-07 10:14:32 +0100
+Title = GitHub and Obsidian with the help of Python
+Description = I explain how I used a small amount of Python 
+to take most of the pain out of committing my Obsidian markdown 
+library to GitHub.
+```
 
 At the time of writing this Obsidian sync, the service that Obsidian offers to allow you to synchronise all your notes
 between computers is $10 a month (if you choose a monthly commitment) This price is shown to me with a geolocation of
@@ -14,7 +17,8 @@ get people should get paid for their software, but it can get annoying; I know -
 probably saying. Well, this is that effort.
 
 The goal here is to get my software note-taking much better and Obsidian is perfect for that. I'm also on GitHub all the
-time, and storing all my notes on a private repo seems like a good idea to me. The Problem is Obsidian has no Git management. I
+time, and storing all my notes on a private repo seems like a good idea to me. The Problem is Obsidian has no Git
+management. I
 suppose this is a tactical move for you to buy their storage. Which is fair enough.
 
 My solution is to use Python with subprocess to do a block of git commands to push and pull from GitHub. You'll need to

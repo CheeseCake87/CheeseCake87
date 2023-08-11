@@ -1,8 +1,9 @@
-title="A Short Uninteresting Introduction";
-description="A short introduction to me and this blog.";
-date="2023-08-05 16:00:00 +0100";
-
-::::
+```
+Publish = True
+Date = 2023-08-05 16:00:00 +0100
+Title = A Short Uninteresting Introduction
+Description = A short introduction to me and this blog.
+```
 
 Hello, my name is David, and
 I've had a very windy career path in the tech world.

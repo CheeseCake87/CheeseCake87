@@ -1,8 +1,10 @@
-title="I got carried away with using Python to commit my Obsidian vault to GitHub";
-description="In a previous post I came up with a solution to commit my obsidian vault to GitHub, I took it a bit further...";
-date="2023-08-08 22:26:27 +0100";
-
-::::
+```
+Publish = True
+Date = 2023-08-08 22:26:27 +0100
+Title = I got carried away with using Python to commit my Obsidian vault to GitHub
+Description = In a previous post I came up with a solution to commit 
+my obsidian vault to GitHub, I took it a bit further...
+```
 
 In the persuit to make my obsidian vault more portable, I came up with a solution to commit my vault to GitHub.
 
