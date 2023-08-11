@@ -44,7 +44,7 @@ Markdown here...
 I was splitting the file on the `::::` marker, and using the first part to get the meta information, and the second
 part to get the markdown content. Also using `;` and `"` as split markers to get the individual meta information.
 
-Although this method worked, it thought it looked very ugly. So I eventually changed it to:
+Although this method worked, I thought it looked very ugly. So I eventually changed it to:
 
 ```text
 '''
