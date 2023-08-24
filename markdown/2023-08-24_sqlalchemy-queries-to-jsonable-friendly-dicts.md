@@ -6,7 +6,7 @@ Description = Exploring methods of converting SQLAlchemy queries to JSONable dic
 ```
 
 As of Flask 1.1, I believe; you have been able to simply return a 
-dict from a route, which will be converted to JSON response.
+dict from a route, which will be converted to a JSON response.
 
 Here's an example:
 

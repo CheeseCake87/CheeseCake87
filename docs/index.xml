@@ -6,7 +6,7 @@
         <description>Recent content on TheCodingSide.Quest</description>
         <generator>Flask Static Site Generator written by David Carmichael.</generator>
         <language>en-gb</language>
-        <lastBuildDate>Thu, 24 Aug 2023 10:24:53 +0100</lastBuildDate>
+        <lastBuildDate>Thu, 24 Aug 2023 10:28:20 +0100</lastBuildDate>
         <atom:link href="https://thecodingside.quest/index.xml" rel="self" type="application/rss+xml"/>
         <item>
             <title>SQLAlchemy queries to JSONable friendly dicts</title>
@@ -18,7 +18,7 @@
             </description>
             <content:encoded>
                 <![CDATA[<p>Having trouble viewing the content below? <a href="https://thecodingside.quest/2023-08-24_sqlalchemy-queries-to-jsonable-friendly-dicts.html">View original post here</a></p><p>As of Flask 1.1, I believe; you have been able to simply return a
-dict from a route, which will be converted to JSON response.</p>
+dict from a route, which will be converted to a JSON response.</p>
 <p>Here's an example:</p>
 <pre><code>@app.route('/api')<br/>def&nbsp;api():<br/>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;{'hello':&nbsp;'world'}<br/></code></pre><p>Simple, right? But what if you want to return a query from a database?</p>
 <pre><code>@app.route('/api')<br/>def&nbsp;api():<br/>&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;app.models.whatever&nbsp;import&nbsp;Whatever<br/>&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;app&nbsp;import&nbsp;db<br/>&nbsp;&nbsp;&nbsp;&nbsp;result&nbsp;=&nbsp;db.session.execute(<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;db.select(Whatever).filter_by(Whatever.thing_id&nbsp;==&nbsp;1)<br/>&nbsp;&nbsp;&nbsp;&nbsp;).scalars().all()<br/>&nbsp;&nbsp;&nbsp;&nbsp;data&nbsp;=&nbsp;{}<br/>&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;item&nbsp;in&nbsp;result:<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data[item.id]&nbsp;=&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'name':&nbsp;item.name,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'description':&nbsp;item.description,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'created_at':&nbsp;item.created_at,<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'updated_at':&nbsp;item.updated_at<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br/>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;data<br/></code></pre><p>This is probably the first thing you would try, and it works, until you hit
