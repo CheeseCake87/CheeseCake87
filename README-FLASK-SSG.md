@@ -115,5 +115,5 @@ flask recompile
 You can also generate a new post markdown file with the following command:
 
 ```bash
-flask new-post
+flask new
 ```
