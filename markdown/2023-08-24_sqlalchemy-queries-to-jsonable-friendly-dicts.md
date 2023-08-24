@@ -239,10 +239,9 @@ I have included some arguments to deal with limiting the columns returned. `all_
 `all_columns_but` will exclude any columns that are in the list. `only_columns` 
 will only include columns that are in the list. This effects the joins too!
 
-The gist uses the example models Users, Cars and Boats, and demonstrates how joins can be included.
+The Gist uses the example models Users, Cars and Boats, and demonstrates how joins can be included.
 
-```
-...
+```python
 # relationships
 rel_cars = db.relationship(
     "Cars",
@@ -261,7 +260,6 @@ def get_by_id(cls, user_id):
         db.session.execute(query),
         include_joins=["rel_cars", "rel_boats"],
     )
-...
 ```
 Results in:
 ```

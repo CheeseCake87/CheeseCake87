@@ -240,28 +240,27 @@ takes a list of any relationship attributes that have been created.</p>
 <p>I have included some arguments to deal with limiting the columns returned. <code>all_columns_but</code> and <code>only_columns</code></p>
 <p><code>all_columns_but</code> will exclude any columns that are in the list. <code>only_columns</code>
 will only include columns that are in the list. This effects the joins too!</p>
-<p>The gist uses the example models Users, Cars and Boats, and demonstrates how joins can be included.</p>
-<pre><code>...
-# relationships
-rel_cars = db.relationship(
-    &quot;Cars&quot;,
-    primaryjoin=&quot;Users.user_id == Cars.fk_user_id&quot;
-)
-rel_boats = db.relationship(
-    &quot;Boats&quot;,
-    primaryjoin=&quot;Users.user_id == Boats.fk_user_id&quot;
-)
+<p>The Gist uses the example models Users, Cars and Boats, and demonstrates how joins can be included.</p>
+<div class="highlight"><pre><span></span><span class="c1"># relationships</span>
+<span class="n">rel_cars</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">relationship</span><span class="p">(</span>
+    <span class="s2">&quot;Cars&quot;</span><span class="p">,</span>
+    <span class="n">primaryjoin</span><span class="o">=</span><span class="s2">&quot;Users.user_id == Cars.fk_user_id&quot;</span>
+<span class="p">)</span>
+<span class="n">rel_boats</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">relationship</span><span class="p">(</span>
+    <span class="s2">&quot;Boats&quot;</span><span class="p">,</span>
+    <span class="n">primaryjoin</span><span class="o">=</span><span class="s2">&quot;Users.user_id == Boats.fk_user_id&quot;</span>
+<span class="p">)</span>
 
-@classmethod
-def get_by_id(cls, user_id):
-    query = select(cls).filter_by(user_id=user_id)
+<span class="nd">@classmethod</span>
+<span class="k">def</span> <span class="nf">get_by_id</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">user_id</span><span class="p">):</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="n">select</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">user_id</span><span class="o">=</span><span class="n">user_id</span><span class="p">)</span>
 
-    return cls.as_jsonable_dict(
-        db.session.execute(query),
-        include_joins=[&quot;rel_cars&quot;, &quot;rel_boats&quot;],
-    )
-...
-</code></pre><p>Results in:</p>
+    <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">as_jsonable_dict</span><span class="p">(</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">),</span>
+        <span class="n">include_joins</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;rel_cars&quot;</span><span class="p">,</span> <span class="s2">&quot;rel_boats&quot;</span><span class="p">],</span>
+    <span class="p">)</span>
+</pre></div>
+<p>Results in:</p>
 <pre><code>{
     &quot;Users&quot;: [
         {
