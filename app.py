@@ -20,21 +20,21 @@ def create_app():
     def recompile_site():
         compiler(cwd, recompile=True)
 
-    @app.cli.command("new-post")
+    @app.cli.command("new")
     def new_post():
         title = input("Title: ")
         filename = f"0000-00-00_{title.lower().replace(' ', '-') or 'untitled'}.md"
         with open(cwd / "markdown" / filename, mode="w") as file:
             file.write(
-                """\
+                f"""\
 ```
 Publish = False
-Date = {date}
-Title = {title}
+Date = set-on-compile
+Title = {title.title() or "Untitled"}
 Description = Description
 ````
 
 start here...
-""".format(title=title.title() or "Untitled", date="set-on-compile"))
+""")
 
     return app
