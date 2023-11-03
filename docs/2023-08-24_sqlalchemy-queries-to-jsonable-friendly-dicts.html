@@ -63,15 +63,16 @@ dict from a route, which will be converted to a JSON response.</p>
         <span class="p">}</span>
     <span class="k">return</span> <span class="n">data</span>
 </pre></div>
-<p>This is probably the first thing you would try, and it works, until you hit
-maybe a datetime object, or another value that won't serialize to JSON. Obviously
-you would be mindful of this and convert the values to something JSON friendly.</p>
+<p>This is probably the first thing you would try, and it works until you hit a
+value that won't serialize to JSON, obviously you'd would be mindful of this and
+convert the values to something JSON friendly.</p>
 <p>I'll admit that the above example is an over simplification, but it's common to
 see this method in routes.</p>
 <p>Personally, I prefer to keep all query-like logic in the models.</p>
 <div class="highlight"><pre><span></span><span class="c1"># app/models/whatever.py</span>
 
 <span class="kn">from</span> <span class="nn">app</span> <span class="kn">import</span> <span class="n">db</span>
+
 
 <span class="k">class</span> <span class="nc">Whatever</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="n">thing_id</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
@@ -251,6 +252,7 @@ will only include columns that are in the list. This effects the joins too!</p>
     <span class="n">primaryjoin</span><span class="o">=</span><span class="s2">&quot;Users.user_id == Boats.fk_user_id&quot;</span>
 <span class="p">)</span>
 
+
 <span class="nd">@classmethod</span>
 <span class="k">def</span> <span class="nf">get_by_id</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">user_id</span><span class="p">):</span>
     <span class="n">query</span> <span class="o">=</span> <span class="n">select</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span><span class="o">.</span><span class="n">filter_by</span><span class="p">(</span><span class="n">user_id</span><span class="o">=</span><span class="n">user_id</span><span class="p">)</span>
@@ -330,7 +332,11 @@ chosen was to use the <code>_asdict</code> private method of the <code>Row</code
 row. However, this method is missing from rows that are the result of a join, so I had to take
 a different approach.</p>
 <p>The method used in the mixin is a little more verbose, in regard to including joins,
-but it does allow for the inclusion of joins in a more explicit way, I suppose.</p>
+but it does allow for the inclusion of joins in a more explicit way I suppose.</p>
+<p>You may have already been aware of another more popular library
+that does this exact thing called <a href="https://marshmallow.readthedocs.io/en/stable/">Marshmallow</a>.</p>
+<p>I guess the main difference between this mixin solution and Marshmallow is that Marshmallow is agnostic, and requires
+some boilerplate code to get going.</p>
 <p>Hopefully this is useful to someone, and if you have any suggestions or improvements, please comment on the gist.</p>
 <p>Thanks for reading.
 BYEEEEEEEEEEEEEEEEEEEeeee.</p>

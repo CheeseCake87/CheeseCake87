@@ -5,7 +5,7 @@ Title = SQLAlchemy queries to JSONable friendly dicts
 Description = Exploring methods of converting SQLAlchemy queries to JSONable dicts because I'm lazy.
 ```
 
-As of Flask 1.1, I believe; you have been able to simply return a 
+As of Flask 1.1, I believe; you have been able to simply return a
 dict from a route, which will be converted to a JSON response.
 
 Here's an example:
@@ -37,11 +37,11 @@ def api():
     return data
 ```
 
-This is probably the first thing you would try, and it works, until you hit
-maybe a datetime object, or another value that won't serialize to JSON. Obviously
-you would be mindful of this and convert the values to something JSON friendly.
+This is probably the first thing you would try, and it works until you hit a
+value that won't serialize to JSON, obviously you'd would be mindful of this and
+convert the values to something JSON friendly.
 
-I'll admit that the above example is an over simplification, but it's common to 
+I'll admit that the above example is an over simplification, but it's common to
 see this method in routes.
 
 Personally, I prefer to keep all query-like logic in the models.
@@ -50,6 +50,7 @@ Personally, I prefer to keep all query-like logic in the models.
 # app/models/whatever.py
 
 from app import db
+
 
 class Whatever(db.Model):
     thing_id = db.Column(...)
@@ -67,6 +68,7 @@ class Whatever(db.Model):
         ).scalars().all()
 
 ```
+
 Would then allow for:
 
 ```python
@@ -84,7 +86,7 @@ def api():
     return data
 ```
 
-A little cleaner, but you are still having to define 
+A little cleaner, but you are still having to define
 values in the return data. `item.name`, `item.description`, Etc...
 
 It is said, whether true or not, that the lazy programmer is the best programmer.
@@ -217,6 +219,7 @@ def get_by_id(cls, thing_id) -> dict:
 ```
 
 This will then return:
+
 ```
 {
     "Whatever": [
@@ -236,7 +239,7 @@ takes a list of any relationship attributes that have been created.
 
 I have included some arguments to deal with limiting the columns returned. `all_columns_but` and `only_columns`
 
-`all_columns_but` will exclude any columns that are in the list. `only_columns` 
+`all_columns_but` will exclude any columns that are in the list. `only_columns`
 will only include columns that are in the list. This effects the joins too!
 
 The Gist uses the example models Users, Cars and Boats, and demonstrates how joins can be included.
@@ -252,6 +255,7 @@ rel_boats = db.relationship(
     primaryjoin="Users.user_id == Boats.fk_user_id"
 )
 
+
 @classmethod
 def get_by_id(cls, user_id):
     query = select(cls).filter_by(user_id=user_id)
@@ -261,7 +265,9 @@ def get_by_id(cls, user_id):
         include_joins=["rel_cars", "rel_boats"],
     )
 ```
+
 Results in:
+
 ```
 {
     "Users": [
@@ -316,6 +322,7 @@ def api():
 ```
 
 Which will return:
+
 ```
 {
     "status": "success",
@@ -339,11 +346,17 @@ unnecessary code, and making it a little more readable.
 
 We also discussed the architecture of how to get dicts from a query. One of my earlier methods
 chosen was to use the `_asdict` private method of the `Row` object. This returns a dict of the
-row. However, this method is missing from rows that are the result of a join, so I had to take 
+row. However, this method is missing from rows that are the result of a join, so I had to take
 a different approach.
 
 The method used in the mixin is a little more verbose, in regard to including joins,
-but it does allow for the inclusion of joins in a more explicit way, I suppose.
+but it does allow for the inclusion of joins in a more explicit way I suppose.
+
+You may have already been aware of another more popular library
+that does this exact thing called [Marshmallow](https://marshmallow.readthedocs.io/en/stable/).
+
+I guess the main difference between this mixin solution and Marshmallow is that Marshmallow is agnostic, and requires
+some boilerplate code to get going.
 
 Hopefully this is useful to someone, and if you have any suggestions or improvements, please comment on the gist.
 
