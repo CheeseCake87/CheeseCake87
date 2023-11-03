@@ -18,7 +18,7 @@ with a copy of his Photoshop 7. Many hours were spent messing around with that. 
 getting huge, and using html was one of the things you just did on the internet at that time. Building websites
 out of tables haha.
 
-My first real job was a postman (or mailmain if you're from the US).
+My first real job was a postman (or mailman / mail carrier if you're from the US).
 However, I was destined to be a car mechanic, following in my father's footsteps.
 I would sometimes help out in the garage, changing tyres and things.
 
