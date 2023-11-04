@@ -2,3 +2,8 @@
 
 Blog:
 [TheCodingSide.Quest](https://thecodingside.quest)
+
+```
+git reset --hard upstream/main
+git push --force-with-lease origin main
+```
