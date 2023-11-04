@@ -3,7 +3,9 @@
 Blog:
 [TheCodingSide.Quest](https://thecodingside.quest)
 
-```
+```bash
 git reset --hard upstream/main
+```
+```bash
 git push --force-with-lease origin main
 ```
