@@ -3,15 +3,10 @@
 Blog:
 [TheCodingSide.Quest](https://thecodingside.quest)
 
-```bash
-git remote add upstream <URL>
-```
-```bash
-git reset --hard upstream/main
-```
-```bash
-git pull --rebase upstream main
-```
-```bash
-git push --force-with-lease origin main
-```
+`git remote add upstream <URL>`
+
+`git reset --hard upstream/main`
+
+`git pull --rebase upstream main`
+
+`git push --force-with-lease origin main`
