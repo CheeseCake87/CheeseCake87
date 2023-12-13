@@ -10,3 +10,7 @@ Blog:
 `git pull --rebase upstream main`
 
 `git push --force-with-lease origin main`
+
+---
+
+`ssh-keygen -t ed25519 -C "your_email@example.com"`
