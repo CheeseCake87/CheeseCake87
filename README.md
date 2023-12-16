@@ -6,7 +6,9 @@ Blog:
 `git remote add upstream <URL>`
 
 ```bash
-git reset --hard upstream/main && git pull --rebase upstream main && git push --force-with-lease origin main
+git reset --hard upstream/main &&
+git pull --rebase upstream main &&
+git push --force-with-lease origin main
 ```
 
 ---
