@@ -21,13 +21,13 @@
 
         <p style="margin: 0;"><small>{{ info.date }}</small></p>
         <h2 style="font-size: 2.6rem; margin: 0;">{{ info.title }}</h2>
-        <p style="margin: 0">{{ info.description }}</p>
-        <p style="margin: 0; padding-top: 0.5rem;"><a href="{{ page }}">View Post &bkarow;</a></p>
         <p style="margin: 0;">
             <small style="display: inline-block; padding-top: 0.5rem; opacity: 0.7;">
                 {{ info.tags }}
             </small>
         </p>
+        <p style="margin: 0; padding-top: 0.5rem;">{{ info.description }}</p>
+        <p style="margin: 0; padding-top: 0.5rem;"><a href="{{ page }}">View Post &bkarow;</a></p>
 
     </div>
 {%- endfor %}

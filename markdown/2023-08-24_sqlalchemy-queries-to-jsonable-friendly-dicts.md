@@ -3,7 +3,7 @@ Publish: True
 Date: 2023-08-24 10:24:53 +0100
 Title: "SQLAlchemy queries to JSONable friendly dicts"
 Description: "Exploring methods of converting SQLAlchemy queries to JSONable dicts because I'm lazy."
-Tags: "python, flask, sqlalchemy, json"
+Tags: "Python, Flask, Sqlalchemy, JSON"
 ```
 
 As of Flask 1.1, I believe; you have been able to simply return a
