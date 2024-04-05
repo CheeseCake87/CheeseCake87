@@ -32,6 +32,7 @@ Publish: False
 Date: set-on-compile
 Title: "{title.title() or "Untitled"}"
 Description: "Description"
+Tags: ""
 ````
 
 start here...

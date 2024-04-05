@@ -27,6 +27,8 @@ def _find_post_meta(split_markdown: str) -> tuple:
     title_ptn_alt = re.compile(r'Title:"([^"]+)"', re.IGNORECASE)
     description_ptn = re.compile(r'Description: "([^"]+)"', re.IGNORECASE)
     description_ptn_alt = re.compile(r'Description:"([^"]+)"', re.IGNORECASE)
+    tags_ptn = re.compile(r'Tags: "([^"]+)"', re.IGNORECASE)
+    tags_ptn_alt = re.compile(r'Tags:"([^"]+)"', re.IGNORECASE)
 
     try:
         publish = publish_ptn.findall(split_markdown)[0].strip()
@@ -65,15 +67,29 @@ def _find_post_meta(split_markdown: str) -> tuple:
     except (ValueError, IndexError, TypeError) as _:
         description = "[Unable to find Description]"
 
+    try:
+        found_tags = tags_ptn.findall(split_markdown)
+        if found_tags:
+            tags = found_tags[0].strip()
+        else:
+            alt_found_tags = tags_ptn_alt.findall(split_markdown)
+            if alt_found_tags:
+                tags = alt_found_tags[0].strip()
+            else:
+                tags = "[Unable to find tags]"
+    except (ValueError, IndexError, TypeError) as _:
+        tags = "[Unable to find tags]"
+
     return (
         True if isinstance(publish, str) and publish.lower() == "true" else False,
         date,
         _strip_returns_and_extra_spaces(title),
         _strip_returns_and_extra_spaces(description),
+        _strip_returns_and_extra_spaces(tags),
     )
 
 
-def _raw_markdown_processor(raw_markdown: str) -> tuple[bool, str, str, str, str]:
+def _raw_markdown_processor(raw_markdown: str) -> tuple[bool, str, str, str, str, str]:
     """
     :param raw_markdown: The raw markdown to process
     :return: publish: bool, date: str, title: str, description: str, post: str
@@ -84,14 +100,14 @@ def _raw_markdown_processor(raw_markdown: str) -> tuple[bool, str, str, str, str
     split_md = raw_markdown.split("```")[1:]
     raw_meta = split_md[0]
 
-    publish, date, title, description = _find_post_meta(raw_meta)
+    publish, date, title, description, tags = _find_post_meta(raw_meta)
 
     try:
         post = "```".join(split_md[1:])
     except (IndexError, TypeError, ValueError) as _:
         post = "[Unable to find Post]"
 
-    return publish, date, title, description, post
+    return publish, date, title, description, tags, post
 
 
 def replace_post_date(content: str, new_date: str) -> str:
@@ -117,7 +133,7 @@ def compiler(cwd: Path, recompile: bool = False):
 
     for file in markdown_dir_files:
         raw_markdown = file.read_text()
-        publish, date, title, description, post = _raw_markdown_processor(raw_markdown)
+        publish, date, title, description, tags, post = _raw_markdown_processor(raw_markdown)
 
         if f"{file.stem}.html" not in docs_dir_files and publish:
             html_engine = mistune.create_markdown(renderer=HighlightRenderer())
@@ -139,6 +155,7 @@ def compiler(cwd: Path, recompile: bool = False):
                     render_template(
                         "__main__.html",
                         title=title,
+                        tags=tags,
                         description=description,
                         date=post_date(dt_date),
                         content=html_engine(post),
@@ -147,6 +164,7 @@ def compiler(cwd: Path, recompile: bool = False):
 
             html_pages[f"{new_filename}.html"] = {
                 "title": title,
+                "tags": tags,
                 "description": description,
                 "date": post_date(dt_date),
                 "content": html_engine(post),
