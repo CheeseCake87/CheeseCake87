@@ -63,11 +63,7 @@ dict from a route, which will be converted to a JSON response.</p>
         <span class="p">}</span>
     <span class="k">return</span> <span class="n">data</span>
 </pre></div>
-<p>This is probably the first thing you would try, and it works until you hit a
-value that won't serialize to JSON, obviously you'd would be mindful of this and
-convert the values to something JSON friendly.</p>
-<p>I'll admit that the above example is an over simplification, but it's common to
-see this method in routes.</p>
+<p>This is probably the first thing you would try, and it works.</p>
 <p>Personally, I prefer to keep all query-like logic in the models.</p>
 <div class="highlight"><pre><span></span><span class="c1"># app/models/whatever.py</span>
 
@@ -105,6 +101,16 @@ see this method in routes.</p>
 </pre></div>
 <p>A little cleaner, but you are still having to define
 values in the return data. <code>item.name</code>, <code>item.description</code>, Etc...</p>
+<p>You are able to use the in-built <code>_asdict()</code> method of the SQLAlchemy on each row.</p>
+<div class="highlight"><pre><span></span><span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">api</span><span class="p">():</span>
+    <span class="kn">from</span> <span class="nn">app.models.whatever</span> <span class="kn">import</span> <span class="n">Whatever</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">Whatever</span><span class="o">.</span><span class="n">get_by_id</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">data</span><span class="p">[</span><span class="n">item</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">_asdict</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">data</span>
+</pre></div>
+<p>However, this method does not work with rows that are the result of a join.</p>
 <p>It is said, whether true or not, that the lazy programmer is the best programmer.
 I'm not sure if this should be a method of thought to live by; But it does promote
 DRY code, and I don't want to keep defining columns in the return data if I don't have to.</p>
@@ -216,6 +222,8 @@ DRY code, and I don't want to keep defining columns in the return data if I don'
             <span class="n">only_columns</span><span class="o">=</span><span class="n">only_columns</span><span class="p">,</span>
         <span class="p">))</span>
 </pre></div>
+<p>This solution uses <code>Row.__dict__</code> to get the columns and values of the row, and this
+also includes the columns that are the result of a join.</p>
 <p>The <code>as_jsonable_dict</code> method is the one that does the heavy lifting. It expects
 a SQLAlchemy <code>Result</code> object, which is the result of <code>db.session.execute(query)</code>.</p>
 <p>Here is an example of its usage in a classmethod:</p>
@@ -329,10 +337,10 @@ But the result so far is a much easier way to get JSON friendly data from a quer
 unnecessary code, and making it a little more readable.</p>
 <p>We also discussed the architecture of how to get dicts from a query. One of my earlier methods
 chosen was to use the <code>_asdict</code> private method of the <code>Row</code> object. This returns a dict of the
-row. However, this method is missing from rows that are the result of a join, so I had to take
-a different approach.</p>
+row. However, this method is missing from rows that are the result of a join as I mentioned,
+so I had to take a different approach.</p>
 <p>The method used in the mixin is a little more verbose, in regard to including joins,
-but it does allow for the inclusion of joins in a more explicit way I suppose.</p>
+but it does allow for the inclusion of joins in a more explicit way, I suppose.</p>
 <p>You may have already been aware of another more popular library
 that does this exact thing called <a href="https://marshmallow.readthedocs.io/en/stable/">Marshmallow</a>.</p>
 <p>I guess the main difference between this mixin solution and Marshmallow is that Marshmallow is agnostic, and requires

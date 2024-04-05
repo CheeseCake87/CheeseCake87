@@ -78,7 +78,7 @@ Markdown here...
 </pre></div>
 <p>This is much cleaner and easier to read, it also fits nicely into the way markdown works.
 In the example above <code>'</code> are stand-ins for the <code>`</code> character used to denote code blocks in markdown.</p>
-<p>So, at the top of the markdown file for the post, there is a neat little meta section,
+<p>So, at the top of the markdown file for the post there is a neat little meta section
 done in a code block. Which looks nice, in my opinion.</p>
 <p>With this change to the way meta is defined, I redesigned how the compiler function finds the meta information.</p>
 <div class="highlight"><pre><span></span><span class="n">publish_ptn</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Publish =(.*?)\n&#39;</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span>
@@ -100,7 +100,7 @@ also updates the file name and date within the original markdown file.</li>
 <p>No doubt there will be more changes to come, but for now, I'm happy with the way it's working. I only usually
 tackle changes, as and when they are needed, and it seems to be working well. Maybe I'll build in unit tests at some
 point, not sure if this is needed for such a small project.</p>
-<p>I hope you enjoyed this short post, if you want to have a look at the code, you can find it on my GitHub:</p>
+<p>I hope you enjoyed this short post. If you want to have a look at the code, you can find it on my GitHub:</p>
 <p><a href="https://github.com/CheeseCake87/CheeseCake87">https://github.com/CheeseCake87/CheeseCake87</a></p>
 <p>Most of the good stuff is in the <code>ssg</code> folder.</p>
 <p>Thanks for reading!</p>

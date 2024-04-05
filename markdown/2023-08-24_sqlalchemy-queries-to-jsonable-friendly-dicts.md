@@ -1,8 +1,8 @@
 ```
-Publish = True
-Date = 2023-08-24 10:24:53 +0100
-Title = SQLAlchemy queries to JSONable friendly dicts
-Description = Exploring methods of converting SQLAlchemy queries to JSONable dicts because I'm lazy.
+Publish: True
+Date: 2023-08-24 10:24:53 +0100
+Title: "SQLAlchemy queries to JSONable friendly dicts"
+Description: "Exploring methods of converting SQLAlchemy queries to JSONable dicts because I'm lazy."
 ```
 
 As of Flask 1.1, I believe; you have been able to simply return a
@@ -37,12 +37,7 @@ def api():
     return data
 ```
 
-This is probably the first thing you would try, and it works until you hit a
-value that won't serialize to JSON, obviously you'd would be mindful of this and
-convert the values to something JSON friendly.
-
-I'll admit that the above example is an over simplification, but it's common to
-see this method in routes.
+This is probably the first thing you would try, and it works.
 
 Personally, I prefer to keep all query-like logic in the models.
 
@@ -88,6 +83,20 @@ def api():
 
 A little cleaner, but you are still having to define
 values in the return data. `item.name`, `item.description`, Etc...
+
+You are able to use the in-built `_asdict()` method of the SQLAlchemy on each row.
+
+```python
+@app.route('/api')
+def api():
+    from app.models.whatever import Whatever
+    data = {}
+    for item in Whatever.get_by_id(1):
+        data[item.id] = item._asdict()
+    return data
+```
+
+However, this method does not work with rows that are the result of a join.
 
 It is said, whether true or not, that the lazy programmer is the best programmer.
 I'm not sure if this should be a method of thought to live by; But it does promote
@@ -203,6 +212,9 @@ class JSONMixin:
             only_columns=only_columns,
         ))
 ```
+
+This solution uses `Row.__dict__` to get the columns and values of the row, and this
+also includes the columns that are the result of a join.
 
 The `as_jsonable_dict` method is the one that does the heavy lifting. It expects
 a SQLAlchemy `Result` object, which is the result of `db.session.execute(query)`.
@@ -346,11 +358,11 @@ unnecessary code, and making it a little more readable.
 
 We also discussed the architecture of how to get dicts from a query. One of my earlier methods
 chosen was to use the `_asdict` private method of the `Row` object. This returns a dict of the
-row. However, this method is missing from rows that are the result of a join, so I had to take
-a different approach.
+row. However, this method is missing from rows that are the result of a join as I mentioned, 
+so I had to take a different approach.
 
 The method used in the mixin is a little more verbose, in regard to including joins,
-but it does allow for the inclusion of joins in a more explicit way I suppose.
+but it does allow for the inclusion of joins in a more explicit way, I suppose.
 
 You may have already been aware of another more popular library
 that does this exact thing called [Marshmallow](https://marshmallow.readthedocs.io/en/stable/).

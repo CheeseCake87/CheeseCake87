@@ -1,8 +1,8 @@
 ```
-Publish = True
-Date = 2023-08-06 15:00:00 +0100
-Title = Flask as a Static Site Generator
-Description = Using Flask as a static site generator.
+Publish: True
+Date: 2023-08-06 15:00:00 +0100
+Title: "Flask as a Static Site Generator"
+Description: "Using Flask as a static site generator."
 ```
 
 **Update: This project has changed a lot since this post was written. Please visit the GitHub page to see the changes.**

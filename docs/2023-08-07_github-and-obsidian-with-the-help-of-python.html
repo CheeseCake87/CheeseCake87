@@ -38,19 +38,18 @@
 <h2 style="font-size: 2.6rem; margin: 0;">GitHub and Obsidian with the help of Python</h2>
 
 
-<p>At the time of writing this Obsidian sync, the service that Obsidian offers to allow you to synchronise all your notes
-between computers is $10 a month (if you choose a monthly commitment) This price is shown to me with a geolocation of
-the UK, so it may be different in your country.</p>
-<p>There are far too many SaaS (Software as a Service) products to pay for these days, it's annoying. I paid £10 for an
-online SVG animation application about 2 weeks ago to be able to export the animation in a different format - <em>arrh,</em> I
-get people should get paid for their software, but it can get annoying; I know - I know, &quot;don't use it then&quot; you're
-probably saying. Well, this is that effort.</p>
-<p>The goal here is to get my software note-taking much better and Obsidian is perfect for that. I'm also on GitHub all the
-time, and storing all my notes on a private repo seems like a good idea to me. The Problem is Obsidian has no Git
-management. I
-suppose this is a tactical move for you to buy their storage. Which is fair enough.</p>
-<p>My solution is to use Python with subprocess to do a block of git commands to push and pull from GitHub. You'll need to
-have git installed for this, obviously.</p>
+<p>At the time of writing this Obsidian sync, the service that Obsidian offers to allow you to synchronize all your notes
+between computers costs $10 a month (if you choose a monthly commitment). This price is shown to me with a geolocation
+of the UK, so it may be different in your country.</p>
+<p>There are far too many SaaS (Software as a Service) products to pay for these days; it's annoying. I paid £10 for an
+online SVG animation application about 2 weeks ago to be able to export the animation in a different format. I
+understand that people should get paid for their software, but it can get annoying. I know - I know, &quot;don't use it
+then,&quot; you're probably saying. Well, this is my effort.</p>
+<p>The goal here is to improve my software note-taking, and Obsidian is perfect for that. I'm also on GitHub all the time,
+and storing all my notes on a private repo seems like a good idea to me. The problem is Obsidian has no Git management.
+I suppose this is a tactical move for you to buy their storage, which is fair enough.</p>
+<p>My solution is to use Python with subprocess to execute a block of Git commands to push and pull from GitHub. You'll
+need to have Git installed for this, obviously.</p>
 <p><strong>For people that want to steam ahead, here's the code:</strong></p>
 <p><code>git-pull.py</code></p>
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">subprocess</span>
@@ -98,14 +97,15 @@ have git installed for this, obviously.</p>
     ├── git-push.py
     └── git-pull.py
 </code></pre><p><strong>For the people that want more of an explanation on how to set this up:</strong></p>
-<p>To get started, create a GutHub repo with your desired name. In my case, I called mine Obsidian, which I made private.
-Making your repo private will mean you'll need some sort of password to be able to clone.</p>
-<p>Log in to GitHub then go to your settings (click the profile picture top right, then settings)</p>
+<p>To get started, create a GitHub repo with your desired name. In my case, I called mine Obsidian, and I made it private.
+Making your repo private means you'll need some sort of password to be able to clone it.</p>
+<p>Log in to GitHub, then go to your settings (click the profile picture at the top right, then settings).</p>
 <p>At the bottom of the left-hand menu, click Developer settings, then Personal access tokens.</p>
-<p>Now, I'm pretty lazy. In may case, I created a classic token by clicking Tokens (classic) then setting the token scopes
+<p>Now, I'm pretty lazy. In my case, I created a classic token by clicking Tokens (classic) then setting the token scopes
 for Full control of private repositories, and setting it to never expire.</p>
 <p>After setting that up, it will show you the token. I stored this in my password manager.</p>
-<p>Now we want to make a local folder on your system. In my case I created a folder called Obsidian, <code>/home/david/Obsidian</code></p>
+<p>Now, we want to make a local folder on your system. In my case, I created a folder called Obsidian
+at <code>/home/david/Obsidian</code>.</p>
 <p>Navigate to this folder and run the following command:</p>
 <p><code>git clone https://github.com/&lt;your_username_here&gt;/Obsidian.git .</code></p>
 <p>This will create a <code>.git</code> hidden folder in the directory.</p>

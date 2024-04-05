@@ -1,9 +1,9 @@
 ```
-Publish = True
-Date = 2023-08-08 22:26:27 +0100
-Title = I got carried away with using Python to commit my Obsidian vault to GitHub
-Description = In a previous post, I came up with a solution to commit 
-my obsidian vault to GitHub, I took it a bit further...
+Publish: True
+Date: 2023-08-08 22:26:27 +0100
+Title:" I got carried away with using Python to commit my Obsidian vault to GitHub"
+Description: "In a previous post, I came up with a solution to commit 
+my obsidian vault to GitHub, I took it a bit further..."
 ```
 
 In the persuit to make my obsidian vault more portable, I came up with a solution to commit my vault to GitHub.
@@ -75,12 +75,13 @@ It adds two icons to the ribbon, one to open the terminal, and one to run the py
 
 ![](https://raw.githubusercontent.com/CheeseCake87/gnome-terminal-loader/master/assets/main_py_gnome_terminal.png)
 
-It's obviously only compatible with a Linux OS with gnome-terminal and python installed. I'm sure it could be adapted
-for other OS's, but I don't have the time or the inclination to do that.
+As you can guess from the name, Gnome Terminal Loader is only compatible 
+with a Linux OS with gnome-terminal and python installed. I'm sure it could 
+be adapted for other OS's, but I don't have the time or the inclination to do that.
 
 The decision to incorporate the python script into the plugin was an interesting thought to me. I initially started
 attempting to build in git functionality, showing push and pull icons. However, you can quickly open a can of worms
-when trying to deal with private repos. So, I decided to keep it simple, and just run the python script.
+when trying to deal with private repos. So, I decided to keep it simple, and run the python script.
 
 My solution for the python script was to have a main.py file in the root of the vault, that contains a simple cli menu
 that I can extend in functionality. So I adapted the `git-push.py` and `git-pull.py` scripts into the `main.py` file,
@@ -130,8 +131,7 @@ Not the prettiest code, but it works.
 
 A big missing thing from this solution is the ability to use other python libraries, to extend the
 functionality beyond the python standard library. Maybe it would be a good idea to bake in a virtual environment with
-some setup and checks? The purpose of the plugin is to create a python entry point possible, so I suppose that would be
-up to whoever uses it.
+some setup and checks? The purpose of the plugin was to create a python entry point, which it does.
 
 The Beauty of this solution for me is that the main.py file follows the vault around in my commit to GitHub use case.
 

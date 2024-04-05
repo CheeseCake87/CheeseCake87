@@ -96,11 +96,12 @@ here: <a href="https://github.com/obsidianmd/obsidian-sample-plugin">https://git
 <p>It adds two icons to the ribbon, one to open the terminal, and one to run the python script.</p>
 <p><img src="https://raw.githubusercontent.com/CheeseCake87/gnome-terminal-loader/master/assets/gnome_terminal.png" alt="" /></p>
 <p><img src="https://raw.githubusercontent.com/CheeseCake87/gnome-terminal-loader/master/assets/main_py_gnome_terminal.png" alt="" /></p>
-<p>It's obviously only compatible with a Linux OS with gnome-terminal and python installed. I'm sure it could be adapted
-for other OS's, but I don't have the time or the inclination to do that.</p>
+<p>As you can guess from the name, Gnome Terminal Loader is only compatible
+with a Linux OS with gnome-terminal and python installed. I'm sure it could
+be adapted for other OS's, but I don't have the time or the inclination to do that.</p>
 <p>The decision to incorporate the python script into the plugin was an interesting thought to me. I initially started
 attempting to build in git functionality, showing push and pull icons. However, you can quickly open a can of worms
-when trying to deal with private repos. So, I decided to keep it simple, and just run the python script.</p>
+when trying to deal with private repos. So, I decided to keep it simple, and run the python script.</p>
 <p>My solution for the python script was to have a main.py file in the root of the vault, that contains a simple cli menu
 that I can extend in functionality. So I adapted the <code>git-push.py</code> and <code>git-pull.py</code> scripts into the <code>main.py</code> file,
 controlled by a simple cli menu.</p>
@@ -145,8 +146,7 @@ controlled by a simple cli menu.</p>
 <p>Not the prettiest code, but it works.</p>
 <p>A big missing thing from this solution is the ability to use other python libraries, to extend the
 functionality beyond the python standard library. Maybe it would be a good idea to bake in a virtual environment with
-some setup and checks? The purpose of the plugin is to create a python entry point possible, so I suppose that would be
-up to whoever uses it.</p>
+some setup and checks? The purpose of the plugin was to create a python entry point, which it does.</p>
 <p>The Beauty of this solution for me is that the main.py file follows the vault around in my commit to GitHub use case.</p>
 <p>This obsidian plugin is available on GitHub, under an MIT license. Feel free to go wild with it.</p>
 <p><a href="https://github.com/CheeseCake87/gnome-terminal-loader">https://github.com/CheeseCake87/gnome-terminal-loader</a></p>

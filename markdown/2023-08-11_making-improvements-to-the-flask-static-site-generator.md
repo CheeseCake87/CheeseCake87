@@ -1,8 +1,8 @@
 ```
-Publish = True
-date = 2023-08-11 20:37:22 +0100
-title = Making improvements to the Flask Static Site Generator
-description = In this post, I talk about the improvements I've made to the Flask static site generator.
+Publish: True
+date: 2023-08-11 20:37:22 +0100
+title: "Making improvements to the Flask Static Site Generator"
+description: "In this post, I talk about the improvements I've made to the Flask static site generator."
 ```
 
 If you haven't already seen the previous post about how I use Flask to statically generate this site, you
@@ -60,7 +60,7 @@ Markdown here...
 This is much cleaner and easier to read, it also fits nicely into the way markdown works.
 In the example above `'` are stand-ins for the ``` ` ``` character used to denote code blocks in markdown.
 
-So, at the top of the markdown file for the post, there is a neat little meta section,
+So, at the top of the markdown file for the post there is a neat little meta section
 done in a code block. Which looks nice, in my opinion.
 
 With this change to the way meta is defined, I redesigned how the compiler function finds the meta information.
@@ -90,7 +90,7 @@ No doubt there will be more changes to come, but for now, I'm happy with the way
 tackle changes, as and when they are needed, and it seems to be working well. Maybe I'll build in unit tests at some
 point, not sure if this is needed for such a small project.
 
-I hope you enjoyed this short post, if you want to have a look at the code, you can find it on my GitHub:
+I hope you enjoyed this short post. If you want to have a look at the code, you can find it on my GitHub:
 
 [https://github.com/CheeseCake87/CheeseCake87](https://github.com/CheeseCake87/CheeseCake87)
 
