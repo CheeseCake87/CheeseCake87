@@ -3,6 +3,7 @@ Publish: True
 date: 2023-08-11 20:37:22 +0100
 title: "Making improvements to the Flask Static Site Generator"
 description: "In this post, I talk about the improvements I've made to the Flask static site generator."
+Tags: "Flask, Python, Static Site Generator"
 ```
 
 If you haven't already seen the previous post about how I use Flask to statically generate this site, you

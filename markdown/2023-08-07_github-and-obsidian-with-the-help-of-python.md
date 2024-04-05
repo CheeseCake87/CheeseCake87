@@ -4,6 +4,7 @@ Date: 2023-08-07 10:14:32 +0100
 Title: "GitHub and Obsidian with the help of Python"
 Description: "I explain how I used a small amount of Python 
 to commit my Obsidian markdown library to GitHub."
+Tags: "Obsidian, Python, GitHub"
 ```
 
 At the time of writing this Obsidian sync, the service that Obsidian offers to allow you to synchronize all your notes
