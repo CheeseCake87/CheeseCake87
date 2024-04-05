@@ -28,13 +28,14 @@ def create_app():
             file.write(
                 f"""\
 ```
-Publish = False
-Date = set-on-compile
-Title = {title.title() or "Untitled"}
-Description = Description
+Publish: False
+Date: set-on-compile
+Title: "{title.title() or "Untitled"}"
+Description: "Description"
 ````
 
 start here...
-""")
+"""
+            )
 
     return app

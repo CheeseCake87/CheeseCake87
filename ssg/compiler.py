@@ -8,18 +8,25 @@ from ssg.exceptions import NoPostDefinition
 from ssg.helpers import (
     get_relative_files_in_the_docs_folder,
     excessive_br_cleanup,
-    pytz_dt_now_str, pytz_dt_now,
+    pytz_dt_now_str,
+    pytz_dt_now,
     pytz_dt_str_to_dt,
-    post_date
+    post_date,
 )
 from ssg.render_engines import HighlightRenderer, RSSRenderer
 
 
+def _strip_returns_and_extra_spaces(content: str) -> str:
+    return content.replace("\n", "").replace("\r", "").replace("  ", "")
+
+
 def _find_post_meta(split_markdown: str) -> tuple:
-    publish_ptn = re.compile(r'Publish =(.*?)\n', re.IGNORECASE)
-    date_ptn = re.compile(r'Date =(.*?)\n', re.IGNORECASE)
-    title_ptn = re.compile(r'Title =(.*?)\n', re.IGNORECASE)
-    description_ptn = re.compile(r'Description =(.*?)\n', re.IGNORECASE)
+    publish_ptn = re.compile(r"Publish:(.*?)\n", re.IGNORECASE)
+    date_ptn = re.compile(r"Date:(.*?)\n", re.IGNORECASE)
+    title_ptn = re.compile(r'Title: "([^"]+)"', re.IGNORECASE)
+    title_ptn_alt = re.compile(r'Title:"([^"]+)"', re.IGNORECASE)
+    description_ptn = re.compile(r'Description: "([^"]+)"', re.IGNORECASE)
+    description_ptn_alt = re.compile(r'Description:"([^"]+)"', re.IGNORECASE)
 
     try:
         publish = publish_ptn.findall(split_markdown)[0].strip()
@@ -32,20 +39,37 @@ def _find_post_meta(split_markdown: str) -> tuple:
         date = "[Unable to find Date]"
 
     try:
-        title = title_ptn.findall(split_markdown)[0].strip()
+        found_title = title_ptn.findall(split_markdown)
+        if found_title:
+            title = found_title[0].strip()
+        else:
+            alt_found_title = title_ptn_alt.findall(split_markdown)
+            if alt_found_title:
+                title = alt_found_title[0].strip()
+            else:
+                title = "[Unable to find Title]"
     except (ValueError, IndexError, TypeError) as _:
+        print(title_ptn.findall(split_markdown))
         title = "[Unable to find Title]"
 
     try:
-        description = description_ptn.findall(split_markdown)[0].strip()
+        found_description = description_ptn.findall(split_markdown)
+        if found_description:
+            description = found_description[0].strip()
+        else:
+            alt_found_description = description_ptn_alt.findall(split_markdown)
+            if alt_found_description:
+                description = alt_found_description[0].strip()
+            else:
+                description = "[Unable to find Description]"
     except (ValueError, IndexError, TypeError) as _:
         description = "[Unable to find Description]"
 
     return (
         True if isinstance(publish, str) and publish.lower() == "true" else False,
         date,
-        title,
-        description,
+        _strip_returns_and_extra_spaces(title),
+        _strip_returns_and_extra_spaces(description),
     )
 
 
@@ -71,11 +95,8 @@ def _raw_markdown_processor(raw_markdown: str) -> tuple[bool, str, str, str, str
 
 
 def replace_post_date(content: str, new_date: str) -> str:
-    date_ptn = re.compile(r'Date =(.*?)\n', re.IGNORECASE)
-    return content.replace(
-        date_ptn.findall(content)[0],
-        f" {new_date}"
-    )
+    date_ptn = re.compile(r"Date =(.*?)\n", re.IGNORECASE)
+    return content.replace(date_ptn.findall(content)[0], f" {new_date}")
 
 
 def compiler(cwd: Path, recompile: bool = False):
@@ -95,12 +116,10 @@ def compiler(cwd: Path, recompile: bool = False):
             (docs_dir / f"{file}.html").unlink()
 
     for file in markdown_dir_files:
-
         raw_markdown = file.read_text()
         publish, date, title, description, post = _raw_markdown_processor(raw_markdown)
 
         if f"{file.stem}.html" not in docs_dir_files and publish:
-
             html_engine = mistune.create_markdown(renderer=HighlightRenderer())
             xml_engine = mistune.create_markdown(renderer=RSSRenderer())
 
@@ -110,23 +129,27 @@ def compiler(cwd: Path, recompile: bool = False):
                 dt_date = pytz_dt_now()
                 file.write_text(replace_post_date(file.read_text(), pytz_dt_now_str()))
 
-            new_filename = f"{dt_date.strftime('%Y-%m-%d')}_{title.replace(' ', '-').lower()}"
+            new_filename = (
+                f"{dt_date.strftime('%Y-%m-%d')}_{title.replace(' ', '-').lower()}"
+            )
             file.rename(markdown_dir / f"{new_filename}.md")
 
             with open(docs_dir / f"{new_filename}.html", mode="w") as html_file:
-                html_file.write(render_template(
-                    "__main__.html",
-                    title=title,
-                    description=description,
-                    date=post_date(dt_date),
-                    content=html_engine(post)
-                ))
+                html_file.write(
+                    render_template(
+                        "__main__.html",
+                        title=title,
+                        description=description,
+                        date=post_date(dt_date),
+                        content=html_engine(post),
+                    )
+                )
 
             html_pages[f"{new_filename}.html"] = {
                 "title": title,
                 "description": description,
                 "date": post_date(dt_date),
-                "content": html_engine(post)
+                "content": html_engine(post),
             }
 
             xml_pages[f"{new_filename}.html"] = {
@@ -138,11 +161,10 @@ def compiler(cwd: Path, recompile: bool = False):
                            f'<a href="https://thecodingside.quest/{new_filename}.html">'
                            "View original post here</a></p>"
                            f"{excessive_br_cleanup(xml_engine(post))}"
-                           "]]>"
+                           "]]>",
             }
 
         else:
-
             new_filename = f"0000-00-00_{title.replace(' ', '-').lower()}"
             file.rename(markdown_dir / f"{new_filename}.md")
 
@@ -151,18 +173,13 @@ def compiler(cwd: Path, recompile: bool = False):
     xml_pages_sorted = {k: v for k, v in sorted(xml_pages.items(), reverse=True)}
 
     # write main index.html
-    index_html.write_text(
-        render_template(
-            "index.html",
-            pages=html_pages_sorted
-        )
-    )
+    index_html.write_text(render_template("index.html", pages=html_pages_sorted))
 
     # write main index.xml
     index_xml.write_text(
         render_template(
             "index.xml",
             build_date=pytz_dt_now_str(mask="%a, %d %b %Y %H:%M:%S %z"),
-            pages=xml_pages_sorted
+            pages=xml_pages_sorted,
         )
     )
