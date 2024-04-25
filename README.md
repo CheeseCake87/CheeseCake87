@@ -3,6 +3,8 @@
 Blog:
 [TheCodingSide.Quest](https://thecodingside.quest)
 
+---
+
 `git remote add upstream <URL>`
 
 ```bash
@@ -14,3 +16,9 @@ git push --force-with-lease origin main
 ---
 
 `ssh-keygen -t ed25519 -C "your_email@example.com"`
+
+---
+
+`docker ps --format "table {{.Image}}\t{{.Ports}}\t{{.Names}}"`
+
+---
