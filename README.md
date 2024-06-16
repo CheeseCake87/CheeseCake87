@@ -5,6 +5,8 @@ Blog:
 
 ---
 
+Things I can't bothered typing:
+
 ```bash
 git remote add upstream <URL>
 ```
@@ -15,16 +17,10 @@ git pull --rebase upstream main &&
 git push --force-with-lease origin main
 ```
 
----
-
 ```bash
 ssh-keygen -t ed25519 -C "your_email@example.com"
 ```
 
----
-
 ```bash
 docker ps --format "table {{.Image}}\t{{.Ports}}\t{{.Names}}"
 ```
-
----
