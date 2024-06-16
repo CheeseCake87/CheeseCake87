@@ -5,7 +5,9 @@ Blog:
 
 ---
 
-`git remote add upstream <URL>`
+```bash
+git remote add upstream <URL>
+```
 
 ```bash
 git reset --hard upstream/main &&
@@ -15,10 +17,14 @@ git push --force-with-lease origin main
 
 ---
 
-`ssh-keygen -t ed25519 -C "your_email@example.com"`
+```bash
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
 
 ---
 
-`docker ps --format "table {{.Image}}\t{{.Ports}}\t{{.Names}}"`
+```bash
+docker ps --format "table {{.Image}}\t{{.Ports}}\t{{.Names}}"
+```
 
 ---
