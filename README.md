@@ -5,7 +5,7 @@ Blog:
 
 ---
 
-Things I can't bothered typing:
+Things I can't be bothered typing:
 
 ```bash
 git remote add upstream <URL>
