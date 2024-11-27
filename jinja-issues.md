@@ -236,3 +236,83 @@ I'm not sure on the use case of this...
 ### unique filter does not work when chain with a filter that returns async generator
 https://github.com/pallets/jinja/issues/1781
 
+|LATER|
+
+I suspect this won't be easy to implement. Maybe for the eventual re-write?
+Needs a complete code example.
+
+---
+
+### f-string sytax error when importing macro in a template which filename is also a template
+https://github.com/pallets/jinja/issues/1792
+
+|INCLUDE|
+
+If possible. This is related to the security issue with filenames:
+
+https://github.com/pallets/jinja/security/advisories/GHSA-gmj6-6f8f-6699
+
+---
+
+### Extension: Support saving arbitrary data with AssignmentBlock
+https://github.com/pallets/jinja/issues/1803
+
+|LATER|
+
+This is related to a closed issue: https://github.com/pallets/jinja/issues/714
+
+The person that has made this issue has offered to do a PR, maybe leave a 
+comment asking if they will still be interested?
+
+---
+
+### Docs update re triple quotes and block assignments
+https://github.com/pallets/jinja/issues/1825
+
+|INCLUDE|
+
+Documentation update that makes sense.
+
+---
+
+### Enhance Default Exceptions to include Line Number.
+https://github.com/pallets/jinja/issues/1861
+
+|CLOSE|
+
+This looks like it has been done?
+
+I ran the code and got `File "<template>", line 2, in top-level template code`
+
+That looks like a line number to me.
+
+---
+
+### Allow passing multiple templates to import, just like include
+https://github.com/pallets/jinja/issues/1862
+
+|LATER|
+
+This a potential close. It's a feature request that would be more suited to 
+a re-write.
+
+---
+
+### DebugUndefined does not handle object.value replacements
+https://github.com/pallets/jinja/issues/1871
+
+|INCLUDE|
+
+This makes sense to include in an upcoming release. Although maybe my 
+understanding of what the `DebugUndefined` class does is incorrect.
+
+The request here is that when the `DebugUndefined` class is used, it should
+not raise an error when `object.value` is used, but instead should return
+`<Undefined>`.
+
+---
+
+### Escape newlines for tojson filter as Django
+https://github.com/pallets/jinja/issues/1882
+
+---
