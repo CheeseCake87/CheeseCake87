@@ -387,3 +387,8 @@ Works as expected if you do:
 https://github.com/pallets/jinja/issues/1921
 
 
+|INCLUDE|
+
+PR: https://github.com/pallets/jinja/pull/1984
+
+---
