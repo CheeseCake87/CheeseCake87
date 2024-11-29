@@ -505,3 +505,20 @@ Looks like a simple fix, but not a priority. Type hinting issue (mypy).
 ### Support explicitly disabling positional arguments in macros
 https://github.com/pallets/jinja/issues/1992
 
+|LATER|
+
+Feature request for forced named arguments in macros.
+
+---
+
+### PackageLoader raises misleading error when template directory does not exist.
+https://github.com/pallets/jinja/issues/1995
+
+|IMPROVE|
+
+Can be included if improved.
+
+PR: https://github.com/pallets/jinja/pull/1996
+
+---
+
