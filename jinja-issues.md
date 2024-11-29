@@ -5,22 +5,22 @@ may not be matched to any PRs associated with them yet.
 
 Statuses:
 
-|LATER| - Not a priority, but could be included in a future release.
-|CLOSE| - Issue is resolved, or not an issue, or not a priority.
-|MOVE| - Issue is a question or discussion, not an issue.
-|INCLUDE| - Issue is valid and should be included in an upcoming release.
-|INVESTIGATE| - Issue needs more investigation.
-|IMPROVE| - A PR is available, but could be improved.
-|UNSURE| - Don't know enough about the issue to make an educated suggestion.
+* |LATER| - Not a priority, but could be included in a future release.
+* |CLOSE| - Issue is resolved, or not an issue, or not a priority.
+* |MOVE| - Issue is a question or discussion, not an issue.
+* |INCLUDE| - Issue is valid and should be included in an upcoming release.
+* |INVESTIGATE| - Issue needs more investigation.
+* |IMPROVE| - A PR is available, but could be improved.
+* |UNSURE| - Don't know enough about the issue to make an educated suggestion.
 
 ```python
 from pathlib import Path
 
-jinja_issues = (Path.cwd() / 'jinja-issues.md').read_text().split('---')[1:]
+jinja_issues = (Path.cwd() / 'jinja-issues.md').read_text().split('---')[2:]
 filter_ = 0
 filters_ = {0: "all",
             1: "|LATER|", 2: "|CLOSE|", 3: "|MOVE|", 4: "|INCLUDE|",
-            5: "|INVESTIGATE|", 6: "|IMPROVE|", 7: "|UNSURE|"}
+            5: "|INVESTIGATE|", 6: "|IMPROVE|", 7: "|UNSURE|", 8: "PR:"}
 for issue in jinja_issues:
     if filters_[filter_] in issue if filter_ != 0 else True:
         print("-" * 80)
@@ -479,9 +479,9 @@ Running this with; `{{ "lorem ipsum 'example.org'." | urlize }}` gives me;
 `lorem ipsum &#39;example.org&#39;.` Placing whitespace between the quote and
 the URL works as expected. `' example.org '.`
 
-Suggested
-fix: https://github.com/pallets/jinja/commit/19817a6b7fff6159e28e962deb06109545987d87
-PR: None
+Suggested fix:
+
+https://github.com/pallets/jinja/commit/19817a6b7fff6159e28e962deb06109545987d87
 
 ---
 
