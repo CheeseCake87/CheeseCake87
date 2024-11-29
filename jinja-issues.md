@@ -485,3 +485,23 @@ PR: https://github.com/pallets/jinja/pull/2037
 ### refactor `PackageLoader` to use `importlib.resources`
 https://github.com/pallets/jinja/issues/1978
 
+|INCLUDE|
+
+PR: https://github.com/pallets/jinja/pull/1985/files
+
+Has conflicts, needs review.
+
+---
+
+### Type annotation wrong on TemplateStream.dump?
+https://github.com/pallets/jinja/issues/1983
+
+|LATER|
+
+Looks like a simple fix, but not a priority. Type hinting issue (mypy).
+
+---
+
+### Support explicitly disabling positional arguments in macros
+https://github.com/pallets/jinja/issues/1992
+
