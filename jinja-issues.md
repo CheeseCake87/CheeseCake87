@@ -522,3 +522,38 @@ PR: https://github.com/pallets/jinja/pull/1996
 
 ---
 
+### Mark output of Template(..., autoescape=True).render() as safe
+https://github.com/pallets/jinja/issues/2003
+
+|CLOSE|
+
+This is confusion on what is the definition of 'template data'
+
+They are rendering a template, saving it into a variable, then passing that 
+variable to another template render, and expecting it not to be escaped.
+
+Advise to use `| safe` or `Markup` and explain the template is now a string,
+and not a 'template object'.
+
+---
+
+### Support for SandboxedNativeEnvironment
+https://github.com/pallets/jinja/issues/2010
+
+|INVESTIGATE|
+
+Feature request for a sandboxed native environment. They are not sure if 
+they are missing something. I'm not sure either.
+
+---
+
+### Incorrect list comprehension
+https://github.com/pallets/jinja/issues/2015
+
+|INCLUDE|
+
+Docs update.
+
+PR: https://github.com/pallets/jinja/pull/2017
+
+---
