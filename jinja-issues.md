@@ -335,4 +335,16 @@ Example code on the ticket is working with `==` but the docs say use `is`.
 
 ---
 
+### `select_autoescape` default value for `default_for_string` should be `False`
+https://github.com/pallets/jinja/issues/1890
 
+|CLOSE|
+
+This issue details that if no template name is provided, and you would like 
+to autoescape, `select_autoescape()`'s `default_for_string` argument should 
+be `False`.
+
+I feel setting this is in itself an action to autoescape strings, as it wouldn't
+make sense to set this, and not have it autoescape strings by default.
+
+---
