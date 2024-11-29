@@ -619,3 +619,58 @@ another product.
 
 ---
 
+### Cannot refer to a variable named `self` that was set in an enclosing context
+https://github.com/pallets/jinja/issues/2030
+
+|CLOSE|
+
+Not sure if there's much that can be done here. Returning `{{ self }}` 
+seems like it would be normal to expect it to be the `self` object.
+
+---
+
+### `MutableSequence` coverage in `ImmutableSandboxedEnvironment`
+https://github.com/pallets/jinja/issues/2032
+
+|INVESTIGATE|
+
+PR: https://github.com/pallets/jinja/pull/2033
+
+Don't know enough about the `ImmutableSandboxedEnvironment` to make an 
+educated decision on this.
+
+---
+
+### Support generic `Traversable` in `FileSystemLoader`
+https://github.com/pallets/jinja/issues/2035
+
+|LATER|
+
+Feature request. Something for later.
+
+---
+
+### Sandbox format_map in for loop: TypeError: format_map() takes exactly one argument 2 given
+https://github.com/pallets/jinja/issues/2036
+
+|INVESTIGATE|
+
+This error is only happening inside the for loop.
+
+Note: there was a change to the `format_map` in a sandboxed environment here:
+https://jinja.palletsprojects.com/en/stable/changes/#version-2-10-1
+
+---
+
+### template.stream().dump( ) could take a path like object.
+https://github.com/pallets/jinja/issues/2039
+
+|LATER|
+
+Or close. Pathlib integration request.
+
+---
+
+### Reconsider returning the configured undefined for else-less ifs
+https://github.com/pallets/jinja/issues/2050
+
