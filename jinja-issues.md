@@ -348,3 +348,42 @@ I feel setting this is in itself an action to autoescape strings, as it wouldn't
 make sense to set this, and not have it autoescape strings by default.
 
 ---
+
+### Autoescape does not work well across blocks/inheritance
+https://github.com/pallets/jinja/issues/1898
+
+|LATER|
+
+Feature request. Wants to be able to wrap blocks in base templates to 
+`autoescape false`:
+
+```jinja
+# base.html
+{% autoescape false %}
+    {% block content %}{% endblock %}
+{% endautoescape %}
+
+# child.html
+{% extends "base.html" %}
+{% block content %}
+    {{ '<' }}
+{% endblock %}
+```
+
+Works as expected if you do:
+```jinja
+# child.html
+{% extends "base.html" %}
+{% block content %}
+    {% autoescape false %}
+        {{ '<' }}
+    {% endautoescape %}
+{% endblock %}
+```
+
+---
+
+### The `int` filter throws `OverflowError` when the incoming string looks like scientific notation
+https://github.com/pallets/jinja/issues/1921
+
+
