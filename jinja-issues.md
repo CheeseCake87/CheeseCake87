@@ -1,3 +1,10 @@
+## Info
+
+Still collecting issues and running example code. Some issues on ths list 
+may not be matched to any PRs associated with them yet.
+
+---
+
 ### Namespace multi-variable assignment:
 
 [https://github.com/pallets/jinja/issues/1413](https://github.com/pallets/jinja/issues/1413)
@@ -200,17 +207,19 @@ translation strings.
 ---
 
 ### Contains as a new Test (flipped operation of in)
+
 https://github.com/pallets/jinja/issues/1766
 
 |LATER|
 
 This is a feature request, set aside for later. They would like to see:
-`['Mike','Joe','Michael'] | select('contains', 'Mi') | list` returning 
+`['Mike','Joe','Michael'] | select('contains', 'Mi') | list` returning
 `['Mike', 'Michael']`
 
 ---
 
 ### Undefined name `autoescape` in custom filter example
+
 https://github.com/pallets/jinja/issues/1769
 
 |INCLUDE|
@@ -223,6 +232,7 @@ com/en/stable/api/#custom-filters:~:text=the%20output%20safe.-,import%20re,-from
 ---
 
 ### Support accurate dependency tracking including dynamic inheritance or inclusion
+
 https://github.com/pallets/jinja/issues/1775
 
 |INVESTIGATE|
@@ -234,6 +244,7 @@ I'm not sure on the use case of this...
 ---
 
 ### unique filter does not work when chain with a filter that returns async generator
+
 https://github.com/pallets/jinja/issues/1781
 
 |LATER|
@@ -244,6 +255,7 @@ Needs a complete code example.
 ---
 
 ### f-string sytax error when importing macro in a template which filename is also a template
+
 https://github.com/pallets/jinja/issues/1792
 
 |INCLUDE|
@@ -255,18 +267,20 @@ https://github.com/pallets/jinja/security/advisories/GHSA-gmj6-6f8f-6699
 ---
 
 ### Extension: Support saving arbitrary data with AssignmentBlock
+
 https://github.com/pallets/jinja/issues/1803
 
 |LATER|
 
 This is related to a closed issue: https://github.com/pallets/jinja/issues/714
 
-The person that has made this issue has offered to do a PR, maybe leave a 
+The person that has made this issue has offered to do a PR, maybe leave a
 comment asking if they will still be interested?
 
 ---
 
 ### Docs update re triple quotes and block assignments
+
 https://github.com/pallets/jinja/issues/1825
 
 |INCLUDE|
@@ -276,6 +290,7 @@ Documentation update that makes sense.
 ---
 
 ### Enhance Default Exceptions to include Line Number.
+
 https://github.com/pallets/jinja/issues/1861
 
 |CLOSE|
@@ -289,21 +304,23 @@ That looks like a line number to me.
 ---
 
 ### Allow passing multiple templates to import, just like include
+
 https://github.com/pallets/jinja/issues/1862
 
 |LATER|
 
-This a potential close. It's a feature request that would be more suited to 
+This a potential close. It's a feature request that would be more suited to
 a re-write.
 
 ---
 
 ### DebugUndefined does not handle object.value replacements
+
 https://github.com/pallets/jinja/issues/1871
 
 |INCLUDE|
 
-This makes sense to include in an upcoming release. Although maybe my 
+This makes sense to include in an upcoming release. Although maybe my
 understanding of what the `DebugUndefined` class does is incorrect.
 
 The request here is that when the `DebugUndefined` class is used, it should
@@ -313,11 +330,12 @@ not raise an error when `object.value` is used, but instead should return
 ---
 
 ### Escape newlines for tojson filter as Django
+
 https://github.com/pallets/jinja/issues/1882
 
 |INVESTIGATE|
 
-I'm relly not sure what the request is here. I think it's asking for a 
+I'm relly not sure what the request is here. I think it's asking for a
 change to allow `tojson` to safely escape code in some way?
 
 This seems more like a 'parsing on user input' issue.
@@ -325,6 +343,7 @@ This seems more like a 'parsing on user input' issue.
 ---
 
 ### injecting tokens in filter_stream fails with "expected token end of print statement"
+
 https://github.com/pallets/jinja/issues/1889
 
 |INCLUDE|
@@ -335,26 +354,30 @@ Example code on the ticket is working with `==` but the docs say use `is`.
 
 ---
 
-### `select_autoescape` default value for `default_for_string` should be `False`
+### `select_autoescape` default value for `default_for_string` should be
+`False`
+
 https://github.com/pallets/jinja/issues/1890
 
 |CLOSE|
 
-This issue details that if no template name is provided, and you would like 
-to autoescape, `select_autoescape()`'s `default_for_string` argument should 
+This issue details that if no template name is provided, and you would like
+to autoescape, `select_autoescape()`'s `default_for_string` argument should
 be `False`.
 
-I feel setting this is in itself an action to autoescape strings, as it wouldn't
+I feel setting this is in itself an action to autoescape strings, as it
+wouldn't
 make sense to set this, and not have it autoescape strings by default.
 
 ---
 
 ### Autoescape does not work well across blocks/inheritance
+
 https://github.com/pallets/jinja/issues/1898
 
 |LATER|
 
-Feature request. Wants to be able to wrap blocks in base templates to 
+Feature request. Wants to be able to wrap blocks in base templates to
 `autoescape false`:
 
 ```jinja
@@ -371,6 +394,7 @@ Feature request. Wants to be able to wrap blocks in base templates to
 ```
 
 Works as expected if you do:
+
 ```jinja
 # child.html
 {% extends "base.html" %}
@@ -383,12 +407,81 @@ Works as expected if you do:
 
 ---
 
-### The `int` filter throws `OverflowError` when the incoming string looks like scientific notation
-https://github.com/pallets/jinja/issues/1921
+### The `int` filter throws
+`OverflowError` when the incoming string looks like scientific notation
 
+https://github.com/pallets/jinja/issues/1921
 
 |INCLUDE|
 
 PR: https://github.com/pallets/jinja/pull/1984
 
+PyCon Sprint
+
 ---
+
+### Leading newline after
+`trans` block with Jinja trim options results in translation lookup failure
+
+https://github.com/pallets/jinja/issues/1925
+
+|LATER|
+
+Work was being done on this at a sprint, no PR or update since.
+
+---
+
+### `tojson` always do autoescape
+
+https://github.com/pallets/jinja/issues/1934
+
+|INCLUDE|
+
+PR: https://github.com/pallets/jinja/pull/1937
+
+---
+
+### urlize support for quotes
+https://github.com/pallets/jinja/issues/1945
+
+|LATER|
+
+Running this with; `{{ "lorem ipsum 'example.org'." | urlize }}` gives me; 
+`lorem ipsum &#39;example.org&#39;.` Placing whitespace between the quote and
+the URL works as expected. `' example.org '.`
+
+Suggested fix: https://github.com/pallets/jinja/commit/19817a6b7fff6159e28e962deb06109545987d87
+PR: None
+
+---
+
+### filters.map: apply filter to attribute ("mapattr")
+https://github.com/pallets/jinja/issues/1950
+
+|LATER|
+
+They are willing to do a PR for this, but it's a feature request.
+
+---
+
+### Allow to customize some behaviors of Lexer, so that Extension instances get can the raw block begin and end info.
+https://github.com/pallets/jinja/issues/1962
+
+|LATER|
+
+Feature request.
+
+---
+
+### Option to preserve comments in the AST
+https://github.com/pallets/jinja/issues/1967
+
+|INCLUDE|
+
+PR: https://github.com/pallets/jinja/pull/2037
+
+---
+
+### refactor `PackageLoader` to use `importlib.resources`
+https://github.com/pallets/jinja/issues/1978
+
