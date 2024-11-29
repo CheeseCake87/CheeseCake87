@@ -323,3 +323,16 @@ change to allow `tojson` to safely escape code in some way?
 This seems more like a 'parsing on user input' issue.
 
 ---
+
+### injecting tokens in filter_stream fails with "expected token end of print statement"
+https://github.com/pallets/jinja/issues/1889
+
+|INCLUDE|
+
+This looks like a documentation error?
+
+Example code on the ticket is working with `==` but the docs say use `is`.
+
+---
+
+
