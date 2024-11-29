@@ -13,6 +13,21 @@ Statuses:
 |IMPROVE| - A PR is available, but could be improved.
 |UNSURE| - Don't know enough about the issue to make an educated suggestion.
 
+```python
+from pathlib import Path
+
+jinja_issues = (Path.cwd() / 'jinja-issues.md').read_text().split('---')[1:]
+filter_ = 0
+filters_ = {0: "all",
+            1: "|LATER|", 2: "|CLOSE|", 3: "|MOVE|", 4: "|INCLUDE|",
+            5: "|INVESTIGATE|", 6: "|IMPROVE|", 7: "|UNSURE|"}
+for issue in jinja_issues:
+    if filters_[filter_] in issue if filter_ != 0 else True:
+        print("-" * 80)
+        print(issue)
+        print("-" * 80)
+```
+
 ---
 
 ### Namespace multi-variable assignment:
