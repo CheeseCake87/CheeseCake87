@@ -315,4 +315,11 @@ not raise an error when `object.value` is used, but instead should return
 ### Escape newlines for tojson filter as Django
 https://github.com/pallets/jinja/issues/1882
 
+|INVESTIGATE|
+
+I'm relly not sure what the request is here. I think it's asking for a 
+change to allow `tojson` to safely escape code in some way?
+
+This seems more like a 'parsing on user input' issue.
+
 ---
