@@ -557,3 +557,65 @@ Docs update.
 PR: https://github.com/pallets/jinja/pull/2017
 
 ---
+
+### indent filter uses \n always rather than following api newline_sequence 
+https://github.com/pallets/jinja/issues/2016
+
+|INCLUDE|
+
+PR: https://github.com/pallets/jinja/pull/2031
+
+---
+
+### Allow to apply certain filters by default (e.g. urlencode)
+https://github.com/pallets/jinja/issues/2020
+
+|MOVE|
+
+This is a question, not an issue. Move to discussions.
+
+---
+
+### non-deterministic output from compile templates when using tuple unpacking
+https://github.com/pallets/jinja/issues/2021
+
+|INCLUDE|
+
+PR: https://github.com/pallets/jinja/pull/2022
+
+---
+
+### jinja filters converts none to string 'none'
+https://github.com/pallets/jinja/issues/2024
+
+|CLOSE|
+
+Jinja variable set to none is of type `None` during `if` checks, but a 
+string when used in filters. Advise to check if none before using filters?
+
+---
+
+### Undefined objects can't be copied or pickled by Python > 3.5
+https://github.com/pallets/jinja/issues/2025
+
+|INVESTIGATE|
+
+PR: https://github.com/pallets/jinja/pull/2026
+
+I had this in include, but it's related to another pr that's attempting to 
+build in pickling of some sort.
+
+
+### Cannot pickle `jinja2.utils.missing`
+https://github.com/pallets/jinja/issues/2027
+
+|INVESTIGATE|
+
+PR: https://github.com/pallets/jinja/pull/2029
+
+Related to above. Some movement towards pickling. A quick reminder is the 
+PRs want to push around defined type for a reason to implement a feature in 
+another product.
+
+---
+
