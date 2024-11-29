@@ -1,7 +1,17 @@
 ## Info
 
-Still collecting issues and running example code. Some issues on ths list 
+Still collecting issues and running example code. Some issues on ths list
 may not be matched to any PRs associated with them yet.
+
+Statuses:
+
+|LATER| - Not a priority, but could be included in a future release.
+|CLOSE| - Issue is resolved, or not an issue, or not a priority.
+|MOVE| - Issue is a question or discussion, not an issue.
+|INCLUDE| - Issue is valid and should be included in an upcoming release.
+|INVESTIGATE| - Issue needs more investigation.
+|IMPROVE| - A PR is available, but could be improved.
+|UNSURE| - Don't know enough about the issue to make an educated suggestion.
 
 ---
 
@@ -355,6 +365,7 @@ Example code on the ticket is working with `==` but the docs say use `is`.
 ---
 
 ### `select_autoescape` default value for `default_for_string` should be
+
 `False`
 
 https://github.com/pallets/jinja/issues/1890
@@ -408,6 +419,7 @@ Works as expected if you do:
 ---
 
 ### The `int` filter throws
+
 `OverflowError` when the incoming string looks like scientific notation
 
 https://github.com/pallets/jinja/issues/1921
@@ -421,6 +433,7 @@ PyCon Sprint
 ---
 
 ### Leading newline after
+
 `trans` block with Jinja trim options results in translation lookup failure
 
 https://github.com/pallets/jinja/issues/1925
@@ -442,20 +455,23 @@ PR: https://github.com/pallets/jinja/pull/1937
 ---
 
 ### urlize support for quotes
+
 https://github.com/pallets/jinja/issues/1945
 
 |LATER|
 
-Running this with; `{{ "lorem ipsum 'example.org'." | urlize }}` gives me; 
+Running this with; `{{ "lorem ipsum 'example.org'." | urlize }}` gives me;
 `lorem ipsum &#39;example.org&#39;.` Placing whitespace between the quote and
 the URL works as expected. `' example.org '.`
 
-Suggested fix: https://github.com/pallets/jinja/commit/19817a6b7fff6159e28e962deb06109545987d87
+Suggested
+fix: https://github.com/pallets/jinja/commit/19817a6b7fff6159e28e962deb06109545987d87
 PR: None
 
 ---
 
 ### filters.map: apply filter to attribute ("mapattr")
+
 https://github.com/pallets/jinja/issues/1950
 
 |LATER|
@@ -465,6 +481,7 @@ They are willing to do a PR for this, but it's a feature request.
 ---
 
 ### Allow to customize some behaviors of Lexer, so that Extension instances get can the raw block begin and end info.
+
 https://github.com/pallets/jinja/issues/1962
 
 |LATER|
@@ -474,6 +491,7 @@ Feature request.
 ---
 
 ### Option to preserve comments in the AST
+
 https://github.com/pallets/jinja/issues/1967
 
 |INCLUDE|
@@ -483,6 +501,7 @@ PR: https://github.com/pallets/jinja/pull/2037
 ---
 
 ### refactor `PackageLoader` to use `importlib.resources`
+
 https://github.com/pallets/jinja/issues/1978
 
 |INCLUDE|
@@ -494,6 +513,7 @@ Has conflicts, needs review.
 ---
 
 ### Type annotation wrong on TemplateStream.dump?
+
 https://github.com/pallets/jinja/issues/1983
 
 |LATER|
@@ -503,6 +523,7 @@ Looks like a simple fix, but not a priority. Type hinting issue (mypy).
 ---
 
 ### Support explicitly disabling positional arguments in macros
+
 https://github.com/pallets/jinja/issues/1992
 
 |LATER|
@@ -512,6 +533,7 @@ Feature request for forced named arguments in macros.
 ---
 
 ### PackageLoader raises misleading error when template directory does not exist.
+
 https://github.com/pallets/jinja/issues/1995
 
 |IMPROVE|
@@ -523,13 +545,14 @@ PR: https://github.com/pallets/jinja/pull/1996
 ---
 
 ### Mark output of Template(..., autoescape=True).render() as safe
+
 https://github.com/pallets/jinja/issues/2003
 
 |CLOSE|
 
 This is confusion on what is the definition of 'template data'
 
-They are rendering a template, saving it into a variable, then passing that 
+They are rendering a template, saving it into a variable, then passing that
 variable to another template render, and expecting it not to be escaped.
 
 Advise to use `| safe` or `Markup` and explain the template is now a string,
@@ -538,16 +561,18 @@ and not a 'template object'.
 ---
 
 ### Support for SandboxedNativeEnvironment
+
 https://github.com/pallets/jinja/issues/2010
 
 |INVESTIGATE|
 
-Feature request for a sandboxed native environment. They are not sure if 
+Feature request for a sandboxed native environment. They are not sure if
 they are missing something. I'm not sure either.
 
 ---
 
 ### Incorrect list comprehension
+
 https://github.com/pallets/jinja/issues/2015
 
 |INCLUDE|
@@ -558,7 +583,8 @@ PR: https://github.com/pallets/jinja/pull/2017
 
 ---
 
-### indent filter uses \n always rather than following api newline_sequence 
+### indent filter uses \n always rather than following api newline_sequence
+
 https://github.com/pallets/jinja/issues/2016
 
 |INCLUDE|
@@ -568,6 +594,7 @@ PR: https://github.com/pallets/jinja/pull/2031
 ---
 
 ### Allow to apply certain filters by default (e.g. urlencode)
+
 https://github.com/pallets/jinja/issues/2020
 
 |MOVE|
@@ -577,6 +604,7 @@ This is a question, not an issue. Move to discussions.
 ---
 
 ### non-deterministic output from compile templates when using tuple unpacking
+
 https://github.com/pallets/jinja/issues/2021
 
 |INCLUDE|
@@ -586,62 +614,70 @@ PR: https://github.com/pallets/jinja/pull/2022
 ---
 
 ### jinja filters converts none to string 'none'
+
 https://github.com/pallets/jinja/issues/2024
 
 |CLOSE|
 
-Jinja variable set to none is of type `None` during `if` checks, but a 
+Jinja variable set to none is of type `None` during `if` checks, but a
 string when used in filters. Advise to check if none before using filters?
 
 ---
 
 ### Undefined objects can't be copied or pickled by Python > 3.5
+
 https://github.com/pallets/jinja/issues/2025
 
 |INVESTIGATE|
 
 PR: https://github.com/pallets/jinja/pull/2026
 
-I had this in include, but it's related to another pr that's attempting to 
+I had this in include, but it's related to another pr that's attempting to
 build in pickling of some sort.
 
+---
 
 ### Cannot pickle `jinja2.utils.missing`
+
 https://github.com/pallets/jinja/issues/2027
 
 |INVESTIGATE|
 
 PR: https://github.com/pallets/jinja/pull/2029
 
-Related to above. Some movement towards pickling. A quick reminder is the 
-PRs want to push around defined type for a reason to implement a feature in 
+Related to above. Some movement towards pickling. A quick reminder is the
+PRs want to push around defined type for a reason to implement a feature in
 another product.
 
 ---
 
-### Cannot refer to a variable named `self` that was set in an enclosing context
+### Cannot refer to a variable named
+`self` that was set in an enclosing context
+
 https://github.com/pallets/jinja/issues/2030
 
 |CLOSE|
 
-Not sure if there's much that can be done here. Returning `{{ self }}` 
+Not sure if there's much that can be done here. Returning `{{ self }}`
 seems like it would be normal to expect it to be the `self` object.
 
 ---
 
 ### `MutableSequence` coverage in `ImmutableSandboxedEnvironment`
+
 https://github.com/pallets/jinja/issues/2032
 
 |INVESTIGATE|
 
 PR: https://github.com/pallets/jinja/pull/2033
 
-Don't know enough about the `ImmutableSandboxedEnvironment` to make an 
+Don't know enough about the `ImmutableSandboxedEnvironment` to make an
 educated decision on this.
 
 ---
 
 ### Support generic `Traversable` in `FileSystemLoader`
+
 https://github.com/pallets/jinja/issues/2035
 
 |LATER|
@@ -651,6 +687,7 @@ Feature request. Something for later.
 ---
 
 ### Sandbox format_map in for loop: TypeError: format_map() takes exactly one argument 2 given
+
 https://github.com/pallets/jinja/issues/2036
 
 |INVESTIGATE|
@@ -663,6 +700,7 @@ https://jinja.palletsprojects.com/en/stable/changes/#version-2-10-1
 ---
 
 ### template.stream().dump( ) could take a path like object.
+
 https://github.com/pallets/jinja/issues/2039
 
 |LATER|
@@ -672,5 +710,11 @@ Or close. Pathlib integration request.
 ---
 
 ### Reconsider returning the configured undefined for else-less ifs
+
 https://github.com/pallets/jinja/issues/2050
 
+|INVESTIGATE|
+
+Asking for a revert to old behavior?
+
+---
