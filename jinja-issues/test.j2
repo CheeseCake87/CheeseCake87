@@ -1,0 +1,11 @@
+{% set fmt_map = {
+     "a" : "atext"
+   } %}
+
+{{ "test".format_map(fmt_map) }}
+
+{% for i in range(1,2) %}
+
+  {{ "test".format_map({"a" : "atext"}) }}
+
+{% endfor %}
