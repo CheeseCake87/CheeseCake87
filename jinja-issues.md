@@ -820,12 +820,13 @@ Asking for a revert to old behavior?
 ```python
 from pathlib import Path
 
-jinja_issues = (Path.cwd() / 'jinja-issues.md').read_text().split('-' * 3)[2:]
-filter_ = 8
+jinja_issues = (Path.cwd() / 'jinja-issues.md').read_text().split('---')[1:-1]
+filter_ = 0
 filters_ = {0: "all",
             1: "|LATER|", 2: "|CLOSE|", 3: "|MOVE|", 4: "|INCLUDE|",
             5: "|INVESTIGATE|", 6: "|IMPROVE|", 7: "|UNSURE|", 8: "PR:"}
 for issue in jinja_issues:
+    if "=== Filter Tool" in issue: continue
     if filters_[filter_] in issue if filter_ != 0 else True:
         print("-" * 80)
         print(issue)
