@@ -548,10 +548,9 @@ Results in:
 
 So this change makes sense to match the expected behavior of `json.dumps`.
 
-It looks like this change should be made in `utils.py` or by passing `None`
-to the `htmlsafe_json_dumps` function. This would prevent the import of 
-`json` in `filters.py`. It looks like `< > & '` are being explicitly 
-escaped `htmlsafe_json_dumps`, I'm not sure yet of the reasoning behind this.
+It looks like this change should be made in `utils.py`.  It looks 
+like `< > & '` are being explicitly  escaped `htmlsafe_json_dumps`, I'm not 
+sure yet of the reasoning behind this.
 
 Setting `env.policies["json.dumps_function"]` has no effect on the output, 
 as this is passed to `htmlsafe_json_dumps`
