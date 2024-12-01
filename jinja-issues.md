@@ -17,7 +17,7 @@ Statuses:
 from pathlib import Path
 
 jinja_issues = (Path.cwd() / 'jinja-issues.md').read_text().split('---')[2:]
-filter_ = 0
+filter_ = 8
 filters_ = {0: "all",
             1: "|LATER|", 2: "|CLOSE|", 3: "|MOVE|", 4: "|INCLUDE|",
             5: "|INVESTIGATE|", 6: "|IMPROVE|", 7: "|UNSURE|", 8: "PR:"}
@@ -466,6 +466,39 @@ https://github.com/pallets/jinja/issues/1934
 |INCLUDE|
 
 PR: https://github.com/pallets/jinja/pull/1937
+
+Findings:
+
+My initial thoughts were that the minimal example should really 
+raise a TypeError, as JSON (I'm sure) should always start and end with 
+`{ / [ ... ] / }` and not a string.
+
+This would be a better example:
+
+```Python
+print(t.render(x={"html": "<p class=\"this\"> foo and 'bar' </p>"}))
+```
+
+Results in:
+
+```text
+{"html": "\u003cp class=\"this\"\u003e foo and \u0027bar\u0027 \u003c/p\u003e"}
+```
+
+Although, the behavior of `json.dumps` accepts stings:
+
+```Python
+value = "<p class=\"this\"> foo and 'bar' </p>"
+print(json.dumps(value))
+```
+
+Results in:
+
+```text
+"<p class=\"this\"> foo and 'bar' </p>"
+```
+
+So this change makes sense to match the expected behavior of `json.dumps`.
 
 ---
 
