@@ -13,20 +13,68 @@ Statuses:
 * |IMPROVE| - A PR is available, but could be improved.
 * |UNSURE| - Don't know enough about the issue to make an educated suggestion.
 
-```python
-from pathlib import Path
 
-jinja_issues = (Path.cwd() / 'jinja-issues.md').read_text().split('---')[2:]
-filter_ = 8
-filters_ = {0: "all",
-            1: "|LATER|", 2: "|CLOSE|", 3: "|MOVE|", 4: "|INCLUDE|",
-            5: "|INVESTIGATE|", 6: "|IMPROVE|", 7: "|UNSURE|", 8: "PR:"}
-for issue in jinja_issues:
-    if filters_[filter_] in issue if filter_ != 0 else True:
-        print("-" * 80)
-        print(issue)
-        print("-" * 80)
-```
+
+<!-- TOC -->
+  * [Info](#info)
+    * [Namespace multi-variable assignment:](#namespace-multi-variable-assignment)
+    * [Loop-variables are not accessible in @pass_context / @contextfilter](#loop-variables-are-not-accessible-in-pass_context--contextfilter)
+    * [Can't use a test decorated with `@pass_context` in `select`](#cant-use-a-test-decorated-with-pass_context-in-select)
+    * [Add searchpath to TemplateNotFound exception message](#add-searchpath-to-templatenotfound-exception-message)
+    * [Faulty handling of UNC paths (pathlib in PackageLoader)](#faulty-handling-of-unc-paths-pathlib-in-packageloader)
+    * [`lexer.Token.value` has wrong type](#lexertokenvalue-has-wrong-type)
+    * [`Failure.__call__` provides wrong arguments to `self.error_class`](#failure__call__-provides-wrong-arguments-to-selferror_class)
+    * [TypeError: sequence item 0: expected str instance, int found](#typeerror-sequence-item-0-expected-str-instance-int-found)
+    * [The error message from PackageLoader could be more helpful](#the-error-message-from-packageloader-could-be-more-helpful)
+    * [debug extension pprinting in html](#debug-extension-pprinting-in-html)
+    * [Negative number raised to even power gives negative result if exponent is a variable](#negative-number-raised-to-even-power-gives-negative-result-if-exponent-is-a-variable)
+    * [Bug with right-left associativity of exponent](#bug-with-right-left-associativity-of-exponent)
+    * [Missing line info from syntax error message](#missing-line-info-from-syntax-error-message)
+    * [Template caching does not take environment configuration into account](#template-caching-does-not-take-environment-configuration-into-account)
+    * [explain associativity and precedence between operators](#explain-associativity-and-precedence-between-operators)
+    * [Configurable behavior when translated string interpolation fails.](#configurable-behavior-when-translated-string-interpolation-fails)
+    * [Contains as a new Test (flipped operation of in)](#contains-as-a-new-test-flipped-operation-of-in)
+    * [Undefined name `autoescape` in custom filter example](#undefined-name-autoescape-in-custom-filter-example)
+    * [Support accurate dependency tracking including dynamic inheritance or inclusion](#support-accurate-dependency-tracking-including-dynamic-inheritance-or-inclusion)
+    * [unique filter does not work when chain with a filter that returns async generator](#unique-filter-does-not-work-when-chain-with-a-filter-that-returns-async-generator)
+    * [f-string sytax error when importing macro in a template which filename is also a template](#f-string-sytax-error-when-importing-macro-in-a-template-which-filename-is-also-a-template)
+    * [Extension: Support saving arbitrary data with AssignmentBlock](#extension-support-saving-arbitrary-data-with-assignmentblock)
+    * [Docs update re triple quotes and block assignments](#docs-update-re-triple-quotes-and-block-assignments)
+    * [Enhance Default Exceptions to include Line Number.](#enhance-default-exceptions-to-include-line-number)
+    * [Allow passing multiple templates to import, just like include](#allow-passing-multiple-templates-to-import-just-like-include)
+    * [DebugUndefined does not handle object.value replacements](#debugundefined-does-not-handle-objectvalue-replacements)
+    * [Escape newlines for tojson filter as Django](#escape-newlines-for-tojson-filter-as-django)
+    * [injecting tokens in filter_stream fails with "expected token end of print statement"](#injecting-tokens-in-filter_stream-fails-with-expected-token-end-of-print-statement)
+    * [`select_autoescape` default value for `default_for_string` should be](#select_autoescape-default-value-for-default_for_string-should-be)
+    * [Autoescape does not work well across blocks/inheritance](#autoescape-does-not-work-well-across-blocksinheritance)
+    * [The `int` filter throws](#the-int-filter-throws)
+    * [Leading newline after](#leading-newline-after)
+    * [`tojson` always do autoescape](#tojson-always-do-autoescape)
+    * [urlize support for quotes](#urlize-support-for-quotes)
+    * [filters.map: apply filter to attribute ("mapattr")](#filtersmap-apply-filter-to-attribute-mapattr)
+    * [Allow to customize some behaviors of Lexer, so that Extension instances get can the raw block begin and end info.](#allow-to-customize-some-behaviors-of-lexer-so-that-extension-instances-get-can-the-raw-block-begin-and-end-info)
+    * [Option to preserve comments in the AST](#option-to-preserve-comments-in-the-ast)
+    * [refactor `PackageLoader` to use `importlib.resources`](#refactor-packageloader-to-use-importlibresources)
+    * [Type annotation wrong on TemplateStream.dump?](#type-annotation-wrong-on-templatestreamdump)
+    * [Support explicitly disabling positional arguments in macros](#support-explicitly-disabling-positional-arguments-in-macros)
+    * [PackageLoader raises misleading error when template directory does not exist.](#packageloader-raises-misleading-error-when-template-directory-does-not-exist)
+    * [Mark output of Template(..., autoescape=True).render() as safe](#mark-output-of-template-autoescapetruerender-as-safe)
+    * [Support for SandboxedNativeEnvironment](#support-for-sandboxednativeenvironment)
+    * [Incorrect list comprehension](#incorrect-list-comprehension)
+    * [indent filter uses \n always rather than following api newline_sequence](#indent-filter-uses-n-always-rather-than-following-api-newline_sequence)
+    * [Allow to apply certain filters by default (e.g. urlencode)](#allow-to-apply-certain-filters-by-default-eg-urlencode)
+    * [non-deterministic output from compile templates when using tuple unpacking](#non-deterministic-output-from-compile-templates-when-using-tuple-unpacking)
+    * [jinja filters converts none to string 'none'](#jinja-filters-converts-none-to-string-none)
+    * [Undefined objects can't be copied or pickled by Python > 3.5](#undefined-objects-cant-be-copied-or-pickled-by-python--35)
+    * [Cannot pickle `jinja2.utils.missing`](#cannot-pickle-jinja2utilsmissing)
+    * [Cannot refer to a variable named](#cannot-refer-to-a-variable-named)
+    * [`MutableSequence` coverage in `ImmutableSandboxedEnvironment`](#mutablesequence-coverage-in-immutablesandboxedenvironment)
+    * [Support generic `Traversable` in `FileSystemLoader`](#support-generic-traversable-in-filesystemloader)
+    * [Sandbox format_map in for loop: TypeError: format_map() takes exactly one argument 2 given](#sandbox-format_map-in-for-loop-typeerror-format_map-takes-exactly-one-argument-2-given)
+    * [template.stream().dump( ) could take a path like object.](#templatestreamdump--could-take-a-path-like-object)
+    * [Reconsider returning the configured undefined for else-less ifs](#reconsider-returning-the-configured-undefined-for-else-less-ifs)
+    * [=== Filter Tool](#-filter-tool)
+<!-- TOC -->
 
 ---
 
@@ -764,5 +812,24 @@ https://github.com/pallets/jinja/issues/2050
 |INVESTIGATE|
 
 Asking for a revert to old behavior?
+
+---
+
+### === Filter Tool
+
+```python
+from pathlib import Path
+
+jinja_issues = (Path.cwd() / 'jinja-issues.md').read_text().split('-' * 3)[2:]
+filter_ = 8
+filters_ = {0: "all",
+            1: "|LATER|", 2: "|CLOSE|", 3: "|MOVE|", 4: "|INCLUDE|",
+            5: "|INVESTIGATE|", 6: "|IMPROVE|", 7: "|UNSURE|", 8: "PR:"}
+for issue in jinja_issues:
+    if filters_[filter_] in issue if filter_ != 0 else True:
+        print("-" * 80)
+        print(issue)
+        print("-" * 80)
+```
 
 ---
