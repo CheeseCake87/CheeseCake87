@@ -513,7 +513,7 @@ Work was being done on this at a sprint, no PR or update since.
 
 https://github.com/pallets/jinja/issues/1934
 
-|INCLUDE|
+|CLOSE|
 
 PR: https://github.com/pallets/jinja/pull/1937
 
@@ -556,6 +556,15 @@ sure yet of the reasoning behind this.
 
 Setting `env.policies["json.dumps_function"]` has no effect on the output, 
 as this is passed to `htmlsafe_json_dumps`
+
+Close this. The function is specifically for making JSON safe for HTML, 
+`autoescape` is False by default, doing this change would make it default 
+unsafe.
+
+```
+Serialize an object to a string of JSON, and mark it safe to
+render in HTML.
+```
 
 ---
 
