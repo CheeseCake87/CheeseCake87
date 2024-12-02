@@ -624,6 +624,8 @@ PR: https://github.com/pallets/jinja/pull/1985/files
 
 Has conflicts, needs review.
 
+Milestone: 3.2
+
 ---
 
 ### (1983) Type annotation wrong on TemplateStream.dump?
@@ -704,6 +706,8 @@ https://github.com/pallets/jinja/issues/2016
 |INCLUDE|
 
 PR: https://github.com/pallets/jinja/pull/2031
+
+Millstone: 3.2
 
 ---
 
