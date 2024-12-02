@@ -493,6 +493,8 @@ PR: https://github.com/pallets/jinja/pull/1984
 
 PyCon Sprint
 
+Milestone: 3.2
+
 ---
 
 ### (1925) Leading newline after
