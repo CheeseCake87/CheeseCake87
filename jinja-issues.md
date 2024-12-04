@@ -391,7 +391,7 @@ a re-write.
 
 https://github.com/pallets/jinja/issues/1871
 
-|INCLUDE|
+|INVESTIGATE|
 
 This makes sense to include in an upcoming release. Although maybe my
 understanding of what the `DebugUndefined` class does is incorrect.
