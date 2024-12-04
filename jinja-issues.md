@@ -104,7 +104,7 @@ Would require investigation and more code than you likely think.
 
 https://github.com/pallets/jinja/issues/1624
 
-|UNSURE|
+|INCLUDE|
 
 Unable to get example working.
 
@@ -272,7 +272,7 @@ explain operators
 
 https://github.com/pallets/jinja/issues/1763
 
-|UNSURE|
+|INCLUDE|
 
 Not entirely sure on what this is talking about, I'm not familiar with
 translation strings.
