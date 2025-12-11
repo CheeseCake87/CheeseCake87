@@ -1,7 +1,3 @@
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=CheeseCake87&layout=compact&theme=dark)](https://github.com/anuraghazra/github-readme-stats)
-
----
-
 Things I can't be bothered typing:
 
 ```bash
